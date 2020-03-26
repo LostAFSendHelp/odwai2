@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ODWai2.Controllers;
 using ODWai2.Misc;
+using ODWai2.Interfaces;
 
 namespace ODWai2.Presentation
 {
-    public partial class MainView : Form
+    public partial class MainView : Form, DataLoadingView
     {
         private MainController _main_controller;
 
@@ -82,7 +83,7 @@ namespace ODWai2.Presentation
 
         private void btn_new_data_set_Click(object sender, EventArgs e)
         {
-            NewDataSetView data_set_view = new NewDataSetView();
+            NewDataSetView data_set_view = new NewDataSetView(this);
             data_set_view.ShowDialog();
         }
     }

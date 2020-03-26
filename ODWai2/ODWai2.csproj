@@ -52,6 +52,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="DAOs\DataSetRepository.cs" />
     <Compile Include="DAOs\InputSetRepository.cs" />
+    <Compile Include="Interfaces\DataLoadingView.cs" />
     <Compile Include="Misc\ImageItemView.cs">
       <SubType>Form</SubType>
     </Compile>
