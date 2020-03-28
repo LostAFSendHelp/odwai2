@@ -69,7 +69,7 @@
             this.tab_control.Location = new System.Drawing.Point(12, 12);
             this.tab_control.Name = "tab_control";
             this.tab_control.SelectedIndex = 0;
-            this.tab_control.Size = new System.Drawing.Size(540, 327);
+            this.tab_control.Size = new System.Drawing.Size(808, 327);
             this.tab_control.TabIndex = 0;
             // 
             // testing_tab
@@ -77,7 +77,7 @@
             this.testing_tab.Location = new System.Drawing.Point(4, 22);
             this.testing_tab.Name = "testing_tab";
             this.testing_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.testing_tab.Size = new System.Drawing.Size(532, 301);
+            this.testing_tab.Size = new System.Drawing.Size(800, 301);
             this.testing_tab.TabIndex = 0;
             this.testing_tab.Text = "Testing";
             this.testing_tab.UseVisualStyleBackColor = true;
@@ -89,7 +89,7 @@
             this.config_tab.Location = new System.Drawing.Point(4, 22);
             this.config_tab.Name = "config_tab";
             this.config_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.config_tab.Size = new System.Drawing.Size(532, 301);
+            this.config_tab.Size = new System.Drawing.Size(800, 301);
             this.config_tab.TabIndex = 1;
             this.config_tab.Text = "Configs";
             this.config_tab.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             this.groupBox2.Controls.Add(this.input_set_dgv);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.input_set_cbox);
-            this.groupBox2.Location = new System.Drawing.Point(282, 9);
+            this.groupBox2.Location = new System.Drawing.Point(550, 9);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(244, 286);
             this.groupBox2.TabIndex = 0;
@@ -178,7 +178,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(244, 289);
+            this.groupBox1.Size = new System.Drawing.Size(538, 289);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data set";
@@ -186,7 +186,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(127, 70);
+            this.label5.Location = new System.Drawing.Point(272, 70);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(28, 13);
             this.label5.TabIndex = 4;
@@ -251,10 +251,10 @@
             this.dgv_test.AllowUserToAddRows = false;
             this.dgv_test.AllowUserToDeleteRows = false;
             this.dgv_test.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_test.Location = new System.Drawing.Point(130, 86);
+            this.dgv_test.Location = new System.Drawing.Point(275, 86);
             this.dgv_test.Name = "dgv_test";
             this.dgv_test.ReadOnly = true;
-            this.dgv_test.Size = new System.Drawing.Size(108, 168);
+            this.dgv_test.Size = new System.Drawing.Size(257, 168);
             this.dgv_test.TabIndex = 2;
             // 
             // dgv_train
@@ -265,7 +265,7 @@
             this.dgv_train.Location = new System.Drawing.Point(9, 86);
             this.dgv_train.Name = "dgv_train";
             this.dgv_train.ReadOnly = true;
-            this.dgv_train.Size = new System.Drawing.Size(108, 168);
+            this.dgv_train.Size = new System.Drawing.Size(260, 168);
             this.dgv_train.TabIndex = 2;
             this.dgv_train.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_train_CellContentDoubleClick);
             // 
@@ -300,7 +300,7 @@
             // 
             // btn_quit
             // 
-            this.btn_quit.Location = new System.Drawing.Point(477, 367);
+            this.btn_quit.Location = new System.Drawing.Point(741, 367);
             this.btn_quit.Name = "btn_quit";
             this.btn_quit.Size = new System.Drawing.Size(75, 23);
             this.btn_quit.TabIndex = 1;
@@ -322,7 +322,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 402);
+            this.ClientSize = new System.Drawing.Size(832, 402);
             this.Controls.Add(this.skip_result_checkbox);
             this.Controls.Add(this.btn_quit);
             this.Controls.Add(this.btn_simulate);

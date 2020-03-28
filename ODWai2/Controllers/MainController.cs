@@ -9,6 +9,7 @@ using ODWai2.DAOs;
 using ODWai2.Misc;
 using System.IO;
 using System.Data;
+using ODWai2.ODWaiCore;
 
 namespace ODWai2.Controllers
 {
@@ -17,12 +18,14 @@ namespace ODWai2.Controllers
         private MainView _main_view;
         private DataSetView _data_set_view;
         private DataSetRepository _data_set_repo;
+        private ScriptExecutor _script_executor;
 
         public MainController(MainView main_view)
         {
             _main_view = main_view;
             _data_set_view = new DataSetView(this);
             _data_set_repo = new DataSetRepository();
+            _script_executor = new ScriptExecutor();
         }
 
         public Dictionary<string, string> get_data_sets()
@@ -57,7 +60,7 @@ namespace ODWai2.Controllers
 
         public void dummy_func()
         {
-            MessageBox.Show("fuck you", _main_view.Name, MessageBoxButtons.OK);
+            _script_executor.dummy_func();
         }
 
         public void another_dummy_func()

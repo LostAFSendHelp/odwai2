@@ -65,6 +65,7 @@
     <Compile Include="Misc\NewDataSetView.Designer.cs">
       <DependentUpon>NewDataSetView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ODWaiCore\ScriptExecutor.cs" />
     <Compile Include="Presentation\DataSetView.cs">
       <SubType>Form</SubType>
     </Compile>

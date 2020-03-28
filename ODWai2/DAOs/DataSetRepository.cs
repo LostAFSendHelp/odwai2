@@ -86,11 +86,12 @@ namespace ODWai2.DAOs
             int count = 0;
             foreach (string image_file in image_files)
             {
-                string xml_file = image_file.Replace(".jpg", ".xml").Replace(".JPG", ".xml");
+                string image_file_lower = image_file.ToLower();
+                string xml_file = image_file_lower.Replace(".jpg", ".xml");
                 if (File.Exists(xml_file))
                 {
                     ++count;
-                    File.Copy(image_file, to_path + "/" + Path.GetFileName(image_file));
+                    File.Copy(image_file, to_path + "/" + Path.GetFileName(image_file_lower));
                     File.Copy(xml_file, to_path + "/" + Path.GetFileName(xml_file));
                 }
             }

@@ -15,6 +15,7 @@ namespace ODWai2.Presentation
     public partial class MainView : Form, DataLoadingView
     {
         private MainController _main_controller;
+        private bool _has_data_set = false;
 
         public MainView()
         {
@@ -44,6 +45,9 @@ namespace ODWai2.Presentation
 
         public void load_data()
         {
+            Dictionary<string, string> data = _main_controller.get_data_sets();
+            if (data.Count == 0) { _has_data_set = false; return; }
+            _has_data_set = true;
             bind(cbox_data_set, _main_controller.get_data_sets());
         }
 
@@ -65,7 +69,7 @@ namespace ODWai2.Presentation
 
         private void cbox_data_set_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cbox_data_set.Items.Count == 0) { return; }
+            if (!_has_data_set) { return; }
             string dir = ((KeyValuePair<string, string>)cbox_data_set.SelectedValue).Value;
             bind(cbox_inference_graph, _main_controller.get_inference_graphs(dir));
             bind(dgv_train, _main_controller.get_train_data(dir));
