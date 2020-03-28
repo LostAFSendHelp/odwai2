@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ODWai2.Presentation;
 using ODWai2.DAOs;
+using ODWai2.Misc;
 using System.IO;
 using System.Data;
 
@@ -42,6 +43,16 @@ namespace ODWai2.Controllers
         public DataTable get_test_data(string data_set_path)
         {
             return _data_set_repo.get_data_set(data_set_path, "test");
+        }
+
+        public NewDataSetView present_new_data_set_view()
+        {
+            return new NewDataSetView(_main_view, _data_set_repo);
+        }
+
+        public ImageItemView preset_image_item_view(string path)
+        {
+            return new ImageItemView(path);
         }
 
         public void dummy_func()

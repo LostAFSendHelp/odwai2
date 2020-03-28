@@ -8,7 +8,7 @@ using System.Data;
 
 namespace ODWai2.DAOs
 {
-    class DataSetRepository
+    public class DataSetRepository
     {
         private const string root_dir = @"../../Datasets/";
 
@@ -57,12 +57,45 @@ namespace ODWai2.DAOs
             return data_table;
         }
 
+        public int create_new_data_set(string to_path, string from_train_path, string from_test_path)
+        {
+            Directory.CreateDirectory(to_path);
+            int copied_train = copy_data_files(to_path + "/train", from_train_path);
+            int copied_test = copy_data_files(to_path + "/test", from_test_path);
+            copy_data_files(to_path + "/graph");
+
+            return copied_test + copied_train;
+        }
+
         private Dictionary<string, string> zip(List<string> keys, List<string> values)
         {
             var zip = keys.Zip(values, (k, v) => new { k, v });
             Dictionary<string, string> dict = zip.ToDictionary(x => x.k, x => x.v);
 
             return dict;
+        }
+
+        private int copy_data_files(string to_path, string from_path = null)
+        {
+            Directory.CreateDirectory(to_path);
+            if (String.IsNullOrEmpty(from_path)) { return 0; }
+
+            Directory.CreateDirectory(to_path);
+            string[] image_files = Directory.GetFiles(from_path, "*.jpg", SearchOption.TopDirectoryOnly);
+
+            int count = 0;
+            foreach (string image_file in image_files)
+            {
+                string xml_file = image_file.Replace(".jpg", ".xml").Replace(".JPG", ".xml");
+                if (File.Exists(xml_file))
+                {
+                    ++count;
+                    File.Copy(image_file, to_path + "/" + Path.GetFileName(image_file));
+                    File.Copy(xml_file, to_path + "/" + Path.GetFileName(xml_file));
+                }
+            }
+
+            return count;
         }
     }
 }

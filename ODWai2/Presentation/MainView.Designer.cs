@@ -235,7 +235,7 @@
             this.cbox_data_set.Name = "cbox_data_set";
             this.cbox_data_set.Size = new System.Drawing.Size(121, 21);
             this.cbox_data_set.TabIndex = 0;
-            this.cbox_data_set.SelectedValueChanged += new System.EventHandler(this.data_set_cbox_SelectedValueChanged);
+            this.cbox_data_set.SelectedValueChanged += new System.EventHandler(this.cbox_data_set_SelectedValueChanged);
             // 
             // label3
             // 

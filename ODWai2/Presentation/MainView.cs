@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ODWai2.Controllers;
-using ODWai2.Misc;
 using ODWai2.Interfaces;
 
 namespace ODWai2.Presentation
@@ -64,8 +63,9 @@ namespace ODWai2.Presentation
             }
         }
 
-        private void data_set_cbox_SelectedValueChanged(object sender, EventArgs e)
+        private void cbox_data_set_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (cbox_data_set.Items.Count == 0) { return; }
             string dir = ((KeyValuePair<string, string>)cbox_data_set.SelectedValue).Value;
             bind(cbox_inference_graph, _main_controller.get_inference_graphs(dir));
             bind(dgv_train, _main_controller.get_train_data(dir));
@@ -77,14 +77,12 @@ namespace ODWai2.Presentation
             DataGridView view = sender as DataGridView;
             if (view == null) { return; }
 
-            ImageItemView image_view = new ImageItemView(view.CurrentRow.Cells["image_path"].Value.ToString());
-            image_view.ShowDialog();
+            _main_controller.preset_image_item_view(view.CurrentRow.Cells["image_path"].Value.ToString()).ShowDialog();
         }
 
         private void btn_new_data_set_Click(object sender, EventArgs e)
         {
-            NewDataSetView data_set_view = new NewDataSetView(this);
-            data_set_view.ShowDialog();
+            _main_controller.present_new_data_set_view().ShowDialog();
         }
     }
 }

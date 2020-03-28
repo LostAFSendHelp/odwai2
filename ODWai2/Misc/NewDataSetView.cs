@@ -9,17 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using ODWai2.Interfaces;
+using ODWai2.DAOs;
 
 namespace ODWai2.Misc
 {
     public partial class NewDataSetView : Form
     {
         private const string _root_dir = @"../../Datasets/";
+        private DataSetRepository _data_set_repo;
         private DataLoadingView _caller_view;
 
-        public NewDataSetView(DataLoadingView caller_view)
+        public NewDataSetView(DataLoadingView caller_view, DataSetRepository data_set_repo)
         {
             InitializeComponent();
+            _data_set_repo = data_set_repo;
             _caller_view = caller_view;
         }
 
@@ -66,41 +69,14 @@ namespace ODWai2.Misc
                 return;
             }
 
-            Directory.CreateDirectory(destination_path);
-            int copied_train = copy_data_files(destination_path + "/train", train_path_origin);
-            int copied_test = copy_data_files(destination_path + "/test", test_path_origin);
-            copy_data_files(destination_path + "/graph");
-
-            MessageBox.Show((copied_test + copied_train) + " data item(s) have been imported", "Success", MessageBoxButtons.OK);
+            int result = _data_set_repo.create_new_data_set(destination_path, train_path_origin, test_path_origin);
+            MessageBox.Show(result + " data item(s) have been imported", "Success", MessageBoxButtons.OK);
             _caller_view.load_data();
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private int copy_data_files(string to_path, string from_path = null)
-        {
-            Directory.CreateDirectory(to_path);
-            if (String.IsNullOrEmpty(from_path)) { return 0; }
-
-            Directory.CreateDirectory(to_path);
-            string[] image_files = Directory.GetFiles(from_path, "*.jpg", SearchOption.TopDirectoryOnly);
-
-            int count = 0;
-            foreach (string image_file in image_files)
-            {
-                string xml_file = image_file.Replace(".jpg", ".xml").Replace(".JPG", ".xml");
-                if (File.Exists(xml_file))
-                {
-                    ++count;
-                    File.Copy(image_file, to_path + "/" + Path.GetFileName(image_file));
-                    File.Copy(xml_file, to_path + "/" + Path.GetFileName(xml_file));
-                }
-            }
-
-            return count;
         }
     }
 }
