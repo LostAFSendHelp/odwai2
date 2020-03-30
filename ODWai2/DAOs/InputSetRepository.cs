@@ -8,6 +8,5 @@ namespace ODWai2.DAOs
 {
     class InputSetRepository
     {
-        DataSetRepository repo = new DataSetRepository();
     }
 }
