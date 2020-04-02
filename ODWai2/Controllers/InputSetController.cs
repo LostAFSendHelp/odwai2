@@ -16,6 +16,6 @@ namespace ODWai2.Controllers
             this.input_set_view = input_set_view;
         }
 
-        int n;
+        
     }
 }
