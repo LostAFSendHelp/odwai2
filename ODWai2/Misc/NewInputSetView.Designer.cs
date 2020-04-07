@@ -38,27 +38,32 @@
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_browse = new System.Windows.Forms.Button();
             this.pnl_down = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnl_1 = new System.Windows.Forms.Panel();
-            this.txt_errorInput_1 = new System.Windows.Forms.TextBox();
-            this.txt_sampleInput_1 = new System.Windows.Forms.TextBox();
-            this.lb_error = new System.Windows.Forms.Label();
-            this.txt_associated_1 = new System.Windows.Forms.TextBox();
-            this.txt_field_1 = new System.Windows.Forms.TextBox();
-            this.lb_field1 = new System.Windows.Forms.Label();
-            this.lb_input1 = new System.Windows.Forms.Label();
-            this.lb_associal1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.txt_fileName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnl_0 = new System.Windows.Forms.Panel();
+            this.lb_2cham_4 = new System.Windows.Forms.Label();
+            this.lb_2cham_3 = new System.Windows.Forms.Label();
+            this.lb_2cham_2 = new System.Windows.Forms.Label();
+            this.chbox_0 = new System.Windows.Forms.CheckBox();
+            this.lb_2cham_1 = new System.Windows.Forms.Label();
+            this.txt_errorInput_0 = new System.Windows.Forms.TextBox();
+            this.txt_sampleInput_0 = new System.Windows.Forms.TextBox();
+            this.lb_error_0 = new System.Windows.Forms.Label();
+            this.txt_associated_0 = new System.Windows.Forms.TextBox();
+            this.txt_field_0 = new System.Windows.Forms.TextBox();
+            this.lb_field_0 = new System.Windows.Forms.Label();
+            this.lb_sample_0 = new System.Windows.Forms.Label();
+            this.lb_associal_0 = new System.Windows.Forms.Label();
             this.pnl_right.SuspendLayout();
             this.pnl_down.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.pnl_1.SuspendLayout();
+            this.pnl_0.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_right
             // 
-            this.pnl_right.BackColor = System.Drawing.Color.Honeydew;
+            this.pnl_right.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnl_right.Controls.Add(this.label2);
             this.pnl_right.Controls.Add(this.btn_delete_field);
             this.pnl_right.Controls.Add(this.btn_new_field);
@@ -66,7 +71,7 @@
             this.pnl_right.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnl_right.Location = new System.Drawing.Point(701, 0);
             this.pnl_right.Name = "pnl_right";
-            this.pnl_right.Size = new System.Drawing.Size(99, 441);
+            this.pnl_right.Size = new System.Drawing.Size(99, 495);
             this.pnl_right.TabIndex = 2;
             // 
             // label2
@@ -81,7 +86,7 @@
             // 
             // btn_delete_field
             // 
-            this.btn_delete_field.BackColor = System.Drawing.Color.Crimson;
+            this.btn_delete_field.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_delete_field.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_delete_field.Location = new System.Drawing.Point(12, 223);
             this.btn_delete_field.Name = "btn_delete_field";
@@ -89,10 +94,11 @@
             this.btn_delete_field.TabIndex = 2;
             this.btn_delete_field.Text = "Delete Field";
             this.btn_delete_field.UseVisualStyleBackColor = false;
+            this.btn_delete_field.Click += new System.EventHandler(this.btn_delete_field_Click);
             // 
             // btn_new_field
             // 
-            this.btn_new_field.BackColor = System.Drawing.Color.LightGreen;
+            this.btn_new_field.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_new_field.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_new_field.Location = new System.Drawing.Point(12, 124);
             this.btn_new_field.Name = "btn_new_field";
@@ -137,6 +143,7 @@
             this.btn_save.TabIndex = 104;
             this.btn_save.Text = "SAVE";
             this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // btn_browse
             // 
@@ -150,7 +157,7 @@
             // 
             // pnl_down
             // 
-            this.pnl_down.BackColor = System.Drawing.Color.Honeydew;
+            this.pnl_down.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnl_down.Controls.Add(this.txt_fileName);
             this.pnl_down.Controls.Add(this.label3);
             this.pnl_down.Controls.Add(this.label1);
@@ -158,112 +165,18 @@
             this.pnl_down.Controls.Add(this.btn_save);
             this.pnl_down.Controls.Add(this.btn_browse);
             this.pnl_down.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_down.Location = new System.Drawing.Point(0, 441);
+            this.pnl_down.Location = new System.Drawing.Point(0, 495);
             this.pnl_down.Name = "pnl_down";
             this.pnl_down.Size = new System.Drawing.Size(800, 93);
             this.pnl_down.TabIndex = 3;
             // 
-            // flowLayoutPanel1
+            // txt_fileName
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.pnl_1);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(701, 441);
-            this.flowLayoutPanel1.TabIndex = 4;
-            this.flowLayoutPanel1.WrapContents = false;
-            // 
-            // pnl_1
-            // 
-            this.pnl_1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pnl_1.BackColor = System.Drawing.Color.Azure;
-            this.pnl_1.Controls.Add(this.txt_errorInput_1);
-            this.pnl_1.Controls.Add(this.txt_sampleInput_1);
-            this.pnl_1.Controls.Add(this.lb_error);
-            this.pnl_1.Controls.Add(this.txt_associated_1);
-            this.pnl_1.Controls.Add(this.txt_field_1);
-            this.pnl_1.Controls.Add(this.lb_field1);
-            this.pnl_1.Controls.Add(this.lb_input1);
-            this.pnl_1.Controls.Add(this.lb_associal1);
-            this.pnl_1.Location = new System.Drawing.Point(3, 3);
-            this.pnl_1.Name = "pnl_1";
-            this.pnl_1.Size = new System.Drawing.Size(698, 160);
-            this.pnl_1.TabIndex = 0;
-            // 
-            // txt_errorInput_1
-            // 
-            this.txt_errorInput_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_errorInput_1.Location = new System.Drawing.Point(177, 121);
-            this.txt_errorInput_1.Name = "txt_errorInput_1";
-            this.txt_errorInput_1.Size = new System.Drawing.Size(497, 26);
-            this.txt_errorInput_1.TabIndex = 91;
-            // 
-            // txt_sampleInput_1
-            // 
-            this.txt_sampleInput_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_sampleInput_1.Location = new System.Drawing.Point(177, 82);
-            this.txt_sampleInput_1.Name = "txt_sampleInput_1";
-            this.txt_sampleInput_1.Size = new System.Drawing.Size(497, 26);
-            this.txt_sampleInput_1.TabIndex = 90;
-            // 
-            // lb_error
-            // 
-            this.lb_error.AutoSize = true;
-            this.lb_error.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_error.Location = new System.Drawing.Point(40, 125);
-            this.lb_error.Name = "lb_error";
-            this.lb_error.Size = new System.Drawing.Size(95, 19);
-            this.lb_error.TabIndex = 89;
-            this.lb_error.Text = "Error input : ";
-            // 
-            // txt_associated_1
-            // 
-            this.txt_associated_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_associated_1.Location = new System.Drawing.Point(177, 43);
-            this.txt_associated_1.Name = "txt_associated_1";
-            this.txt_associated_1.Size = new System.Drawing.Size(497, 26);
-            this.txt_associated_1.TabIndex = 83;
-            // 
-            // txt_field_1
-            // 
-            this.txt_field_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_field_1.Location = new System.Drawing.Point(95, 9);
-            this.txt_field_1.Name = "txt_field_1";
-            this.txt_field_1.Size = new System.Drawing.Size(156, 26);
-            this.txt_field_1.TabIndex = 82;
-            // 
-            // lb_field1
-            // 
-            this.lb_field1.BackColor = System.Drawing.Color.Azure;
-            this.lb_field1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_field1.Location = new System.Drawing.Point(20, 16);
-            this.lb_field1.Name = "lb_field1";
-            this.lb_field1.Size = new System.Drawing.Size(69, 19);
-            this.lb_field1.TabIndex = 81;
-            this.lb_field1.Text = "Field :";
-            // 
-            // lb_input1
-            // 
-            this.lb_input1.AutoSize = true;
-            this.lb_input1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_input1.Location = new System.Drawing.Point(40, 86);
-            this.lb_input1.Name = "lb_input1";
-            this.lb_input1.Size = new System.Drawing.Size(108, 19);
-            this.lb_input1.TabIndex = 80;
-            this.lb_input1.Text = "Sample input : ";
-            // 
-            // lb_associal1
-            // 
-            this.lb_associal1.AutoSize = true;
-            this.lb_associal1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_associal1.Location = new System.Drawing.Point(40, 50);
-            this.lb_associal1.Name = "lb_associal1";
-            this.lb_associal1.Size = new System.Drawing.Size(128, 19);
-            this.lb_associal1.TabIndex = 79;
-            this.lb_associal1.Text = "Associated texts :";
+            this.txt_fileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_fileName.Location = new System.Drawing.Point(153, 12);
+            this.txt_fileName.Name = "txt_fileName";
+            this.txt_fileName.Size = new System.Drawing.Size(203, 26);
+            this.txt_fileName.TabIndex = 108;
             // 
             // label3
             // 
@@ -275,19 +188,168 @@
             this.label3.TabIndex = 107;
             this.label3.Text = "File Name :";
             // 
-            // txt_fileName
+            // flowLayoutPanel1
             // 
-            this.txt_fileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_fileName.Location = new System.Drawing.Point(153, 12);
-            this.txt_fileName.Name = "txt_fileName";
-            this.txt_fileName.Size = new System.Drawing.Size(203, 26);
-            this.txt_fileName.TabIndex = 108;
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.pnl_0);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(701, 495);
+            this.flowLayoutPanel1.TabIndex = 4;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // pnl_0
+            // 
+            this.pnl_0.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnl_0.BackColor = System.Drawing.Color.Azure;
+            this.pnl_0.Controls.Add(this.lb_2cham_4);
+            this.pnl_0.Controls.Add(this.lb_2cham_3);
+            this.pnl_0.Controls.Add(this.lb_2cham_2);
+            this.pnl_0.Controls.Add(this.chbox_0);
+            this.pnl_0.Controls.Add(this.lb_2cham_1);
+            this.pnl_0.Controls.Add(this.txt_errorInput_0);
+            this.pnl_0.Controls.Add(this.txt_sampleInput_0);
+            this.pnl_0.Controls.Add(this.lb_error_0);
+            this.pnl_0.Controls.Add(this.txt_associated_0);
+            this.pnl_0.Controls.Add(this.txt_field_0);
+            this.pnl_0.Controls.Add(this.lb_field_0);
+            this.pnl_0.Controls.Add(this.lb_sample_0);
+            this.pnl_0.Controls.Add(this.lb_associal_0);
+            this.pnl_0.Location = new System.Drawing.Point(3, 3);
+            this.pnl_0.Name = "pnl_0";
+            this.pnl_0.Size = new System.Drawing.Size(698, 160);
+            this.pnl_0.TabIndex = 0;
+            // 
+            // lb_2cham_4
+            // 
+            this.lb_2cham_4.AutoSize = true;
+            this.lb_2cham_4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_2cham_4.Location = new System.Drawing.Point(121, 125);
+            this.lb_2cham_4.Name = "lb_2cham_4";
+            this.lb_2cham_4.Size = new System.Drawing.Size(14, 19);
+            this.lb_2cham_4.TabIndex = 94;
+            this.lb_2cham_4.Text = ":";
+            // 
+            // lb_2cham_3
+            // 
+            this.lb_2cham_3.AutoSize = true;
+            this.lb_2cham_3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_2cham_3.Location = new System.Drawing.Point(130, 86);
+            this.lb_2cham_3.Name = "lb_2cham_3";
+            this.lb_2cham_3.Size = new System.Drawing.Size(14, 19);
+            this.lb_2cham_3.TabIndex = 93;
+            this.lb_2cham_3.Text = ":";
+            // 
+            // lb_2cham_2
+            // 
+            this.lb_2cham_2.AutoSize = true;
+            this.lb_2cham_2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_2cham_2.Location = new System.Drawing.Point(154, 50);
+            this.lb_2cham_2.Name = "lb_2cham_2";
+            this.lb_2cham_2.Size = new System.Drawing.Size(14, 19);
+            this.lb_2cham_2.TabIndex = 92;
+            this.lb_2cham_2.Text = ":";
+            // 
+            // chbox_0
+            // 
+            this.chbox_0.AutoSize = true;
+            this.chbox_0.Location = new System.Drawing.Point(3, 4);
+            this.chbox_0.Name = "chbox_0";
+            this.chbox_0.Size = new System.Drawing.Size(15, 14);
+            this.chbox_0.TabIndex = 4;
+            this.chbox_0.UseVisualStyleBackColor = true;
+            // 
+            // lb_2cham_1
+            // 
+            this.lb_2cham_1.AutoSize = true;
+            this.lb_2cham_1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_2cham_1.Location = new System.Drawing.Point(56, 16);
+            this.lb_2cham_1.Name = "lb_2cham_1";
+            this.lb_2cham_1.Size = new System.Drawing.Size(14, 19);
+            this.lb_2cham_1.TabIndex = 1;
+            this.lb_2cham_1.Text = ":";
+            // 
+            // txt_errorInput_0
+            // 
+            this.txt_errorInput_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_errorInput_0.Location = new System.Drawing.Point(177, 121);
+            this.txt_errorInput_0.Name = "txt_errorInput_0";
+            this.txt_errorInput_0.Size = new System.Drawing.Size(497, 26);
+            this.txt_errorInput_0.TabIndex = 91;
+            // 
+            // txt_sampleInput_0
+            // 
+            this.txt_sampleInput_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_sampleInput_0.Location = new System.Drawing.Point(177, 82);
+            this.txt_sampleInput_0.Name = "txt_sampleInput_0";
+            this.txt_sampleInput_0.Size = new System.Drawing.Size(497, 26);
+            this.txt_sampleInput_0.TabIndex = 90;
+            // 
+            // lb_error_0
+            // 
+            this.lb_error_0.AutoSize = true;
+            this.lb_error_0.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_error_0.Location = new System.Drawing.Point(40, 125);
+            this.lb_error_0.Name = "lb_error_0";
+            this.lb_error_0.Size = new System.Drawing.Size(82, 19);
+            this.lb_error_0.TabIndex = 89;
+            this.lb_error_0.Text = "Error input";
+            // 
+            // txt_associated_0
+            // 
+            this.txt_associated_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_associated_0.Location = new System.Drawing.Point(177, 43);
+            this.txt_associated_0.Name = "txt_associated_0";
+            this.txt_associated_0.Size = new System.Drawing.Size(497, 26);
+            this.txt_associated_0.TabIndex = 83;
+            // 
+            // txt_field_0
+            // 
+            this.txt_field_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_field_0.Location = new System.Drawing.Point(70, 9);
+            this.txt_field_0.Name = "txt_field_0";
+            this.txt_field_0.Size = new System.Drawing.Size(156, 26);
+            this.txt_field_0.TabIndex = 82;
+            // 
+            // lb_field_0
+            // 
+            this.lb_field_0.AutoSize = true;
+            this.lb_field_0.BackColor = System.Drawing.Color.Azure;
+            this.lb_field_0.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_field_0.Location = new System.Drawing.Point(20, 16);
+            this.lb_field_0.Name = "lb_field_0";
+            this.lb_field_0.Size = new System.Drawing.Size(42, 19);
+            this.lb_field_0.TabIndex = 81;
+            this.lb_field_0.Text = "Field";
+            // 
+            // lb_sample_0
+            // 
+            this.lb_sample_0.AutoSize = true;
+            this.lb_sample_0.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_sample_0.Location = new System.Drawing.Point(40, 86);
+            this.lb_sample_0.Name = "lb_sample_0";
+            this.lb_sample_0.Size = new System.Drawing.Size(95, 19);
+            this.lb_sample_0.TabIndex = 80;
+            this.lb_sample_0.Text = "Sample input";
+            // 
+            // lb_associal_0
+            // 
+            this.lb_associal_0.AutoSize = true;
+            this.lb_associal_0.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_associal_0.Location = new System.Drawing.Point(40, 50);
+            this.lb_associal_0.Name = "lb_associal_0";
+            this.lb_associal_0.Size = new System.Drawing.Size(119, 19);
+            this.lb_associal_0.TabIndex = 79;
+            this.lb_associal_0.Text = "Associated texts";
             // 
             // NewInputSetView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 534);
+            this.ClientSize = new System.Drawing.Size(800, 588);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pnl_right);
             this.Controls.Add(this.pnl_down);
@@ -298,14 +360,14 @@
             this.pnl_down.ResumeLayout(false);
             this.pnl_down.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.pnl_1.ResumeLayout(false);
-            this.pnl_1.PerformLayout();
+            this.pnl_0.ResumeLayout(false);
+            this.pnl_0.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        public System.Windows.Forms.Panel pnl_1;
+        public System.Windows.Forms.Panel pnl_0;
         public System.Windows.Forms.Panel pnl_right;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txt_Path;
@@ -317,15 +379,20 @@
         public System.Windows.Forms.Button btn_new_field;
         public System.Windows.Forms.TextBox txt_numberField;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        public System.Windows.Forms.TextBox txt_errorInput_1;
-        public System.Windows.Forms.TextBox txt_sampleInput_1;
-        public System.Windows.Forms.Label lb_error;
-        public System.Windows.Forms.TextBox txt_associated_1;
-        public System.Windows.Forms.TextBox txt_field_1;
-        public System.Windows.Forms.Label lb_field1;
-        public System.Windows.Forms.Label lb_input1;
-        public System.Windows.Forms.Label lb_associal1;
-        private System.Windows.Forms.TextBox txt_fileName;
+        public System.Windows.Forms.TextBox txt_errorInput_0;
+        public System.Windows.Forms.TextBox txt_sampleInput_0;
+        public System.Windows.Forms.Label lb_error_0;
+        public System.Windows.Forms.TextBox txt_associated_0;
+        public System.Windows.Forms.TextBox txt_field_0;
+        public System.Windows.Forms.Label lb_field_0;
+        public System.Windows.Forms.Label lb_sample_0;
+        public System.Windows.Forms.Label lb_associal_0;
         private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.CheckBox chbox_0;
+        public System.Windows.Forms.Label lb_2cham_4;
+        public System.Windows.Forms.Label lb_2cham_3;
+        public System.Windows.Forms.Label lb_2cham_2;
+        public System.Windows.Forms.Label lb_2cham_1;
+        public System.Windows.Forms.TextBox txt_fileName;
     }
 }

@@ -12,29 +12,37 @@ namespace ODWai2.Controllers
 {
     public class ClassCreatePanel
     {
+
         Misc.NewInputSetView NewInputSetView;
         public ClassCreatePanel(Misc.NewInputSetView form)
         {
             NewInputSetView = form;
         }
 
-
+        
+        
         public Panel Create(int s)
         {
-            var p = new Panel { BackColor = Color.Azure, Size = NewInputSetView.pnl_1.Size, Name = "pnl_"+ s.ToString() };
-            p.Controls.Add(new Label { Text = "Field:" + s.ToString(), Name = "lb_fied", Location = NewInputSetView.lb_field1.Location, Size = NewInputSetView.lb_field1.Size, Font = NewInputSetView.lb_field1.Font });
-            p.Controls.Add(new TextBox { Name = "txt_field_" + s.ToString(), Size = NewInputSetView.txt_field_1.Size, Location = NewInputSetView.txt_field_1.Location, Font = NewInputSetView.txt_field_1.Font });
+            var p = new Panel { BackColor = Color.Azure, Size = NewInputSetView.pnl_0.Size, Name = "pnl_"+ s.ToString() };
+            p.Controls.Add(NewInputSetView.lbfield_[s] = new Label { Text = NewInputSetView.lb_field_0.Text, Name = "lb_fied", Location = NewInputSetView.lb_field_0.Location, Size = NewInputSetView.lb_field_0.Size, Font = NewInputSetView.lb_field_0.Font });
+            p.Controls.Add(new Label { Text = NewInputSetView.lb_2cham_1.Text, Location = NewInputSetView.lb_2cham_1.Location, Size = NewInputSetView.lb_2cham_1.Size, Font = NewInputSetView.lb_2cham_1.Font });
+            p.Controls.Add(NewInputSetView.field_[s] = new TextBox { Name = "txt_field_" + s.ToString(), Size = NewInputSetView.txt_field_0.Size, Location = NewInputSetView.txt_field_0.Location, Font = NewInputSetView.txt_field_0.Font });
 
 
-            p.Controls.Add(new Label { Text = "Associated texts : ", Name = "lb_associal", Location = NewInputSetView.lb_associal1.Location, Size = NewInputSetView.lb_associal1.Size, Font = NewInputSetView.lb_associal1.Font });
-            p.Controls.Add(new TextBox { Name = "txt_associalted_" + s.ToString(), Size = NewInputSetView.txt_associated_1.Size, Location = NewInputSetView.txt_associated_1.Location, Font = NewInputSetView.txt_associated_1.Font });
+            p.Controls.Add(NewInputSetView.lbassociated_[s] = new Label { Text = NewInputSetView.lb_associal_0.Text, Name = "lb_associal", Location = NewInputSetView.lb_associal_0.Location, Size = NewInputSetView.lb_associal_0.Size, Font = NewInputSetView.lb_associal_0.Font });
+            p.Controls.Add(new Label { Text = NewInputSetView.lb_2cham_2.Text, Location = NewInputSetView.lb_2cham_2.Location, Size = NewInputSetView.lb_2cham_2.Size, Font = NewInputSetView.lb_2cham_2.Font });
+            p.Controls.Add(NewInputSetView.associated_[s] = new TextBox { Name = "txt_associalted_" + s.ToString(), Size = NewInputSetView.txt_associated_0.Size, Location = NewInputSetView.txt_associated_0.Location, Font = NewInputSetView.txt_associated_0.Font });
 
 
-            p.Controls.Add(new Label { Text = "Sample input : ", Name = "lb_sampleInput", Location = NewInputSetView.lb_input1.Location, Size = NewInputSetView.lb_input1.Size, Font = NewInputSetView.lb_input1.Font });
-            p.Controls.Add(new TextBox { Name = "txt_sampleInput_" + s.ToString(), Size = NewInputSetView.txt_sampleInput_1.Size, Location = NewInputSetView.txt_sampleInput_1.Location, Font = NewInputSetView.txt_sampleInput_1.Font });
+            p.Controls.Add(NewInputSetView.lbsample_[s] = new Label { Text = NewInputSetView.lb_sample_0.Text, Name = "lb_sampleInput", Location = NewInputSetView.lb_sample_0.Location, Size = NewInputSetView.lb_sample_0.Size, Font = NewInputSetView.lb_sample_0.Font });
+            p.Controls.Add(new Label { Text = NewInputSetView.lb_2cham_3.Text, Location = NewInputSetView.lb_2cham_3.Location, Size = NewInputSetView.lb_2cham_3.Size, Font = NewInputSetView.lb_2cham_3.Font });
+            p.Controls.Add(NewInputSetView.sample_[s] = new TextBox { Name = "txt_sampleInput_" + s.ToString(), Size = NewInputSetView.txt_sampleInput_0.Size, Location = NewInputSetView.txt_sampleInput_0.Location, Font = NewInputSetView.txt_sampleInput_0.Font });
 
-            p.Controls.Add(new Label { Text = "Error input :", Name = "lb_errorInput", Location = NewInputSetView.lb_error.Location, Size = NewInputSetView.lb_input1.Size, Font =  NewInputSetView.lb_input1.Font });
-            p.Controls.Add(new TextBox { Name = "txt_errorInput_" + s.ToString(), Size = NewInputSetView.txt_errorInput_1.Size, Location = NewInputSetView.txt_errorInput_1.Location, Font = NewInputSetView.txt_errorInput_1.Font });
+            p.Controls.Add(NewInputSetView.lberror_[s] =  new Label { Text = NewInputSetView.lb_error_0.Text, Name = "lb_errorInput", Location = NewInputSetView.lb_error_0.Location, Size = NewInputSetView.lb_error_0.Size, Font =  NewInputSetView.lb_sample_0.Font, AutoSize = true });
+            p.Controls.Add(new Label { Text = NewInputSetView.lb_2cham_4.Text, Location = NewInputSetView.lb_2cham_4.Location, Size = NewInputSetView.lb_2cham_4.Size, Font = NewInputSetView.lb_2cham_4.Font });
+            p.Controls.Add(NewInputSetView.error_[s] = new TextBox { Name = "txt_errorInput_" + s.ToString(), Size = NewInputSetView.txt_errorInput_0.Size, Location = NewInputSetView.txt_errorInput_0.Location, Font = NewInputSetView.txt_errorInput_0.Font });
+
+            p.Controls.Add(NewInputSetView.crr_[s] = new CheckBox { Name = "chbox_" + s.ToString(), Location = NewInputSetView.chbox_0.Location, Size = NewInputSetView.chbox_0.Size });
 
             return p;
         }
