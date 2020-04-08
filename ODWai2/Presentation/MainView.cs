@@ -15,7 +15,6 @@ namespace ODWai2.Presentation
     public partial class MainView : Form, DataLoadingView
     {
         private MainController _main_controller;
-        private bool _has_data_set = false;
 
         public MainView()
         {
@@ -29,7 +28,7 @@ namespace ODWai2.Presentation
             DialogResult confirm_quit = MessageBox.Show("Are you sure you want to exit?", "Confirm exit", MessageBoxButtons.YesNo);
             if (confirm_quit == DialogResult.Yes)
             {
-                Application.Exit();
+                base.OnClosed(e);
             }
         }
 
@@ -45,10 +44,7 @@ namespace ODWai2.Presentation
 
         public void load_data()
         {
-            Dictionary<string, string> data = _main_controller.get_data_sets();
-            if (data.Count == 0) { _has_data_set = false; return; }
-            _has_data_set = true;
-            bind(cbox_data_set, _main_controller.get_data_sets());
+
         }
 
         private void bind(Control item, object source)
@@ -67,26 +63,14 @@ namespace ODWai2.Presentation
             }
         }
 
-        private void cbox_data_set_SelectedValueChanged(object sender, EventArgs e)
+        private void btn_generate_csv_Click(object sender, EventArgs e)
         {
-            if (!_has_data_set) { return; }
-            string dir = ((KeyValuePair<string, string>)cbox_data_set.SelectedValue).Value;
-            bind(cbox_inference_graph, _main_controller.get_inference_graphs(dir));
-            bind(dgv_train, _main_controller.get_train_data(dir));
-            bind(dgv_test, _main_controller.get_test_data(dir));
+            
         }
 
-        private void dgv_train_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void btn_data_set_config_Click(object sender, EventArgs e)
         {
-            DataGridView view = sender as DataGridView;
-            if (view == null) { return; }
-
-            _main_controller.preset_image_item_view(view.CurrentRow.Cells["image_path"].Value.ToString()).ShowDialog();
-        }
-
-        private void btn_new_data_set_Click(object sender, EventArgs e)
-        {
-            _main_controller.present_new_data_set_view().ShowDialog();
+            _main_controller.present_data_set_config_view().ShowDialog();
         }
     }
 }

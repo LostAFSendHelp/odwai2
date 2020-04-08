@@ -28,39 +28,18 @@ namespace ODWai2.Controllers
             _script_executor = new ScriptExecutor();
         }
 
-        public Dictionary<string, string> get_data_sets()
+        public DataSetView present_data_set_config_view()
         {
-            return _data_set_repo.get_all_data_sets();
+            return _data_set_view;
         }
 
-        public Dictionary<string, string> get_inference_graphs(string graph_directory)
+        public void generate_csv(string path)
         {
-            return _data_set_repo.get_inference_graph(graph_directory);
-        }
 
-        public DataTable get_train_data(string data_set_path)
-        {
-            return _data_set_repo.get_data_set(data_set_path, "train");
-        }
-
-        public DataTable get_test_data(string data_set_path)
-        {
-            return _data_set_repo.get_data_set(data_set_path, "test");
-        }
-
-        public NewDataSetView present_new_data_set_view()
-        {
-            return new NewDataSetView(_main_view, _data_set_repo);
-        }
-
-        public ImageItemView preset_image_item_view(string path)
-        {
-            return new ImageItemView(path);
         }
 
         public void dummy_func()
         {
-            _script_executor.dummy_func();
         }
 
         public void another_dummy_func()

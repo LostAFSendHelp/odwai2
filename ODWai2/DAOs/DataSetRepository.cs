@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Data;
+using ODWai2.Misc;
 
 namespace ODWai2.DAOs
 {
     public class DataSetRepository
     {
-        private const string root_dir = @"../../Datasets/";
+        private string _root_dir = Path.GetFullPath(@"../../Datasets/");
 
         public Dictionary<string, string> get_all_data_sets()
         {
-            IEnumerable<string> dirs = Directory.EnumerateDirectories(root_dir);
+            IEnumerable<string> dirs = Directory.EnumerateDirectories(_root_dir);
             List<string> keys = new List<string>();
             List<string> values = new List<string>();
             foreach (string dir in dirs) {
@@ -23,6 +24,11 @@ namespace ODWai2.DAOs
             }
 
             return zip(keys, values);
+        }
+
+        public string root_dir()
+        {
+            return _root_dir;
         }
 
         public Dictionary<string, string> get_inference_graph(string graph_directory)

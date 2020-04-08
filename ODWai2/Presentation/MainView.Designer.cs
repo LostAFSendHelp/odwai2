@@ -38,28 +38,15 @@
             this.input_set_dgv = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.input_set_cbox = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btn_delete_data_set = new System.Windows.Forms.Button();
-            this.btn_new_data_set = new System.Windows.Forms.Button();
-            this.cbox_inference_graph = new System.Windows.Forms.ComboBox();
-            this.cbox_data_set = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dgv_test = new System.Windows.Forms.DataGridView();
-            this.dgv_train = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.btn_detect = new System.Windows.Forms.Button();
             this.btn_simulate = new System.Windows.Forms.Button();
             this.btn_quit = new System.Windows.Forms.Button();
             this.skip_result_checkbox = new System.Windows.Forms.CheckBox();
+            this.btn_data_set_config = new System.Windows.Forms.Button();
             this.tab_control.SuspendLayout();
             this.config_tab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_set_dgv)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_test)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_train)).BeginInit();
             this.SuspendLayout();
             // 
             // tab_control
@@ -85,7 +72,6 @@
             // config_tab
             // 
             this.config_tab.Controls.Add(this.groupBox2);
-            this.config_tab.Controls.Add(this.groupBox1);
             this.config_tab.Location = new System.Drawing.Point(4, 22);
             this.config_tab.Name = "config_tab";
             this.config_tab.Padding = new System.Windows.Forms.Padding(3);
@@ -164,120 +150,6 @@
             this.input_set_cbox.Size = new System.Drawing.Size(121, 21);
             this.input_set_cbox.TabIndex = 0;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.btn_delete_data_set);
-            this.groupBox1.Controls.Add(this.btn_new_data_set);
-            this.groupBox1.Controls.Add(this.cbox_inference_graph);
-            this.groupBox1.Controls.Add(this.cbox_data_set);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dgv_test);
-            this.groupBox1.Controls.Add(this.dgv_train);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(6, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(538, 289);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Data set";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(272, 70);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Test";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 70);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Train";
-            // 
-            // btn_delete_data_set
-            // 
-            this.btn_delete_data_set.Location = new System.Drawing.Point(90, 260);
-            this.btn_delete_data_set.Name = "btn_delete_data_set";
-            this.btn_delete_data_set.Size = new System.Drawing.Size(75, 23);
-            this.btn_delete_data_set.TabIndex = 3;
-            this.btn_delete_data_set.Text = "Delete";
-            this.btn_delete_data_set.UseVisualStyleBackColor = true;
-            // 
-            // btn_new_data_set
-            // 
-            this.btn_new_data_set.Location = new System.Drawing.Point(9, 260);
-            this.btn_new_data_set.Name = "btn_new_data_set";
-            this.btn_new_data_set.Size = new System.Drawing.Size(75, 23);
-            this.btn_new_data_set.TabIndex = 3;
-            this.btn_new_data_set.Text = "New";
-            this.btn_new_data_set.UseVisualStyleBackColor = true;
-            this.btn_new_data_set.Click += new System.EventHandler(this.btn_new_data_set_Click);
-            // 
-            // cbox_inference_graph
-            // 
-            this.cbox_inference_graph.FormattingEnabled = true;
-            this.cbox_inference_graph.Location = new System.Drawing.Point(117, 41);
-            this.cbox_inference_graph.Name = "cbox_inference_graph";
-            this.cbox_inference_graph.Size = new System.Drawing.Size(121, 21);
-            this.cbox_inference_graph.TabIndex = 0;
-            // 
-            // cbox_data_set
-            // 
-            this.cbox_data_set.FormattingEnabled = true;
-            this.cbox_data_set.Location = new System.Drawing.Point(117, 14);
-            this.cbox_data_set.Name = "cbox_data_set";
-            this.cbox_data_set.Size = new System.Drawing.Size(121, 21);
-            this.cbox_data_set.TabIndex = 0;
-            this.cbox_data_set.SelectedValueChanged += new System.EventHandler(this.cbox_data_set_SelectedValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 17);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Data set";
-            // 
-            // dgv_test
-            // 
-            this.dgv_test.AllowUserToAddRows = false;
-            this.dgv_test.AllowUserToDeleteRows = false;
-            this.dgv_test.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_test.Location = new System.Drawing.Point(275, 86);
-            this.dgv_test.Name = "dgv_test";
-            this.dgv_test.ReadOnly = true;
-            this.dgv_test.Size = new System.Drawing.Size(257, 168);
-            this.dgv_test.TabIndex = 2;
-            // 
-            // dgv_train
-            // 
-            this.dgv_train.AllowUserToAddRows = false;
-            this.dgv_train.AllowUserToDeleteRows = false;
-            this.dgv_train.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_train.Location = new System.Drawing.Point(9, 86);
-            this.dgv_train.Name = "dgv_train";
-            this.dgv_train.ReadOnly = true;
-            this.dgv_train.Size = new System.Drawing.Size(260, 168);
-            this.dgv_train.TabIndex = 2;
-            this.dgv_train.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_train_CellContentDoubleClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Inference graph";
-            // 
             // btn_detect
             // 
             this.btn_detect.Location = new System.Drawing.Point(16, 367);
@@ -318,6 +190,16 @@
             this.skip_result_checkbox.Text = "Simulate without detection result preview";
             this.skip_result_checkbox.UseVisualStyleBackColor = true;
             // 
+            // btn_data_set_config
+            // 
+            this.btn_data_set_config.Location = new System.Drawing.Point(271, 367);
+            this.btn_data_set_config.Name = "btn_data_set_config";
+            this.btn_data_set_config.Size = new System.Drawing.Size(149, 23);
+            this.btn_data_set_config.TabIndex = 1;
+            this.btn_data_set_config.Text = "Configure Data sets";
+            this.btn_data_set_config.UseVisualStyleBackColor = true;
+            this.btn_data_set_config.Click += new System.EventHandler(this.btn_data_set_config_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -325,6 +207,7 @@
             this.ClientSize = new System.Drawing.Size(832, 402);
             this.Controls.Add(this.skip_result_checkbox);
             this.Controls.Add(this.btn_quit);
+            this.Controls.Add(this.btn_data_set_config);
             this.Controls.Add(this.btn_simulate);
             this.Controls.Add(this.btn_detect);
             this.Controls.Add(this.tab_control);
@@ -335,10 +218,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_set_dgv)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_test)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_train)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,21 +235,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox input_set_cbox;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbox_data_set;
         private System.Windows.Forms.Button edit_input_set_btn;
         private System.Windows.Forms.Button delete_input_set_btn;
         private System.Windows.Forms.Button new_input_set_btn;
         private System.Windows.Forms.DataGridView input_set_dgv;
-        private System.Windows.Forms.Button btn_delete_data_set;
-        private System.Windows.Forms.Button btn_new_data_set;
-        private System.Windows.Forms.DataGridView dgv_train;
-        private System.Windows.Forms.ComboBox cbox_inference_graph;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dgv_test;
+        private System.Windows.Forms.Button btn_data_set_config;
     }
 }
 
