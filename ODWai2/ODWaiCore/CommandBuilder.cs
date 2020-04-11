@@ -15,14 +15,7 @@ namespace ODWai2.ODWaiCore
             util = 1
         }
 
-        private string _base_path = Path.GetFullPath("../../../../");
-
-        public CommandBuilder() {}
-
-        public static CommandBuilder shared()
-        {
-            return new CommandBuilder();
-        }
+        private static string _base_path = Path.GetFullPath("../../ODWaiCore/");
 
         public string command(ExecutionType type, string script_name, params (string, string)[] arguments)
         {
@@ -43,9 +36,9 @@ namespace ODWai2.ODWaiCore
             switch (type)
             {
                 case ExecutionType.main:
-                    return "scripts/";
+                    return "Main/";
                 case ExecutionType.util:
-                    return "utilities/";
+                    return "Utilities/";
                 default:
                     return "";
             }

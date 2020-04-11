@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using ODWai2.Presentation;
 using ODWai2.DAOs;
-using ODWai2.Misc;
+using ODWai2.Misc.Views;
 using ODWai2.ODWaiCore;
 using System.Data;
 using System.IO;
@@ -67,14 +67,12 @@ namespace ODWai2.Controllers
 
         public int generate_csv(string data_set_path)
         {
-            ScriptExecutor exe = new ScriptExecutor();
-            return exe.python_execute("xml_to_csv.py", ("path", get_path_argument(data_set_path)));
+            return ScriptExecutor.python_execute("xml_to_csv.py", ("path", get_path_argument(data_set_path)));
         }
 
         public int generate_records(string data_set_path)
         {
-            ScriptExecutor exe = new ScriptExecutor();
-            return exe.python_execute("generate_tf_records.py");
+            return ScriptExecutor.python_execute("generate_tf_records.py");
         }
 
         private string get_path_argument(string raw_string)

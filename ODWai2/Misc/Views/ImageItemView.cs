@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace ODWai2.Misc
+namespace ODWai2.Misc.Views
 {
     public partial class ImageItemView : Form
     {

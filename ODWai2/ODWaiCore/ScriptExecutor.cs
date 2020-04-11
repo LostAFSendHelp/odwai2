@@ -4,23 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.IO;
+using ODWai2.Misc.Classes;
 
 namespace ODWai2.ODWaiCore
 {
     class ScriptExecutor
     {
-        private string _python_path = @"D:/coderepos/pythonrepos/tfenv/python.exe";
-        private string _dummy_path = @"D:/tensorflow/models/research/object_detection/Object_detection_image.py";
-        private Process process;
-        public ScriptExecutor()
+        private static string get_python_path()
         {
-            process = new Process();
+            string path = Configuration.get_python_path();
+            if (path == null || !File.Exists(path)) { return null; }
+            return path;
         }
 
-        public int commandline_execute(string script_name, params (string, string)[] arguments)
+        // DEPRICATED: janky, unstable, exit code wrongly returned
+        public static int commandline_execute(string script_name, params (string, string)[] arguments)
         {
+            string python_path = get_python_path();
+            if (python_path == null) { return -1; }
+
             string cmd = CommandBuilder.shared().command(CommandBuilder.ExecutionType.util, script_name, arguments);
-            string command = _python_path + " " + cmd;
+            string command = python_path + " " + cmd;
+            Process process = new Process();
             ProcessStartInfo info = new ProcessStartInfo("cmd", "/c " + command);
             process.StartInfo = info;
             process.StartInfo.CreateNoWindow = true;
@@ -32,10 +38,15 @@ namespace ODWai2.ODWaiCore
             return 100;
         }
 
-        public int python_execute(string script_name, params (string, string)[] arguments)
+        // RECOMMENDED
+        public static int python_execute(string script_name, params (string, string)[] arguments)
         {
+            string python_path = Configuration.get_python_path();
+            if (python_path == null) { return -1; }
+
             string command = CommandBuilder.shared().command(CommandBuilder.ExecutionType.util, script_name, arguments);
-            ProcessStartInfo info = new ProcessStartInfo(_python_path, command);
+            ProcessStartInfo info = new ProcessStartInfo(python_path, command);
+            Process process = new Process();
             info.CreateNoWindow = true;
             info.WindowStyle = ProcessWindowStyle.Hidden;
             process.StartInfo = info;

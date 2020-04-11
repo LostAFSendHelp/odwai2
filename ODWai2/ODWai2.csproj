@@ -53,16 +53,17 @@
     <Compile Include="DAOs\DataSetRepository.cs" />
     <Compile Include="DAOs\InputSetRepository.cs" />
     <Compile Include="Interfaces\DataLoadingView.cs" />
-    <Compile Include="Misc\ImageItemView.cs">
+    <Compile Include="Misc\Classes\Configuration.cs" />
+    <Compile Include="Misc\Views\ImageItemView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\ImageItemView.Designer.cs">
+    <Compile Include="Misc\Views\ImageItemView.Designer.cs">
       <DependentUpon>ImageItemView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\NewDataSetView.cs">
+    <Compile Include="Misc\Views\NewDataSetView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\NewDataSetView.Designer.cs">
+    <Compile Include="Misc\Views\NewDataSetView.Designer.cs">
       <DependentUpon>NewDataSetView.cs</DependentUpon>
     </Compile>
     <Compile Include="ODWaiCore\CommandBuilder.cs" />
@@ -87,10 +88,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Misc\ImageItemView.resx">
+    <EmbeddedResource Include="Misc\Views\ImageItemView.resx">
       <DependentUpon>ImageItemView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\NewDataSetView.resx">
+    <EmbeddedResource Include="Misc\Views\NewDataSetView.resx">
       <DependentUpon>NewDataSetView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\DataSetView.resx">
@@ -122,5 +123,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

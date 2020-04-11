@@ -1,4 +1,4 @@
-﻿namespace ODWai2.Misc
+﻿namespace ODWai2.Misc.Views
 {
     partial class ImageItemView
     {

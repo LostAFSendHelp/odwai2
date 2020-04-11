@@ -11,7 +11,7 @@ using System.IO;
 using ODWai2.Interfaces;
 using ODWai2.DAOs;
 
-namespace ODWai2.Misc
+namespace ODWai2.Misc.Views
 {
     public partial class NewDataSetView : Form
     {

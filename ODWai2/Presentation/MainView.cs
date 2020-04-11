@@ -23,13 +23,24 @@ namespace ODWai2.Presentation
             load_data();
         }
 
-        private void quit_btn_Click(object sender, EventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
         {
             DialogResult confirm_quit = MessageBox.Show("Are you sure you want to exit?", "Confirm exit", MessageBoxButtons.YesNo);
             if (confirm_quit == DialogResult.Yes)
             {
-                base.OnClosed(e);
+                base.OnClosing(e);
             }
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            _main_controller.configs_setup();
+            base.OnShown(e);
+        }
+
+        private void quit_btn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void test_btn_Click(object sender, EventArgs e)
@@ -71,6 +82,11 @@ namespace ODWai2.Presentation
         private void btn_data_set_config_Click(object sender, EventArgs e)
         {
             _main_controller.present_data_set_config_view().ShowDialog();
+        }
+
+        private void btn_python_path_Click(object sender, EventArgs e)
+        {
+            _main_controller.setup_python_path();
         }
     }
 }

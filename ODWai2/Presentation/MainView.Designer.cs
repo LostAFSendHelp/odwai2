@@ -69,6 +69,7 @@
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.btn_python_path = new System.Windows.Forms.Button();
             this.tab_control.SuspendLayout();
             this.testing_tab.SuspendLayout();
             this.config_tab.SuspendLayout();
@@ -231,7 +232,7 @@
             // 
             // btn_data_set_config
             // 
-            this.btn_data_set_config.Location = new System.Drawing.Point(271, 367);
+            this.btn_data_set_config.Location = new System.Drawing.Point(226, 367);
             this.btn_data_set_config.Name = "btn_data_set_config";
             this.btn_data_set_config.Size = new System.Drawing.Size(149, 23);
             this.btn_data_set_config.TabIndex = 1;
@@ -487,11 +488,22 @@
             this.textBox5.Size = new System.Drawing.Size(198, 20);
             this.textBox5.TabIndex = 2;
             // 
+            // btn_python_path
+            // 
+            this.btn_python_path.Location = new System.Drawing.Point(557, 367);
+            this.btn_python_path.Name = "btn_python_path";
+            this.btn_python_path.Size = new System.Drawing.Size(178, 23);
+            this.btn_python_path.TabIndex = 3;
+            this.btn_python_path.Text = "Setup Python environment";
+            this.btn_python_path.UseVisualStyleBackColor = true;
+            this.btn_python_path.Click += new System.EventHandler(this.btn_python_path_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(832, 402);
+            this.Controls.Add(this.btn_python_path);
             this.Controls.Add(this.skip_result_checkbox);
             this.Controls.Add(this.btn_quit);
             this.Controls.Add(this.btn_data_set_config);
@@ -564,6 +576,7 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btn_input_set_dir;
+        private System.Windows.Forms.Button btn_python_path;
     }
 }
 
