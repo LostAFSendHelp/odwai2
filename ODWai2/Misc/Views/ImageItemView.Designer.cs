@@ -127,6 +127,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Name = "ImageItemView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ImageItemView";
             ((System.ComponentModel.ISupportInitialize)(this.pbox_image)).EndInit();
             this.panel1.ResumeLayout(false);

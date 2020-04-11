@@ -242,6 +242,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 455);
+            this.ControlBox = false;
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_graph_dir);
@@ -255,7 +256,8 @@
             this.Controls.Add(this.path_label);
             this.Controls.Add(this.label1);
             this.Name = "DataSetView";
-            this.Text = "DataSetView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Data set configurations";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data_set_testing)).EndInit();

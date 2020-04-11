@@ -54,11 +54,20 @@
     <Compile Include="DAOs\InputSetRepository.cs" />
     <Compile Include="Interfaces\DataLoadingView.cs" />
     <Compile Include="Misc\Classes\Configuration.cs" />
+    <Compile Include="Misc\Classes\SubView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Misc\Views\ImageItemView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Misc\Views\ImageItemView.Designer.cs">
       <DependentUpon>ImageItemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Views\LoadingProgressView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Views\LoadingProgressView.Designer.cs">
+      <DependentUpon>LoadingProgressView.cs</DependentUpon>
     </Compile>
     <Compile Include="Misc\Views\NewDataSetView.cs">
       <SubType>Form</SubType>
@@ -90,6 +99,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Misc\Views\ImageItemView.resx">
       <DependentUpon>ImageItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\Views\LoadingProgressView.resx">
+      <DependentUpon>LoadingProgressView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\Views\NewDataSetView.resx">
       <DependentUpon>NewDataSetView.cs</DependentUpon>

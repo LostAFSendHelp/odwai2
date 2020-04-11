@@ -10,10 +10,11 @@ using System.Windows.Forms;
 using System.IO;
 using ODWai2.Interfaces;
 using ODWai2.DAOs;
+using ODWai2.Misc.Classes;
 
 namespace ODWai2.Misc.Views
 {
-    public partial class NewDataSetView : Form
+    public partial class NewDataSetView : SubView
     {
         private const string _root_dir = @"../../Datasets/";
         private DataSetRepository _data_set_repo;
@@ -69,7 +70,11 @@ namespace ODWai2.Misc.Views
                 return;
             }
 
-            int result = _data_set_repo.create_new_data_set(destination_path, train_path_origin, test_path_origin);
+            LoadingProgressView loading_view = new LoadingProgressView();
+            loading_view.Show();
+            Action<int> update = (z) => { loading_view.set_progress(z.ToString()); };
+            int result = _data_set_repo.create_new_data_set(destination_path, train_path_origin, test_path_origin, update);
+            loading_view.Close();
             MessageBox.Show(result + " data item(s) have been imported", "Success", MessageBoxButtons.OK);
             _caller_view.load_data();
         }

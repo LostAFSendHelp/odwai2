@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using ODWai2.Misc.Classes;
 
 namespace ODWai2.Misc.Views
 {
-    public partial class ImageItemView : Form
+    public partial class ImageItemView : SubView
     {
         private string _path;
 

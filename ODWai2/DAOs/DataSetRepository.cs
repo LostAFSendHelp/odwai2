@@ -63,12 +63,12 @@ namespace ODWai2.DAOs
             return data_table;
         }
 
-        public int create_new_data_set(string to_path, string from_train_path, string from_test_path)
+        public int create_new_data_set(string to_path, string from_train_path, string from_test_path, Action<int> update = null)
         {
             Directory.CreateDirectory(to_path);
-            int copied_train = copy_data_files(to_path + "/train", from_train_path);
-            int copied_test = copy_data_files(to_path + "/test", from_test_path);
-            copy_data_files(to_path + "/graph");
+            int copied_train = copy_data_files(to_path + "/train", from_train_path, update);
+            int copied_test = copy_data_files(to_path + "/test", from_test_path, update);
+            copy_data_files(to_path + "/graph", null);
 
             return copied_test + copied_train;
         }
@@ -81,7 +81,7 @@ namespace ODWai2.DAOs
             return dict;
         }
 
-        private int copy_data_files(string to_path, string from_path = null)
+        private int copy_data_files(string to_path, string from_path = null, Action<int> update = null)
         {
             Directory.CreateDirectory(to_path);
             if (String.IsNullOrEmpty(from_path)) { return 0; }
@@ -96,7 +96,7 @@ namespace ODWai2.DAOs
                 string xml_file = image_file_lower.Replace(".jpg", ".xml");
                 if (File.Exists(xml_file))
                 {
-                    ++count;
+                    update.Invoke(++count);
                     File.Copy(image_file, to_path + "/" + Path.GetFileName(image_file_lower));
                     File.Copy(xml_file, to_path + "/" + Path.GetFileName(xml_file));
                 }

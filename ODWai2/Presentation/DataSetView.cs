@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ODWai2.Controllers;
 using ODWai2.Interfaces;
+using ODWai2.Misc.Classes;
 
 namespace ODWai2.Presentation
 {
-    public partial class DataSetView : Form, DataLoadingView
+    public partial class DataSetView : SubView, DataLoadingView
     {
         private DataSetController _data_set_controller;
         private MainController _main_controller;
@@ -21,6 +22,7 @@ namespace ODWai2.Presentation
         public DataSetView(MainController main_controller)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             _data_set_controller = new DataSetController(this);
             _main_controller = main_controller;
             load_data();
