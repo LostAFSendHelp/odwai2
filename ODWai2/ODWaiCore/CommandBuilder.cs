@@ -17,7 +17,7 @@ namespace ODWai2.ODWaiCore
 
         private static string _base_path = Path.GetFullPath("../../ODWaiCore/");
 
-        public string command(ExecutionType type, string script_name, params (string, string)[] arguments)
+        public static string command(ExecutionType type, string script_name, params (string, string)[] arguments)
         {
             string script_path = _base_path.Replace("\\", "/") + sub_path(type) + script_name;
             if (!File.Exists(script_path)) return null;
@@ -31,7 +31,7 @@ namespace ODWai2.ODWaiCore
             return command;
         }
 
-        private string sub_path(ExecutionType type)
+        private static string sub_path(ExecutionType type)
         {
             switch (type)
             {

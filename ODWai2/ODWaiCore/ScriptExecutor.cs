@@ -24,14 +24,14 @@ namespace ODWai2.ODWaiCore
             string python_path = get_python_path();
             if (python_path == null) { return -1; }
 
-            string cmd = CommandBuilder.shared().command(CommandBuilder.ExecutionType.util, script_name, arguments);
+            string cmd = CommandBuilder.command(CommandBuilder.ExecutionType.util, script_name, arguments);
             string command = python_path + " " + cmd;
             Process process = new Process();
             ProcessStartInfo info = new ProcessStartInfo("cmd", "/c " + command);
             process.StartInfo = info;
             process.StartInfo.CreateNoWindow = true;
             process.Start();
-            if (process.WaitForExit(5000))
+            if (process.WaitForExit(10000))
             {
                 return process.ExitCode;
             }
@@ -39,19 +39,19 @@ namespace ODWai2.ODWaiCore
         }
 
         // RECOMMENDED
-        public static int python_execute(string script_name, params (string, string)[] arguments)
+        public static int python_execute(string script_name, int max_wait_time = 10, params (string, string)[] arguments)
         {
             string python_path = Configuration.get_python_path();
             if (python_path == null) { return -1; }
 
-            string command = CommandBuilder.shared().command(CommandBuilder.ExecutionType.util, script_name, arguments);
+            string command = CommandBuilder.command(CommandBuilder.ExecutionType.util, script_name, arguments);
             ProcessStartInfo info = new ProcessStartInfo(python_path, command);
             Process process = new Process();
             info.CreateNoWindow = true;
             info.WindowStyle = ProcessWindowStyle.Hidden;
             process.StartInfo = info;
             process.Start();
-            if (process.WaitForExit(5000))
+            if (process.WaitForExit(max_wait_time * 1000))
             {
                 return process.ExitCode;
             }

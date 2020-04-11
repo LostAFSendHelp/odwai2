@@ -39,7 +39,7 @@
             this.btn_data_set_dir = new System.Windows.Forms.Button();
             this.btn_graph_dir = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_generate_csv = new System.Windows.Forms.Button();
+            this.btn_generate_training_resources = new System.Windows.Forms.Button();
             this.btn_delete_data_set = new System.Windows.Forms.Button();
             this.btn_new_data_set = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -142,7 +142,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btn_generate_csv);
+            this.groupBox1.Controls.Add(this.btn_generate_training_resources);
             this.groupBox1.Controls.Add(this.btn_delete_data_set);
             this.groupBox1.Controls.Add(this.btn_new_data_set);
             this.groupBox1.Controls.Add(this.label5);
@@ -156,15 +156,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data items";
             // 
-            // btn_generate_csv
+            // btn_generate_training_resources
             // 
-            this.btn_generate_csv.Location = new System.Drawing.Point(611, 270);
-            this.btn_generate_csv.Name = "btn_generate_csv";
-            this.btn_generate_csv.Size = new System.Drawing.Size(113, 23);
-            this.btn_generate_csv.TabIndex = 2;
-            this.btn_generate_csv.Text = "Generate CSVs";
-            this.btn_generate_csv.UseVisualStyleBackColor = true;
-            this.btn_generate_csv.Click += new System.EventHandler(this.btn_generate_csv_Click);
+            this.btn_generate_training_resources.Location = new System.Drawing.Point(549, 270);
+            this.btn_generate_training_resources.Name = "btn_generate_training_resources";
+            this.btn_generate_training_resources.Size = new System.Drawing.Size(175, 23);
+            this.btn_generate_training_resources.TabIndex = 2;
+            this.btn_generate_training_resources.Text = "Generate training resources";
+            this.btn_generate_training_resources.UseVisualStyleBackColor = true;
+            this.btn_generate_training_resources.Click += new System.EventHandler(this.btn_generate_training_resources_Click);
             // 
             // btn_delete_data_set
             // 
@@ -279,7 +279,7 @@
         private System.Windows.Forms.Button btn_graph_dir;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgv_data_set_training;
-        private System.Windows.Forms.Button btn_generate_csv;
+        private System.Windows.Forms.Button btn_generate_training_resources;
         private System.Windows.Forms.Button btn_delete_data_set;
         private System.Windows.Forms.Button btn_new_data_set;
         private System.Windows.Forms.Label label5;

@@ -93,19 +93,19 @@ namespace ODWai2.Presentation
             _data_set_controller.present_new_data_set_view().ShowDialog();
         }
 
-        private void btn_generate_csv_Click(object sender, EventArgs e)
+        private void btn_generate_training_resources_Click(object sender, EventArgs e)
         {
             string data_set_dir = get_current_data_set();
             if (data_set_dir == null) { return; }
 
-            int exit_code = _data_set_controller.generate_csv(data_set_dir);
+            int exit_code = _data_set_controller.generate_csv_tfrecords(data_set_dir);
             if (exit_code == 0)
             {
-                MessageBox.Show("CSVs successfully generated", "Success", MessageBoxButtons.OK);
+                MessageBox.Show("Training resources successfully generated", "Success", MessageBoxButtons.OK);
             }
             else
             {
-                MessageBox.Show("Unexpected error while generating CSV for training. Exit code: " + exit_code, "Failure", MessageBoxButtons.OK);
+                MessageBox.Show("Unexpected error while generating Resources for training. Exit code: " + exit_code, "Failure", MessageBoxButtons.OK);
             }
         }
 

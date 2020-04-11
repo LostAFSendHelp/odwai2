@@ -123,6 +123,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Misc\ExitCodes.txt" />
+    <Content Include="ODWaiCore\Main\placeholder.txt" />
+    <Content Include="ODWaiCore\Utilities\generate_tf_records.py" />
+    <Content Include="ODWaiCore\Utilities\xml_to_csv.py" />
+  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

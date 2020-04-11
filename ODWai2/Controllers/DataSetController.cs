@@ -65,9 +65,37 @@ namespace ODWai2.Controllers
             Process.Start("explorer", path);
         }
 
-        public int generate_csv(string data_set_path)
+        public int generate_csv_tfrecords(string data_set_path)
         {
-            return ScriptExecutor.python_execute("xml_to_csv.py", ("path", get_path_argument(data_set_path)));
+            int xml_to_csv = ScriptExecutor.python_execute("xml_to_csv.py", 5, ("path", get_path_argument(data_set_path)));
+            switch (xml_to_csv)
+            {
+                case 98:
+                case 99:
+                    return xml_to_csv;
+                case 1:
+                    return 91;
+                case 0:
+                    return generate_tf_records();
+                default:
+                    return 1;
+            }
+
+            int generate_tf_records()
+            {
+                int generate_records = ScriptExecutor.python_execute("generate_tf_records.py", 60, ("path", get_path_argument(data_set_path)));
+                switch (generate_records)
+                {
+                    case 0:
+                    case 88:
+                    case 89:
+                        return generate_records;
+                    case 1:
+                        return 81;
+                    default:
+                        return 1;
+                }
+            }
         }
 
         public int generate_records(string data_set_path)

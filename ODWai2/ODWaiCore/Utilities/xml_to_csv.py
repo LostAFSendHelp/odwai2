@@ -45,7 +45,7 @@ def convert(argv):
     for folder in ['train','test']:
         image_path = path + "/" + folder
         xml_df = xml_to_csv(image_path)
-        save_path = path + "/Training resources"
+        save_path = path + "/training resources"
         Path(save_path).mkdir(parents=True, exist_ok=True)
         xml_df.to_csv((save_path + "/" + folder + '_labels.csv'), index=None)
     sys.exit(0)
