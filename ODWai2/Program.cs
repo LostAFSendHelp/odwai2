@@ -18,8 +18,8 @@ namespace ODWai2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainView());
-            Application.Run(new NewInputSetView());
+            Application.Run(new MainView());
+            //Application.Run(new NewInputSetView());
         }
     }
 }
