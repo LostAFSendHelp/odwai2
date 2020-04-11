@@ -135,6 +135,7 @@
             this.new_input_set_btn.TabIndex = 3;
             this.new_input_set_btn.Text = "New";
             this.new_input_set_btn.UseVisualStyleBackColor = true;
+            this.new_input_set_btn.Click += new System.EventHandler(this.new_input_set_btn_Click);
             // 
             // input_set_dgv
             // 

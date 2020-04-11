@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ODWai2.Controllers;
 using ODWai2.Interfaces;
+using ODWai2.Misc;
 
 namespace ODWai2.Presentation
 {
@@ -87,6 +88,12 @@ namespace ODWai2.Presentation
         private void btn_new_data_set_Click(object sender, EventArgs e)
         {
             _main_controller.present_new_data_set_view().ShowDialog();
+        }
+
+        private void new_input_set_btn_Click(object sender, EventArgs e)
+        {
+            Misc.NewInputSetView form = new Misc.NewInputSetView();
+            form.Show();
         }
     }
 }

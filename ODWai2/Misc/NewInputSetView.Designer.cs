@@ -353,6 +353,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pnl_right);
             this.Controls.Add(this.pnl_down);
+            this.MaximizeBox = false;
             this.Name = "NewInputSetView";
             this.Text = "NewInputSetView";
             this.pnl_right.ResumeLayout(false);
