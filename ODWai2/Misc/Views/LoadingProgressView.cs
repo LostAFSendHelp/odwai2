@@ -18,11 +18,12 @@ namespace ODWai2.Misc.Views
             InitializeComponent();
             ControlBox = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            UseWaitCursor = true;
         }
 
         public void set_progress(string progress)
         {
-            this.progress.Text = progress;
+            lbl_progress.Text = progress;
             Refresh();
         }
     }

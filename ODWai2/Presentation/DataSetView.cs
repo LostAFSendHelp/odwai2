@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ODWai2.Controllers;
 using ODWai2.Interfaces;
 using ODWai2.Misc.Classes;
+using ODWai2.Misc.Views;
 
 namespace ODWai2.Presentation
 {
@@ -25,7 +26,12 @@ namespace ODWai2.Presentation
             StartPosition = FormStartPosition.CenterScreen;
             _data_set_controller = new DataSetController(this);
             _main_controller = main_controller;
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
             load_data();
+            base.OnShown(e);
         }
 
         public void load_data()
@@ -100,7 +106,11 @@ namespace ODWai2.Presentation
             string data_set_dir = get_current_data_set();
             if (data_set_dir == null) { return; }
 
-            int exit_code = _data_set_controller.generate_csv_tfrecords(data_set_dir);
+            LoadingProgressView loading_view = new LoadingProgressView();
+            loading_view.Show();
+            int exit_code = _data_set_controller.generate_csv_tfrecords(data_set_dir, (status) => { loading_view.set_progress(status); });
+            loading_view.Close();
+
             if (exit_code == 0)
             {
                 MessageBox.Show("Training resources successfully generated", "Success", MessageBoxButtons.OK);

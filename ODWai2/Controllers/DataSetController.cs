@@ -65,8 +65,9 @@ namespace ODWai2.Controllers
             Process.Start("explorer", path);
         }
 
-        public int generate_csv_tfrecords(string data_set_path)
+        public int generate_csv_tfrecords(string data_set_path, Action<string> update = null)
         {
+            if (update != null) { update.Invoke("Generating CVs"); }
             int xml_to_csv = ScriptExecutor.python_execute("xml_to_csv.py", 5, ("path", get_path_argument(data_set_path)));
             switch (xml_to_csv)
             {
@@ -83,6 +84,7 @@ namespace ODWai2.Controllers
 
             int generate_tf_records()
             {
+                if (update != null) { update.Invoke("Generating Tensorflow Records from CVs"); }
                 int generate_records = ScriptExecutor.python_execute("generate_tf_records.py", 60, ("path", get_path_argument(data_set_path)));
                 switch (generate_records)
                 {

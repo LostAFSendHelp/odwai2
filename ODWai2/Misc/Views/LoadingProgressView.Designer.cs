@@ -28,47 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.progress = new System.Windows.Forms.Label();
+            this.lbl_progress = new System.Windows.Forms.Label();
             this.lbl_caption = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // progress
+            // lbl_progress
             // 
-            this.progress.AutoSize = true;
-            this.progress.Location = new System.Drawing.Point(210, 59);
-            this.progress.Name = "progress";
-            this.progress.Size = new System.Drawing.Size(35, 13);
-            this.progress.TabIndex = 0;
-            this.progress.Text = "label1";
+            this.lbl_progress.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lbl_progress.Location = new System.Drawing.Point(0, 49);
+            this.lbl_progress.Name = "lbl_progress";
+            this.lbl_progress.Size = new System.Drawing.Size(460, 37);
+            this.lbl_progress.TabIndex = 0;
+            this.lbl_progress.Text = "[work in progress]";
+            this.lbl_progress.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lbl_caption
             // 
-            this.lbl_caption.AutoSize = true;
-            this.lbl_caption.Location = new System.Drawing.Point(196, 19);
+            this.lbl_caption.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbl_caption.Location = new System.Drawing.Point(0, 0);
             this.lbl_caption.Name = "lbl_caption";
-            this.lbl_caption.Size = new System.Drawing.Size(58, 13);
+            this.lbl_caption.Size = new System.Drawing.Size(460, 34);
             this.lbl_caption.TabIndex = 1;
-            this.lbl_caption.Text = "lbl_caption";
+            this.lbl_caption.Text = "Please wait while the following action is being processed";
+            this.lbl_caption.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // LoadingProgressView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 148);
+            this.ClientSize = new System.Drawing.Size(460, 86);
             this.ControlBox = false;
             this.Controls.Add(this.lbl_caption);
-            this.Controls.Add(this.progress);
+            this.Controls.Add(this.lbl_progress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoadingProgressView";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label progress;
+        private System.Windows.Forms.Label lbl_progress;
         private System.Windows.Forms.Label lbl_caption;
     }
 }

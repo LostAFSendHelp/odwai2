@@ -72,7 +72,7 @@ namespace ODWai2.Misc.Views
 
             LoadingProgressView loading_view = new LoadingProgressView();
             loading_view.Show();
-            Action<int> update = (z) => { loading_view.set_progress(z.ToString()); };
+            Action<string> update = (z) => { loading_view.set_progress("Importing: <" + z + "> to " + data_set_name.ToUpper()); };
             int result = _data_set_repo.create_new_data_set(destination_path, train_path_origin, test_path_origin, update);
             loading_view.Close();
             MessageBox.Show(result + " data item(s) have been imported", "Success", MessageBoxButtons.OK);
