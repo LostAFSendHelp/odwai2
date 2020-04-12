@@ -51,8 +51,19 @@ namespace ODWai2.Controllers
                 string JSONresultError_lb = JsonConvert.SerializeObject(NewInputSetView.lberror_[i].Text);
                 string JSONresultError_txt = JsonConvert.SerializeObject(NewInputSetView.error_[i].Text);
 
-                string destPath = System.IO.Path.Combine(NewInputSetView.txt_Path.Text, NewInputSetView.txt_fileName.Text + ".json");
+                string path;
 
+                if(NewInputSetView.txt_Path.Text == "")
+                {
+                    path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json\";
+                }
+                else
+                {
+                    path = NewInputSetView.txt_Path.Text; 
+                }
+
+                string destPath = System.IO.Path.Combine(path, NewInputSetView.txt_fileName.Text + ".json");
+                
                 using (var tw = new StreamWriter(destPath, true))
                 {
                     tw.Write(JSONresultField_lb.ToString());

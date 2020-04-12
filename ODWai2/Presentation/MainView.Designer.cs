@@ -164,6 +164,7 @@
             this.input_set_cbox.Name = "input_set_cbox";
             this.input_set_cbox.Size = new System.Drawing.Size(121, 21);
             this.input_set_cbox.TabIndex = 0;
+            this.input_set_cbox.SelectedIndexChanged += new System.EventHandler(this.input_set_cbox_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -331,6 +332,7 @@
             this.Controls.Add(this.tab_control);
             this.Name = "MainView";
             this.Text = "ODWai 2.0";
+            this.Load += new System.EventHandler(this.MainView_Load);
             this.tab_control.ResumeLayout(false);
             this.config_tab.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

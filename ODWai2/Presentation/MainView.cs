@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 using ODWai2.Controllers;
 using ODWai2.Interfaces;
 using ODWai2.Misc;
@@ -90,10 +92,53 @@ namespace ODWai2.Presentation
             _main_controller.present_new_data_set_view().ShowDialog();
         }
 
+
+        //code tu day
         private void new_input_set_btn_Click(object sender, EventArgs e)
         {
             Misc.NewInputSetView form = new Misc.NewInputSetView();
             form.Show();
+        }
+
+
+
+        private void input_set_cbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        
+        private void MainView_Load(object sender, EventArgs e)
+        {
+            string path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json";
+            DataTable table = new DataTable();
+            table.Columns.Add("File Name");
+            table.Columns.Add("File Path");
+
+            string[] files = Directory.GetFiles(path);
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                FileInfo file = new FileInfo(files[i]);
+
+                table.Rows.Add(file.Name, path + "\\" + file.Name);
+                
+            }
+
+            // using foreach loop
+
+            DirectoryInfo dir = new DirectoryInfo(path);
+            foreach (FileInfo fileInf in dir.GetFiles())
+            {
+                if (fileInf.Name == ".jon")
+                {
+                    table.Rows.Add(fileInf.Name, path + "\\" + fileInf.Name);
+                }
+            }
+
+            input_set_cbox.DataSource = table;
+            input_set_cbox.DisplayMember = "File Name";
+
         }
     }
 }

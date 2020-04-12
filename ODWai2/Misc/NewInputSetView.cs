@@ -56,7 +56,7 @@ namespace ODWai2.Misc
             if (e.KeyCode == Keys.Enter)
             {
               
-                for(int i = s+1 ; i<= Convert.ToInt32(txt_numberField.Text); ++i)
+                for(int i = s+1 ; i< Convert.ToInt32(txt_numberField.Text); ++i)
                 {
                     flowLayoutPanel1.Controls.Add(arr_[i] = ClassCreatePanel.Create(i));
                     s = i;
