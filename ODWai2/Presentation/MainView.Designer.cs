@@ -36,16 +36,15 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_region_preview = new System.Windows.Forms.Button();
             this.btn_region_capture = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_root_x = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tb_height = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_width = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_root_y = new System.Windows.Forms.TextBox();
             this.config_tab = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -154,31 +153,21 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btn_region_preview);
             this.groupBox1.Controls.Add(this.btn_region_capture);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tb_root_x);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.tb_height);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.tb_width);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.tb_root_y);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(212, 289);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Capture region";
-            // 
-            // btn_region_preview
-            // 
-            this.btn_region_preview.Location = new System.Drawing.Point(6, 231);
-            this.btn_region_preview.Name = "btn_region_preview";
-            this.btn_region_preview.Size = new System.Drawing.Size(200, 23);
-            this.btn_region_preview.TabIndex = 3;
-            this.btn_region_preview.Text = "Preview";
-            this.btn_region_preview.UseVisualStyleBackColor = true;
             // 
             // btn_region_capture
             // 
@@ -190,12 +179,13 @@
             this.btn_region_capture.UseVisualStyleBackColor = true;
             this.btn_region_capture.Click += new System.EventHandler(this.btn_region_capture_Click);
             // 
-            // textBox1
+            // tb_root_x
             // 
-            this.textBox1.Location = new System.Drawing.Point(63, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(135, 20);
-            this.textBox1.TabIndex = 1;
+            this.tb_root_x.Enabled = false;
+            this.tb_root_x.Location = new System.Drawing.Point(63, 22);
+            this.tb_root_x.Name = "tb_root_x";
+            this.tb_root_x.Size = new System.Drawing.Size(135, 20);
+            this.tb_root_x.TabIndex = 1;
             // 
             // label6
             // 
@@ -206,12 +196,13 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Height";
             // 
-            // textBox4
+            // tb_height
             // 
-            this.textBox4.Location = new System.Drawing.Point(63, 120);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(135, 20);
-            this.textBox4.TabIndex = 1;
+            this.tb_height.Enabled = false;
+            this.tb_height.Location = new System.Drawing.Point(63, 120);
+            this.tb_height.Name = "tb_height";
+            this.tb_height.Size = new System.Drawing.Size(135, 20);
+            this.tb_height.TabIndex = 1;
             // 
             // label5
             // 
@@ -222,12 +213,13 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Width";
             // 
-            // textBox3
+            // tb_width
             // 
-            this.textBox3.Location = new System.Drawing.Point(63, 94);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(135, 20);
-            this.textBox3.TabIndex = 1;
+            this.tb_width.Enabled = false;
+            this.tb_width.Location = new System.Drawing.Point(63, 94);
+            this.tb_width.Name = "tb_width";
+            this.tb_width.Size = new System.Drawing.Size(135, 20);
+            this.tb_width.TabIndex = 1;
             // 
             // label4
             // 
@@ -247,12 +239,13 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Root X";
             // 
-            // textBox2
+            // tb_root_y
             // 
-            this.textBox2.Location = new System.Drawing.Point(63, 48);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(135, 20);
-            this.textBox2.TabIndex = 1;
+            this.tb_root_y.Enabled = false;
+            this.tb_root_y.Location = new System.Drawing.Point(63, 48);
+            this.tb_root_y.Name = "tb_root_y";
+            this.tb_root_y.Size = new System.Drawing.Size(135, 20);
+            this.tb_root_y.TabIndex = 1;
             // 
             // config_tab
             // 
@@ -555,16 +548,15 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btn_region_preview;
         private System.Windows.Forms.Button btn_region_capture;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_root_x;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tb_height;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tb_width;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tb_root_y;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dataGridView1;

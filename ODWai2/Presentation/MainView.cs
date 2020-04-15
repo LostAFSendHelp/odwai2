@@ -58,6 +58,14 @@ namespace ODWai2.Presentation
 
         }
 
+        public void reload_frame_info(int x, int y, int width, int height)
+        {
+            tb_root_x.Text = x.ToString();
+            tb_root_y.Text = y.ToString();
+            tb_width.Text = width.ToString();
+            tb_height.Text = height.ToString();
+        }
+
         private void bind(Control item, object source)
         {
             switch (item)

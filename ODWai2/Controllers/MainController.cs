@@ -29,7 +29,7 @@ namespace ODWai2.Controllers
             _data_set_view = new DataSetView(this);
             _data_set_repo = new DataSetRepository();
             _script_executor = new ScriptExecutor();
-            _frame_selector = new FrameSelector();
+            _frame_selector = new FrameSelector((x, y, width, height) => { main_view.reload_frame_info(x, y, width, height); });
         }
 
         public DataSetView present_data_set_config_view()

@@ -13,23 +13,35 @@ namespace ODWai2.Misc.Views
     public partial class FrameSelector : Form
     {
         private Rectangle _frame;
+        private const int MIN_SIZE = 300;
+        private Action<int, int, int, int> _on_exit;
 
-        public FrameSelector()
+        public FrameSelector(Action<int, int, int, int> on_exit)
         {
             InitializeComponent();
-            _frame = new Rectangle();
+            _initialize();
             ShowInTaskbar = false;
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             Opacity = 0.2f;
+
+            _on_exit = on_exit;
+            _on_exit(_frame.X, _frame.Y, _frame.Width, _frame.Height);
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.X)
+            if (e.KeyCode != Keys.X) { return; }
+            if (_frame.Width < MIN_SIZE || _frame.Height < MIN_SIZE)
             {
-                Hide();
+                MessageBox.Show("Please select a bigger region.\n Mininum length is " + MIN_SIZE + "px for each dimension");
+                return;
+            }
+            else
+            {
+                if (_on_exit != null) { _on_exit(_frame.X, _frame.Y, _frame.Width, _frame.Height); }
+                Close();
             }
         }
 
@@ -58,6 +70,13 @@ namespace ODWai2.Misc.Views
 
             Pen pen = new Pen(Color.Black);
             e.Graphics.DrawRectangle(pen, _frame);
+        }
+
+        private void _initialize()
+        {
+            int width = Screen.PrimaryScreen.Bounds.Width / 2;
+            int height = Screen.PrimaryScreen.Bounds.Height;
+            _frame = new Rectangle(0, 0, width, height);
         }
     }
 }
