@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using ODWai2.Presentation;
 using ODWai2.Controllers;
 using ODWai2.Misc;
+using System.Data;
+using System.Windows.Forms;
 
 namespace ODWai2.Controllers
 {
@@ -25,8 +27,9 @@ namespace ODWai2.Controllers
             NewInputSetView = newInputSetView;
         }
 
-        Controllers.ClassCreatePanel ClassCreatePanel;
+        
         Misc.NewInputSetView NewInputSetView;
+        
 
         public void Delete()
         {
@@ -45,11 +48,11 @@ namespace ODWai2.Controllers
                 string JSONresultField_lb = JsonConvert.SerializeObject(NewInputSetView.lbfield_[i].Text);
                 string JSONresultField_txt = JsonConvert.SerializeObject(NewInputSetView.field_[i].Text);
                 string JSONresultAssociated_lb = JsonConvert.SerializeObject(NewInputSetView.lbassociated_[i].Text);
-                string JSONresultAssociated_txt = JsonConvert.SerializeObject(NewInputSetView.associated_[i].Text);
+                string JSONresultAssociated_txt = JsonConvert.SerializeObject(NewInputSetView.associated_[i].Text.Split(','));
                 string JSONresultSample_lb = JsonConvert.SerializeObject(NewInputSetView.lbsample_[i].Text);
-                string JSONresultSample_txt = JsonConvert.SerializeObject(NewInputSetView.sample_[i].Text);
+                string JSONresultSample_txt = JsonConvert.SerializeObject(NewInputSetView.sample_[i].Text.Split(','));
                 string JSONresultError_lb = JsonConvert.SerializeObject(NewInputSetView.lberror_[i].Text);
-                string JSONresultError_txt = JsonConvert.SerializeObject(NewInputSetView.error_[i].Text);
+                string JSONresultError_txt = JsonConvert.SerializeObject(NewInputSetView.error_[i].Text.Split(','));
 
                 string path;
 
@@ -63,31 +66,52 @@ namespace ODWai2.Controllers
                 }
 
                 string destPath = System.IO.Path.Combine(path, NewInputSetView.txt_fileName.Text + ".json");
-                
+
+                if (String.IsNullOrEmpty(NewInputSetView.txt_fileName.Text))
+                {
+                    MessageBox.Show("Please input File Name", "File Name error", MessageBoxButtons.OK);
+                    return;
+                }
+
                 using (var tw = new StreamWriter(destPath, true))
                 {
+                    if (i == 0)
+                    {
+                        tw.Write("[");
+                    }
+                    tw.Write("\n"+"{"+"\n");
                     tw.Write(JSONresultField_lb.ToString());
                     tw.Write(" : ");
-                    tw.Write(JSONresultField_txt.ToString());
+                    tw.Write(JSONresultField_txt.ToString()+",");
                     tw.WriteLine();
 
                     tw.Write(JSONresultAssociated_lb.ToString());
                     tw.Write(" : ");
-                    tw.Write(JSONresultAssociated_txt.ToString());
+                    tw.Write(JSONresultAssociated_txt.ToString()+",");
                     tw.WriteLine();
 
                     tw.Write(JSONresultSample_lb.ToString());
                     tw.Write(" : ");
-                    tw.Write(JSONresultSample_txt.ToString());
+                    tw.Write(JSONresultSample_txt.ToString()+",");
                     tw.WriteLine();
 
                     tw.Write(JSONresultError_lb.ToString());
                     tw.Write(" : ");
-                    tw.Write(JSONresultError_txt.ToString() + "\n");
+                    tw.Write(JSONresultError_txt.ToString()+"\n");
+                    tw.Write("}");
+                    if (i != NewInputSetView.s)
+                    {
+                        tw.Write(",");
+                    }
+                    if(i== NewInputSetView.s)
+                    {
+                        tw.Write("\n"+"]");
+                    }
                     tw.Close();
                 }
             }
 
         }
+        
     }
 }

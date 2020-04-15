@@ -11,6 +11,7 @@ using System.IO;
 using System.Data;
 using ODWai2.ODWaiCore;
 
+
 namespace ODWai2.Controllers
 {
     public class MainController
@@ -18,7 +19,9 @@ namespace ODWai2.Controllers
         private MainView _main_view;
         private DataSetView _data_set_view;
         private DataSetRepository _data_set_repo;
+        private InputSetRepository _input_set_repo;
         private ScriptExecutor _script_executor;
+        
 
         public MainController(MainView main_view)
         {
@@ -26,6 +29,7 @@ namespace ODWai2.Controllers
             _data_set_view = new DataSetView(this);
             _data_set_repo = new DataSetRepository();
             _script_executor = new ScriptExecutor();
+            _input_set_repo = new InputSetRepository();
         }
 
         public Dictionary<string, string> get_data_sets()
@@ -67,5 +71,16 @@ namespace ODWai2.Controllers
         {
             _data_set_view.Show();
         }
+
+        public DataTable get_input_data_sets()
+        {
+            return _input_set_repo.get_input_data_set();
+        }
+
+        public void load_inputset_gridview(ComboBox combobox, DataGridView gridview)
+        {
+            _input_set_repo.get_json_data_set(combobox,gridview);
+        }
+
     }
 }

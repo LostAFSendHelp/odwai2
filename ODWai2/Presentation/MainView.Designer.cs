@@ -332,7 +332,7 @@
             this.Controls.Add(this.tab_control);
             this.Name = "MainView";
             this.Text = "ODWai 2.0";
-            this.Load += new System.EventHandler(this.MainView_Load);
+            
             this.tab_control.ResumeLayout(false);
             this.config_tab.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -358,7 +358,6 @@
         private System.Windows.Forms.CheckBox skip_result_checkbox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox input_set_cbox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
@@ -366,7 +365,6 @@
         private System.Windows.Forms.Button edit_input_set_btn;
         private System.Windows.Forms.Button delete_input_set_btn;
         private System.Windows.Forms.Button new_input_set_btn;
-        private System.Windows.Forms.DataGridView input_set_dgv;
         private System.Windows.Forms.Button btn_delete_data_set;
         private System.Windows.Forms.Button btn_new_data_set;
         private System.Windows.Forms.DataGridView dgv_train;
@@ -374,6 +372,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgv_test;
+        public System.Windows.Forms.DataGridView input_set_dgv;
+        public System.Windows.Forms.ComboBox input_set_cbox;
     }
 }
 

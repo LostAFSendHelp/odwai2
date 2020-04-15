@@ -8,10 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ODWai2.Controllers;
 using ODWai2.Interfaces;
 using ODWai2.Misc;
+using ODWai2.DAOs;
 
 namespace ODWai2.Presentation
 {
@@ -19,6 +21,9 @@ namespace ODWai2.Presentation
     {
         private MainController _main_controller;
         private bool _has_data_set = false;
+        
+
+        private Controllers.InputSetController InputSetController;
 
         public MainView()
         {
@@ -52,6 +57,12 @@ namespace ODWai2.Presentation
             if (data.Count == 0) { _has_data_set = false; return; }
             _has_data_set = true;
             bind(cbox_data_set, _main_controller.get_data_sets());
+            bind(cbox_data_set, _main_controller.get_data_sets());
+
+            input_set_cbox.DataSource = _main_controller.get_input_data_sets(); //combobox inputset
+            input_set_cbox.DisplayMember = "File Name"; //combobox inputset
+            input_set_cbox.ValueMember = "File Name";
+
         }
 
         private void bind(Control item, object source)
@@ -93,7 +104,6 @@ namespace ODWai2.Presentation
         }
 
 
-        //code tu day
         private void new_input_set_btn_Click(object sender, EventArgs e)
         {
             Misc.NewInputSetView form = new Misc.NewInputSetView();
@@ -104,41 +114,9 @@ namespace ODWai2.Presentation
 
         private void input_set_cbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+           
+            _main_controller.load_inputset_gridview(input_set_cbox, input_set_dgv);
         }
-
         
-        private void MainView_Load(object sender, EventArgs e)
-        {
-            string path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json";
-            DataTable table = new DataTable();
-            table.Columns.Add("File Name");
-            table.Columns.Add("File Path");
-
-            string[] files = Directory.GetFiles(path);
-
-            for (int i = 0; i < files.Length; i++)
-            {
-                FileInfo file = new FileInfo(files[i]);
-
-                table.Rows.Add(file.Name, path + "\\" + file.Name);
-                
-            }
-
-            // using foreach loop
-
-            DirectoryInfo dir = new DirectoryInfo(path);
-            foreach (FileInfo fileInf in dir.GetFiles())
-            {
-                if (fileInf.Name == ".jon")
-                {
-                    table.Rows.Add(fileInf.Name, path + "\\" + fileInf.Name);
-                }
-            }
-
-            input_set_cbox.DataSource = table;
-            input_set_cbox.DisplayMember = "File Name";
-
-        }
     }
 }

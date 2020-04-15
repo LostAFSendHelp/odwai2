@@ -118,9 +118,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Json\a6.json" />
-    <None Include="Json\a7.json" />
-    <None Include="Json\a8.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -137,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Datasets\" />
+    <Folder Include="Json\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

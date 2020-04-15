@@ -1,0 +1,14 @@
+[
+{
+"Field" : "Account",
+"Associated texts" : ["Account"," account"],
+"Sample input" : ["huyhoang"," huyhoang1"],
+"Error input" : ["abcxyz"," xyzabc"]
+},
+{
+"Field" : "Password",
+"Associated texts" : ["Password"," password"],
+"Sample input" : ["123456"," 456789"],
+"Error input" : ["!@#%$"," ^%$#@"]
+}
+]

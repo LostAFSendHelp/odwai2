@@ -1,16 +1,14 @@
-"Field" : "a"
-"Associated texts" : "1"
-"Sample input" : "2"
-"Error input" : "3"
-"Field" : "b"
-"Associated texts" : "huy hoang, tuan minh"
-"Sample input" : "huy hoang, tuan minh"
-"Error input" : "huy hoang, tuan minh"
-"Field" : "c"
-"Associated texts" : "huy hoang, tuan minh"
-"Sample input" : "huy hoang, tuan minh"
-"Error input" : "huy hoang, tuan minh"
-"Field" : "d"
-"Associated texts" : "huy hoang, tuan minh"
-"Sample input" : "huy hoang, tuan minh"
-"Error input" : "huy hoang, tuan minh"
+[
+{
+"Field" : "1",
+"Associated texts" : ["bbb"," ccc"],
+"Sample input" : ["bbb"," ccc"],
+"Error input" : ["bbb"," ccc"]
+},
+{
+"Field" : "2",
+"Associated texts" : ["bbb"," ccc"],
+"Sample input" : ["bbb"," ccc"],
+"Error input" : ["bbb"," ccc"]
+}
+]
