@@ -11,6 +11,7 @@ using System.IO;
 using System.Data;
 using ODWai2.ODWaiCore;
 using ODWai2.Misc.Classes;
+using ODWai2.Misc.Views;
 
 namespace ODWai2.Controllers
 {
@@ -20,6 +21,7 @@ namespace ODWai2.Controllers
         private DataSetView _data_set_view;
         private DataSetRepository _data_set_repo;
         private ScriptExecutor _script_executor;
+        private FrameSelector _frame_selector;
 
         public MainController(MainView main_view)
         {
@@ -27,6 +29,7 @@ namespace ODWai2.Controllers
             _data_set_view = new DataSetView(this);
             _data_set_repo = new DataSetRepository();
             _script_executor = new ScriptExecutor();
+            _frame_selector = new FrameSelector();
         }
 
         public DataSetView present_data_set_config_view()
@@ -56,6 +59,11 @@ namespace ODWai2.Controllers
         public void another_dummy_func()
         {
             _data_set_view.Show();
+        }
+
+        public FrameSelector select_frame()
+        {
+            return _frame_selector;
         }
 
         public void configs_setup()

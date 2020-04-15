@@ -81,12 +81,17 @@ namespace ODWai2.Presentation
 
         private void btn_data_set_config_Click(object sender, EventArgs e)
         {
-            _main_controller.present_data_set_config_view().ShowDialog();
+            _main_controller.present_data_set_config_view().Show();
         }
 
         private void btn_python_path_Click(object sender, EventArgs e)
         {
             _main_controller.setup_python_path();
+        }
+
+        private void btn_region_capture_Click(object sender, EventArgs e)
+        {
+            _main_controller.select_frame().ShowDialog();
         }
     }
 }

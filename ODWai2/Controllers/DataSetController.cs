@@ -105,6 +105,11 @@ namespace ODWai2.Controllers
             return ScriptExecutor.python_execute("generate_tf_records.py");
         }
 
+        public (int, string) delete_data_set(string data_set_path)
+        {
+            return _data_set_repo.delete_data_set(data_set_path);
+        }
+
         private string get_path_argument(string raw_string)
         {
             return "\"" + raw_string.Replace("\\", "/") + "\"";

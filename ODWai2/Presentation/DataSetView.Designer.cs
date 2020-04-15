@@ -174,6 +174,7 @@
             this.btn_delete_data_set.TabIndex = 2;
             this.btn_delete_data_set.Text = "Delete";
             this.btn_delete_data_set.UseVisualStyleBackColor = true;
+            this.btn_delete_data_set.Click += new System.EventHandler(this.btn_delete_data_set_Click);
             // 
             // btn_new_data_set
             // 
@@ -256,7 +257,6 @@
             this.Controls.Add(this.path_label);
             this.Controls.Add(this.label1);
             this.Name = "DataSetView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Data set configurations";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

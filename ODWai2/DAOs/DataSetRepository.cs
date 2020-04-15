@@ -73,6 +73,20 @@ namespace ODWai2.DAOs
             return copied_test + copied_train;
         }
 
+        public (int, string) delete_data_set(string at_path)
+        {
+            try
+            {
+                Directory.Delete(at_path, true);
+            }
+            catch (Exception e)
+            {
+                return (1, e.Message);
+            }
+
+            return (0, null);
+        }
+
         private Dictionary<string, string> zip(List<string> keys, List<string> values)
         {
             var zip = keys.Zip(values, (k, v) => new { k, v });
@@ -100,9 +114,9 @@ namespace ODWai2.DAOs
                     string image_file_lower = Path.GetFileName(image_path_lower);
                     string xml_file_lower = Path.GetFileName(xml_path_lower);
 
-                    update.Invoke(image_file_lower);
+                    if (update != null) { update.Invoke(image_file_lower); }
                     File.Copy(image_file, to_path + "/" + image_file_lower);
-                    update.Invoke(xml_file_lower);
+                    if (update != null) { update.Invoke(xml_file_lower); }
                     File.Copy(xml_path_lower, to_path + "/" + xml_file_lower);
                 }
             }

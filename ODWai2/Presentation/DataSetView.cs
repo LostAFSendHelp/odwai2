@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using ODWai2.Controllers;
 using ODWai2.Interfaces;
 using ODWai2.Misc.Classes;
@@ -37,9 +38,18 @@ namespace ODWai2.Presentation
         public void load_data()
         {
             Dictionary<string, string> data = _data_set_controller.get_data_sets();
-            if (data.Count == 0) { _has_data_set = false; return; }
+            if (data.Count == 0) { _has_data_set = false; flush_data(); return; }
             _has_data_set = true;
             bind(cbox_data_set, _data_set_controller.get_data_sets());
+        }
+
+        private void flush_data()
+        {
+            cbox_data_set.DataSource = null;
+            dgv_data_set_testing.DataSource = null;
+            dgv_data_set_training.DataSource = null;
+            tb_data_set_path.Text = string.Empty;
+            tb_graph_path.Text = string.Empty;
         }
 
         private void bind(Control item, object source)
@@ -135,6 +145,27 @@ namespace ODWai2.Presentation
             if (view == null) { return; }
 
             _data_set_controller.present_image_item_view(view.CurrentRow.Cells["image_path"].Value.ToString()).ShowDialog();
+        }
+
+        private void btn_delete_data_set_Click(object sender, EventArgs e)
+        {
+            string data_set_path = get_current_data_set();
+            if (data_set_path == null) { return; }
+
+            string data_set_name = new DirectoryInfo(data_set_path).Name.ToUpper();
+            DialogResult result = MessageBox.Show("Are you sure you want to delete " + data_set_name + "?", "Confirm Delete", MessageBoxButtons.YesNo);
+            if (result != DialogResult.Yes) { return; }
+
+            (int code, string message) = _data_set_controller.delete_data_set(data_set_path);
+            if (code == 0)
+            {
+                MessageBox.Show("Data set " + data_set_name + " successfully deleted", "Success", MessageBoxButtons.OK);
+                load_data();
+            }
+            else
+            {
+                MessageBox.Show("Error: " + message, "Failure", MessageBoxButtons.OK);
+            }
         }
     }
 }

@@ -188,6 +188,7 @@
             this.btn_region_capture.TabIndex = 3;
             this.btn_region_capture.Text = "Re-capture region";
             this.btn_region_capture.UseVisualStyleBackColor = true;
+            this.btn_region_capture.Click += new System.EventHandler(this.btn_region_capture_Click);
             // 
             // textBox1
             // 
