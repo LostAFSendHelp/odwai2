@@ -403,6 +403,7 @@
             this.new_input_set_btn.TabIndex = 3;
             this.new_input_set_btn.Text = "New";
             this.new_input_set_btn.UseVisualStyleBackColor = true;
+            this.new_input_set_btn.Click += new System.EventHandler(this.new_input_set_btn_Click);
             // 
             // input_set_dgv
             // 
@@ -431,6 +432,7 @@
             this.input_set_cbox.Name = "input_set_cbox";
             this.input_set_cbox.Size = new System.Drawing.Size(255, 21);
             this.input_set_cbox.TabIndex = 0;
+            this.input_set_cbox.SelectedIndexChanged += new System.EventHandler(this.input_set_cbox_SelectedIndexChanged);
             // 
             // btn_detect
             // 
@@ -507,6 +509,7 @@
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ODWai 2.0";
+            this.Load += new System.EventHandler(this.MainView_Load);
             this.tab_control.ResumeLayout(false);
             this.testing_tab.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);

@@ -52,9 +52,17 @@ namespace ODWai2.Presentation
         {
             _main_controller.another_dummy_func();
         }
+        
+        public void Load_inputset_combobox()
+        {
+            input_set_cbox.DataSource = _main_controller.get_input_data_sets(); //combobox inputset
+            input_set_cbox.DisplayMember = "File Name"; //combobox inputset
+            input_set_cbox.ValueMember = "File Name";
+        }
 
         public void load_data()
         {
+            Load_inputset_combobox();
 
         }
 
@@ -95,6 +103,26 @@ namespace ODWai2.Presentation
         private void btn_region_capture_Click(object sender, EventArgs e)
         {
             _main_controller.select_frame().ShowDialog();
+        }
+
+        //Misc.Views.NewInputSetView form = new Misc.Views.NewInputSetView();
+        private void new_input_set_btn_Click(object sender, EventArgs e)
+        {
+            /*Misc.Views.NewInputSetView form = new Misc.Views.NewInputSetView();
+            form.Show();
+            load_data();*/
+            _main_controller.new_input_set_view().Show();
+        }
+
+        private void input_set_cbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _main_controller.load_inputset_gridview(input_set_cbox, input_set_dgv);
+            
+        }
+
+        public void MainView_Load(object sender, EventArgs e)
+        {
+            load_data();
         }
     }
 }
