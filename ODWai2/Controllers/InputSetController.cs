@@ -58,7 +58,8 @@ namespace ODWai2.Controllers
 
                 if(NewInputSetView.txt_Path.Text == "")
                 {
-                    path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json\";
+                    path = Path.GetFullPath(@"../../Json/");
+                    //path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json\";
                 }
                 else
                 {

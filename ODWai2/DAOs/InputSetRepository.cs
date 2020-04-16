@@ -21,7 +21,8 @@ namespace ODWai2.DAOs
         public String[] file_name = new String[100];
         public DataTable get_input_data_set()
         {
-            string path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json";
+            //string path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json";
+            string path = Path.GetFullPath(@"../../Json/");
             string[] files = Directory.GetFiles(path);
             DataTable data_table = new DataTable();
             data_table.Columns.Add("File Name");
@@ -44,7 +45,9 @@ namespace ODWai2.DAOs
 
         public void get_json_data_set(ComboBox combobox, DataGridView gridview)
         {
-            string path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json\";
+            //string path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json\";
+
+            string path = Path.GetFullPath(@"../../Json/");
 
             DataRow selectedDataRow = ((DataRowView)combobox.SelectedItem).Row; // doc file name : a1.json
             string select = selectedDataRow["File Name"].ToString();// doc file name : a1.json
