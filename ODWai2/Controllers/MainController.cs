@@ -23,14 +23,14 @@ namespace ODWai2.Controllers
         private InputSetRepository _input_set_repo;
         private ScriptExecutor _script_executor;
         private FrameSelector _frame_selector;
-        private NewInputSetView _new_input_set_view;
+        //private NewInputSetView _new_input_set_view;
         
 
         public MainController(MainView main_view)
         {
             _main_view = main_view;
             _data_set_view = new DataSetView(this);
-            _new_input_set_view = new NewInputSetView();
+            //_new_input_set_view = new NewInputSetView();
             _data_set_repo = new DataSetRepository();
             _script_executor = new ScriptExecutor();
             _input_set_repo = new InputSetRepository();
@@ -80,19 +80,21 @@ namespace ODWai2.Controllers
                 setup_python_path();
             }
         }
-        public DataTable get_input_data_sets()
-        {
-            return _input_set_repo.get_input_data_set();
-        }
+        
 
         public void load_inputset_gridview(ComboBox combobox, DataGridView gridview)
         {
             _input_set_repo.get_json_data_set(combobox, gridview);
         }
 
-        public NewInputSetView new_input_set_view()
+        public void delete_json_file(ComboBox comboBox)
         {
-            return _new_input_set_view;
+            _input_set_repo.delete_json_data_set(comboBox);
+        }
+        
+        public void load_combobox_input_set(ComboBox comboBox)
+        {
+            _input_set_repo.load_data_input_set_cbox(comboBox);
         }
     }
 }

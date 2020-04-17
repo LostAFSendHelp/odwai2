@@ -1,8 +1,26 @@
 [
 {
-"Field" : "a",
-"Associated texts" : ["a"],
-"Sample input" : ["a"],
-"Error input" : ["a"]
+"Field" : "username",
+"Associated texts" : ["username"," login"," Username"],
+"Sample input" : ["huyhoang123"," huyhoang321"],
+"Error input" : ["abcxyz"," !@#$%^"]
+},
+{
+"Field" : "password",
+"Associated texts" : ["password"," Password"," pass"],
+"Sample input" : ["123456789"," huyhoang"],
+"Error input" : ["!@#$% !#@!@#"]
+},
+{
+"Field" : "fullname",
+"Associated texts" : ["fullname"," full name"," "],
+"Sample input" : ["Nguyen Huy Hoang"," Hoang Nguyen Huy"],
+"Error input" : ["!@#$%%"," cvajaxnadasd"]
+},
+{
+"Field" : "firstname",
+"Associated texts" : ["firstname"," first name"],
+"Sample input" : ["Hoang"," Duc"],
+"Error input" : ["bcaad !@#$"]
 }
 ]

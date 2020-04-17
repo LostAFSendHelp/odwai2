@@ -7,26 +7,28 @@ using ODWai2.Presentation;
 using ODWai2.Misc.Views;
 using System.IO;
 using Newtonsoft.Json;
-using ODWai2.Presentation;
 using System.Windows.Forms;
+using ODWai2.DAOs;
 
 namespace ODWai2.Controllers
 {
     class InputSetController
     {
         private InputSetView input_set_view;
-        private MainView MainView;
-
+        private InputSetRepository input_set_repo;
         public InputSetController(InputSetView input_set_view)
         {
-            this.input_set_view = input_set_view;
+           this.input_set_view = input_set_view;
+           input_set_repo = new InputSetRepository();
+            
         }
         public InputSetController(NewInputSetView newInputSetView)
         {
             NewInputSetView = newInputSetView;
-            MainView = new Presentation.MainView();
+            
         }
 
+        
 
         Misc.Views.NewInputSetView NewInputSetView;
 
@@ -111,9 +113,6 @@ namespace ODWai2.Controllers
                     tw.Close();
                 }
                 MessageBox.Show("File is Saved");
-                MainView.Load_inputset_combobox();
-                MainView.load_data();
-                
             }
 
         }

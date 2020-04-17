@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ODWai2.Controllers;
 using ODWai2.Presentation;
+using ODWai2.Controllers;
 
 namespace ODWai2.Misc.Views
 {
     
     public partial class NewInputSetView : Form
     {
+        
         Controllers.ClassCreatePanel ClassCreatePanel;
         Controllers.InputSetController InputSetController;
         public Panel[] arr_ = new Panel[100];
@@ -35,6 +37,7 @@ namespace ODWai2.Misc.Views
             ClassCreatePanel = new Controllers.ClassCreatePanel(this);
             InputSetController = new Controllers.InputSetController(this);
             
+
             arr_[0] = pnl_0;
             crr_[0] = chbox_0;
             field_[0] = txt_field_0;
@@ -91,7 +94,7 @@ namespace ODWai2.Misc.Views
         private void btn_close_Click(object sender, EventArgs e)
         {
             Hide();
-            
+           
         }
     }
 }
