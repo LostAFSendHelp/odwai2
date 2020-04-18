@@ -16,6 +16,7 @@ namespace ODWai2.Misc.Views
     
     public partial class NewInputSetView : Form
     {
+       
         
         Controllers.ClassCreatePanel ClassCreatePanel;
         Controllers.InputSetController InputSetController;
@@ -36,6 +37,7 @@ namespace ODWai2.Misc.Views
             InitializeComponent();
             ClassCreatePanel = new Controllers.ClassCreatePanel(this);
             InputSetController = new Controllers.InputSetController(this);
+            
             
 
             arr_[0] = pnl_0;
