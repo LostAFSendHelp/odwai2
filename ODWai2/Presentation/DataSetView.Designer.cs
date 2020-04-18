@@ -47,6 +47,7 @@
             this.dgv_data_set_testing = new System.Windows.Forms.DataGridView();
             this.dgv_data_set_training = new System.Windows.Forms.DataGridView();
             this.btn_close = new System.Windows.Forms.Button();
+            this.btn_import_graph = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data_set_testing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data_set_training)).BeginInit();
@@ -122,7 +123,7 @@
             // 
             // btn_data_set_dir
             // 
-            this.btn_data_set_dir.Location = new System.Drawing.Point(475, 37);
+            this.btn_data_set_dir.Location = new System.Drawing.Point(466, 37);
             this.btn_data_set_dir.Name = "btn_data_set_dir";
             this.btn_data_set_dir.Size = new System.Drawing.Size(111, 23);
             this.btn_data_set_dir.TabIndex = 3;
@@ -132,7 +133,7 @@
             // 
             // btn_graph_dir
             // 
-            this.btn_graph_dir.Location = new System.Drawing.Point(475, 98);
+            this.btn_graph_dir.Location = new System.Drawing.Point(466, 98);
             this.btn_graph_dir.Name = "btn_graph_dir";
             this.btn_graph_dir.Size = new System.Drawing.Size(111, 23);
             this.btn_graph_dir.TabIndex = 3;
@@ -238,12 +239,23 @@
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
+            // btn_import_graph
+            // 
+            this.btn_import_graph.Location = new System.Drawing.Point(276, 72);
+            this.btn_import_graph.Name = "btn_import_graph";
+            this.btn_import_graph.Size = new System.Drawing.Size(75, 23);
+            this.btn_import_graph.TabIndex = 5;
+            this.btn_import_graph.Text = "Import";
+            this.btn_import_graph.UseVisualStyleBackColor = true;
+            this.btn_import_graph.Click += new System.EventHandler(this.btn_import_graph_Click);
+            // 
             // DataSetView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 455);
             this.ControlBox = false;
+            this.Controls.Add(this.btn_import_graph);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_graph_dir);
@@ -288,5 +300,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgv_data_set_testing;
         private System.Windows.Forms.Button btn_close;
+        private System.Windows.Forms.Button btn_import_graph;
     }
 }

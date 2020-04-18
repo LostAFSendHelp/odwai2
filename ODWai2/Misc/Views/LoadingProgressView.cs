@@ -13,12 +13,14 @@ namespace ODWai2.Misc.Views
 {
     public partial class LoadingProgressView : SubView
     {
-        public LoadingProgressView()
+        public LoadingProgressView(string progress = "")
         {
             InitializeComponent();
             ControlBox = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             UseWaitCursor = true;
+
+            lbl_progress.Text = progress;
         }
 
         public void set_progress(string progress)

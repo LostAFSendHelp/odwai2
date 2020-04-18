@@ -95,7 +95,7 @@ namespace ODWai2.Controllers
                     case 1:
                         return 81;
                     default:
-                        return 1;
+                        return 2;
                 }
             }
         }
@@ -108,6 +108,11 @@ namespace ODWai2.Controllers
         public (int, string) delete_data_set(string data_set_path)
         {
             return _data_set_repo.delete_data_set(data_set_path);
+        }
+
+        public void import_graph(string to_path, string from_path)
+        {
+            _data_set_repo.import_graph(to_path, from_path);
         }
 
         private string get_path_argument(string raw_string)

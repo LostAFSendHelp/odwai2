@@ -11,7 +11,14 @@ namespace ODWai2.DAOs
 {
     public class DataSetRepository
     {
-        private string _root_dir = Path.GetFullPath(@"../../Datasets/");
+        private string _root_dir;
+
+        public DataSetRepository()
+        {
+            string relative_dir = @"../../DataSets/";
+            Directory.CreateDirectory(relative_dir);
+            _root_dir = Path.GetFullPath(relative_dir);
+        }
 
         public Dictionary<string, string> get_all_data_sets()
         {
@@ -61,6 +68,12 @@ namespace ODWai2.DAOs
             }
 
             return data_table;
+        }
+
+        public void import_graph(string to_path, string from_path)
+        {
+            Directory.CreateDirectory(to_path);
+            File.Copy(from_path, Path.Combine(to_path, Path.GetFileName(from_path)), true);
         }
 
         public int create_new_data_set(string to_path, string from_train_path, string from_test_path, Action<string> update = null)

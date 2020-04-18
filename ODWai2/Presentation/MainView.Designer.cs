@@ -370,7 +370,7 @@
             // 
             // btn_input_set_dir
             // 
-            this.btn_input_set_dir.Location = new System.Drawing.Point(323, 14);
+            this.btn_input_set_dir.Location = new System.Drawing.Point(323, 15);
             this.btn_input_set_dir.Name = "btn_input_set_dir";
             this.btn_input_set_dir.Size = new System.Drawing.Size(96, 23);
             this.btn_input_set_dir.TabIndex = 4;

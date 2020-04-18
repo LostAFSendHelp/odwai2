@@ -167,5 +167,30 @@ namespace ODWai2.Presentation
                 MessageBox.Show("Error: " + message, "Failure", MessageBoxButtons.OK);
             }
         }
+
+        private void btn_import_graph_Click(object sender, EventArgs e)
+        {
+            string data_set_path = get_current_data_set();
+            if (data_set_path == null) { return; }
+
+            var result = MessageBox.Show("An inference graph from unidentified outer sources may cause unexpected error or undesirable detection results. Proceed if you are sure the graph was generated using reliable data and configurations",
+                                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes) { return; }
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "PB text files|*.pb";
+
+            if (dialog.ShowDialog() != DialogResult.OK) { return; }
+            // TODO: currently allows overwriting, implement formal process if time allows
+
+            string graph_name = Path.GetFileName(dialog.FileName);
+            string message = "Importing <" + graph_name + "> to " + new DirectoryInfo(data_set_path).Name.ToUpper();
+            LoadingProgressView loading_view = new LoadingProgressView(message);
+            loading_view.Show();
+            _data_set_controller.import_graph(Path.Combine(data_set_path, "graph"), dialog.FileName);
+            loading_view.Close();
+
+            load_data();
+        }
     }
 }

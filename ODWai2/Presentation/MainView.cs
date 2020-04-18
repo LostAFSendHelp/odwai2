@@ -82,14 +82,9 @@ namespace ODWai2.Presentation
             }
         }
 
-        private void btn_generate_csv_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btn_data_set_config_Click(object sender, EventArgs e)
         {
-            _main_controller.present_data_set_config_view().Show();
+            _main_controller.present_data_set_config_view().ShowDialog();
         }
 
         private void btn_python_path_Click(object sender, EventArgs e)
