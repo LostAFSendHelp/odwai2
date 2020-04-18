@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.tab_control = new System.Windows.Forms.TabControl();
             this.testing_tab = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -56,6 +57,7 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_refesh = new System.Windows.Forms.Button();
             this.btn_input_set_dir = new System.Windows.Forms.Button();
             this.edit_input_set_btn = new System.Windows.Forms.Button();
             this.delete_input_set_btn = new System.Windows.Forms.Button();
@@ -354,6 +356,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn_refesh);
             this.groupBox2.Controls.Add(this.btn_input_set_dir);
             this.groupBox2.Controls.Add(this.edit_input_set_btn);
             this.groupBox2.Controls.Add(this.delete_input_set_btn);
@@ -368,9 +371,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input set";
             // 
+            // btn_refesh
+            // 
+            this.btn_refesh.BackColor = System.Drawing.Color.White;
+            this.btn_refesh.Image = ((System.Drawing.Image)(resources.GetObject("btn_refesh.Image")));
+            this.btn_refesh.Location = new System.Drawing.Point(284, 14);
+            this.btn_refesh.Name = "btn_refesh";
+            this.btn_refesh.Size = new System.Drawing.Size(32, 23);
+            this.btn_refesh.TabIndex = 5;
+            this.btn_refesh.UseVisualStyleBackColor = false;
+            this.btn_refesh.Click += new System.EventHandler(this.btn_refesh_Click);
+            // 
             // btn_input_set_dir
             // 
+<<<<<<< HEAD
             this.btn_input_set_dir.Location = new System.Drawing.Point(323, 15);
+=======
+            this.btn_input_set_dir.Location = new System.Drawing.Point(322, 14);
+>>>>>>> delete json da hoan thanh, them nut refresh moi lan luu json thi nhan vao de load file moi vao combobox
             this.btn_input_set_dir.Name = "btn_input_set_dir";
             this.btn_input_set_dir.Size = new System.Drawing.Size(96, 23);
             this.btn_input_set_dir.TabIndex = 4;
@@ -394,6 +412,7 @@
             this.delete_input_set_btn.TabIndex = 3;
             this.delete_input_set_btn.Text = "Delete";
             this.delete_input_set_btn.UseVisualStyleBackColor = true;
+            this.delete_input_set_btn.Click += new System.EventHandler(this.delete_input_set_btn_Click);
             // 
             // new_input_set_btn
             // 
@@ -403,6 +422,7 @@
             this.new_input_set_btn.TabIndex = 3;
             this.new_input_set_btn.Text = "New";
             this.new_input_set_btn.UseVisualStyleBackColor = true;
+            this.new_input_set_btn.Click += new System.EventHandler(this.new_input_set_btn_Click);
             // 
             // input_set_dgv
             // 
@@ -429,8 +449,9 @@
             this.input_set_cbox.FormattingEnabled = true;
             this.input_set_cbox.Location = new System.Drawing.Point(60, 16);
             this.input_set_cbox.Name = "input_set_cbox";
-            this.input_set_cbox.Size = new System.Drawing.Size(255, 21);
+            this.input_set_cbox.Size = new System.Drawing.Size(218, 21);
             this.input_set_cbox.TabIndex = 0;
+            this.input_set_cbox.SelectedIndexChanged += new System.EventHandler(this.input_set_cbox_SelectedIndexChanged);
             // 
             // btn_detect
             // 
@@ -507,6 +528,7 @@
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ODWai 2.0";
+            this.Load += new System.EventHandler(this.MainView_Load);
             this.tab_control.ResumeLayout(false);
             this.testing_tab.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -539,7 +561,6 @@
         private System.Windows.Forms.CheckBox skip_result_checkbox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox input_set_cbox;
         private System.Windows.Forms.Button edit_input_set_btn;
         private System.Windows.Forms.Button delete_input_set_btn;
         private System.Windows.Forms.Button new_input_set_btn;
@@ -571,6 +592,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btn_input_set_dir;
         private System.Windows.Forms.Button btn_python_path;
+        private System.Windows.Forms.Button btn_refesh;
+        public System.Windows.Forms.ComboBox input_set_cbox;
     }
 }
 

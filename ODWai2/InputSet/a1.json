@@ -1,0 +1,14 @@
+[
+{
+"Field" : "1",
+"Associated texts" : ["aaaa"],
+"Sample input" : ["aaaa"],
+"Error input" : ["aaaa"]
+},
+{
+"Field" : "2",
+"Associated texts" : ["bbbb"],
+"Sample input" : ["bbbb"],
+"Error input" : ["bbbb"]
+}
+]

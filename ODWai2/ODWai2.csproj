@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ODWai2</RootNamespace>
     <AssemblyName>ODWai2</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ClassCreatePanel.cs" />
     <Compile Include="Controllers\DataSetController.cs" />
     <Compile Include="Controllers\InputSetController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -81,6 +85,12 @@
     <Compile Include="Misc\Views\NewDataSetView.Designer.cs">
       <DependentUpon>NewDataSetView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Misc\Views\NewInputSetView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Views\NewInputSetView.Designer.cs">
+      <DependentUpon>NewInputSetView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ODWaiCore\CommandBuilder.cs" />
     <Compile Include="ODWaiCore\ScriptExecutor.cs" />
     <Compile Include="Presentation\DataSetView.cs">
@@ -112,6 +122,9 @@
     <EmbeddedResource Include="Misc\Views\NewDataSetView.resx">
       <DependentUpon>NewDataSetView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Misc\Views\NewInputSetView.resx">
+      <DependentUpon>NewInputSetView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\DataSetView.resx">
       <DependentUpon>DataSetView.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,18 +133,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -142,12 +156,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Image_Icon\rsz_images.png" />
     <Content Include="Misc\ExitCodes.txt" />
     <Content Include="ODWaiCore\Main\placeholder.txt" />
     <Content Include="ODWaiCore\Main\train.py" />
     <Content Include="ODWaiCore\Utilities\generate_tf_records.py" />
     <Content Include="ODWaiCore\Utilities\xml_to_csv.py" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="InputSet\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
