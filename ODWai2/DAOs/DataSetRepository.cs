@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Data;
-using ODWai2.Misc;
 
 namespace ODWai2.DAOs
 {
@@ -41,6 +38,7 @@ namespace ODWai2.DAOs
         public Dictionary<string, string> get_inference_graph(string graph_directory)
         {
             string dir = graph_directory + "/graph";
+            Directory.CreateDirectory(dir);
             IEnumerable<string> graphs = Directory.EnumerateFiles(dir, "*.pb", SearchOption.TopDirectoryOnly);
             List<string> keys = new List<string>();
             foreach (string graph in graphs) { keys.Add(Path.GetFileName(graph)); }
@@ -52,6 +50,7 @@ namespace ODWai2.DAOs
         public DataTable get_data_set(string data_set_directory, string type)
         {
             string dir = data_set_directory + "/" + type;
+            Directory.CreateDirectory(dir);
             IEnumerable<string> data_set = Directory.EnumerateFiles(dir, "*.jpg", SearchOption.TopDirectoryOnly);
             DataTable data_table = new DataTable();
             data_table.Columns.Add("id");

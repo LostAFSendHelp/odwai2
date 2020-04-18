@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 using ODWai2.Misc.Classes;
@@ -39,22 +35,30 @@ namespace ODWai2.ODWaiCore
         }
 
         // RECOMMENDED
-        public static int python_execute(string script_name, int max_wait_time = 10, params (string, string)[] arguments)
+        public static int python_execute(CommandBuilder.ExecutionType exe_type,
+                                        string script_name,
+                                        bool show_console,
+                                        Action completion = null,
+                                        int max_wait_time = 10,
+                                        params (string, string)[] arguments)
         {
             string python_path = Configuration.get_python_path();
             if (python_path == null) { return -1; }
 
-            string command = CommandBuilder.command(CommandBuilder.ExecutionType.util, script_name, arguments);
+            string command = CommandBuilder.command(exe_type, script_name, arguments);
             ProcessStartInfo info = new ProcessStartInfo(python_path, command);
             Process process = new Process();
-            info.CreateNoWindow = true;
-            info.WindowStyle = ProcessWindowStyle.Hidden;
+            info.CreateNoWindow = !show_console;
+            info.WindowStyle = show_console ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden;
             process.StartInfo = info;
             process.Start();
+
             if (process.WaitForExit(max_wait_time * 1000))
             {
                 return process.ExitCode;
             }
+
+            completion?.Invoke();
             return 100;
         }
     }

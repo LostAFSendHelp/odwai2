@@ -82,6 +82,9 @@
       <DependentUpon>NewDataSetView.cs</DependentUpon>
     </Compile>
     <Compile Include="ODWaiCore\CommandBuilder.cs" />
+    <Compile Include="ODWaiCore\Controllers\Helper.cs" />
+    <Compile Include="ODWaiCore\Controllers\ODWaiDetector.cs" />
+    <Compile Include="ODWaiCore\Controllers\ODWaiTrainer.cs" />
     <Compile Include="ODWaiCore\ScriptExecutor.cs" />
     <Compile Include="Presentation\DataSetView.cs">
       <SubType>Form</SubType>
@@ -128,6 +131,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ODWaiCore\Main\labelmap.pbtxt" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -143,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Misc\ExitCodes.txt" />
+    <Content Include="ODWaiCore\Main\odwai_detector.py" />
     <Content Include="ODWaiCore\Main\placeholder.txt" />
     <Content Include="ODWaiCore\Main\train.py" />
     <Content Include="ODWaiCore\Utilities\generate_tf_records.py" />

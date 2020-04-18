@@ -1,0 +1,20 @@
+item {
+  id: 1
+  name: 'tb'
+}
+
+item {
+  id: 2
+  name: 'btn'
+}
+
+item {
+  id: 3
+  name: 'cbox'
+}
+
+item {
+  id: 4
+  name: 'image'
+}
+

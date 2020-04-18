@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ODWai2.Presentation;
-using ODWai2.DAOs;
-using ODWai2.Misc;
-using System.IO;
-using System.Data;
 using ODWai2.ODWaiCore;
 using ODWai2.Misc.Classes;
 using ODWai2.Misc.Views;
+using ODWai2.ODWaiCore.Controllers;
 
 namespace ODWai2.Controllers
 {
@@ -19,7 +12,6 @@ namespace ODWai2.Controllers
     {
         private MainView _main_view;
         private DataSetView _data_set_view;
-        private DataSetRepository _data_set_repo;
         private ScriptExecutor _script_executor;
         private FrameSelector _frame_selector;
 
@@ -27,7 +19,6 @@ namespace ODWai2.Controllers
         {
             _main_view = main_view;
             _data_set_view = new DataSetView(this);
-            _data_set_repo = new DataSetRepository();
             _script_executor = new ScriptExecutor();
             _frame_selector = new FrameSelector((x, y, width, height) => { main_view.reload_frame_info(x, y, width, height); });
         }
@@ -52,8 +43,14 @@ namespace ODWai2.Controllers
             }
         }
 
-        public void dummy_func()
+        public void start_detection(string graph_path,
+                                    string root_x,
+                                    string root_y,
+                                    string width,
+                                    string height,
+                                    Action completion)
         {
+            ODWaiDetector.start_detection(graph_path, root_x, root_y, width, height, completion);
         }
 
         public void another_dummy_func()

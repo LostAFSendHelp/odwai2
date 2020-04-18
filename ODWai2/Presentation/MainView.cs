@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ODWai2.Controllers;
 using ODWai2.Interfaces;
@@ -15,11 +11,13 @@ namespace ODWai2.Presentation
     public partial class MainView : Form, DataLoadingView
     {
         private MainController _main_controller;
+        private string _graph_path;
 
         public MainView()
         {
             InitializeComponent();
             _main_controller = new MainController(this);
+            _graph_path = null;
             load_data();
         }
 
@@ -45,7 +43,13 @@ namespace ODWai2.Presentation
 
         private void test_btn_Click(object sender, EventArgs e)
         {
-            _main_controller.dummy_func();
+            WindowState = FormWindowState.Minimized;
+            _main_controller.start_detection(_graph_path,
+                                            tb_root_x.Text,
+                                            tb_root_y.Text,
+                                            tb_width.Text,
+                                            tb_height.Text,
+                                            () => { WindowState = FormWindowState.Normal; });
         }
 
         private void simulate_btn_Click(object sender, EventArgs e)
