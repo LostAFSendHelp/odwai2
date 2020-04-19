@@ -33,7 +33,7 @@ namespace ODWai2.Controllers
 
         public Dictionary<string, string> get_inference_graphs(string graph_directory)
         {
-            return _data_set_repo.get_inference_graph(graph_directory);
+            return _data_set_repo.get_inference_graphs(graph_directory);
         }
 
         public DataTable get_train_data(string data_set_path)
@@ -64,7 +64,10 @@ namespace ODWai2.Controllers
 
         public int generate_csv_tfrecords(string data_set_path, Action<string> update = null)
         {
-            return ODWaiTrainer.generate_training_resources(data_set_path, update);
+            (int result, string output) = ODWaiTrainer.generate_training_resources(data_set_path, update);
+            List<int> non_logged = new List<int>() { 99, 98, 100, 0 };
+            if (output != null) { Helper.log_error(output); }
+            return result;
         }
 
         public (int, string) delete_data_set(string data_set_path)

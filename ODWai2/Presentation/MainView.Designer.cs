@@ -38,7 +38,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_region_capture = new System.Windows.Forms.Button();
             this.tb_root_x = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.tb_graph_name = new System.Windows.Forms.TextBox();
             this.tb_height = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tb_width = new System.Windows.Forms.TextBox();
@@ -155,7 +157,9 @@
             // 
             this.groupBox1.Controls.Add(this.btn_region_capture);
             this.groupBox1.Controls.Add(this.tb_root_x);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.tb_graph_name);
             this.groupBox1.Controls.Add(this.tb_height);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tb_width);
@@ -187,6 +191,15 @@
             this.tb_root_x.Size = new System.Drawing.Size(135, 20);
             this.tb_root_x.TabIndex = 1;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 169);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Graph";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -195,6 +208,14 @@
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 0;
             this.label6.Text = "Height";
+            // 
+            // tb_graph_name
+            // 
+            this.tb_graph_name.Enabled = false;
+            this.tb_graph_name.Location = new System.Drawing.Point(63, 166);
+            this.tb_graph_name.Name = "tb_graph_name";
+            this.tb_graph_name.Size = new System.Drawing.Size(135, 20);
+            this.tb_graph_name.TabIndex = 1;
             // 
             // tb_height
             // 
@@ -571,6 +592,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btn_input_set_dir;
         private System.Windows.Forms.Button btn_python_path;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tb_graph_name;
     }
 }
 

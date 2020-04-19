@@ -8,17 +8,14 @@ using ODWai2.Interfaces;
 
 namespace ODWai2.Presentation
 {
-    public partial class MainView : Form, DataLoadingView
+    public partial class MainView : Form
     {
         private MainController _main_controller;
-        private string _graph_path;
 
         public MainView()
         {
             InitializeComponent();
             _main_controller = new MainController(this);
-            _graph_path = null;
-            load_data();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -43,23 +40,24 @@ namespace ODWai2.Presentation
 
         private void test_btn_Click(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Minimized;
-            _main_controller.start_detection(_graph_path,
-                                            tb_root_x.Text,
-                                            tb_root_y.Text,
-                                            tb_width.Text,
-                                            tb_height.Text,
-                                            () => { WindowState = FormWindowState.Normal; });
+            string graph_path = _main_controller.get_graph_path();
+            if (graph_path == null)
+            {
+                MessageBox.Show("Please choose an inference graph in Data set configuration", "Error");
+                return;
+            }
+
+            int result = _main_controller.start_detection(graph_path, tb_root_x.Text,
+                                                        tb_root_y.Text, tb_width.Text,
+                                                        tb_height.Text,
+                                                        () => { WindowState = FormWindowState.Minimized; },
+                                                        () => { WindowState = FormWindowState.Normal; });
+            if (result != 0) MessageBox.Show("Error: " + result);
         }
 
         private void simulate_btn_Click(object sender, EventArgs e)
         {
             _main_controller.another_dummy_func();
-        }
-
-        public void load_data()
-        {
-
         }
 
         public void reload_frame_info(int x, int y, int width, int height)
@@ -68,6 +66,12 @@ namespace ODWai2.Presentation
             tb_root_y.Text = y.ToString();
             tb_width.Text = width.ToString();
             tb_height.Text = height.ToString();
+        }
+
+        public void set_graph_name(string graph_name)
+        {
+            if (graph_name == null) { tb_graph_name.Text = "NA"; }
+            else { tb_graph_name.Text = graph_name; }
         }
 
         private void bind(Control item, object source)

@@ -35,7 +35,7 @@ namespace ODWai2.ODWaiCore
         }
 
         // RECOMMENDED
-        public static int python_execute(CommandBuilder.ExecutionType exe_type,
+        public static (int, string) python_execute(CommandBuilder.ExecutionType exe_type,
                                         string script_name,
                                         bool show_console,
                                         Action completion = null,
@@ -43,23 +43,27 @@ namespace ODWai2.ODWaiCore
                                         params (string, string)[] arguments)
         {
             string python_path = Configuration.get_python_path();
-            if (python_path == null) { return -1; }
+            if (python_path == null) { return (-1, null); }
 
             string command = CommandBuilder.command(exe_type, script_name, arguments);
             ProcessStartInfo info = new ProcessStartInfo(python_path, command);
             Process process = new Process();
             info.CreateNoWindow = !show_console;
             info.WindowStyle = show_console ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden;
+            info.RedirectStandardOutput = true;
+            info.RedirectStandardError = true;
+            info.UseShellExecute = false;
             process.StartInfo = info;
             process.Start();
+            string output = process.StandardError.ReadToEnd();
 
             if (process.WaitForExit(max_wait_time * 1000))
             {
-                return process.ExitCode;
+                return (process.ExitCode, output);
             }
 
             completion?.Invoke();
-            return 100;
+            return (100, null);
         }
     }
 }

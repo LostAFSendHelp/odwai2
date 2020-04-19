@@ -7,6 +7,7 @@ using ODWai2.Controllers;
 using ODWai2.Interfaces;
 using ODWai2.Misc.Classes;
 using ODWai2.Misc.Views;
+using System.ComponentModel;
 
 namespace ODWai2.Presentation
 {
@@ -30,12 +31,25 @@ namespace ODWai2.Presentation
             base.OnShown(e);
         }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            _main_controller.set_graph_path(get_graph_path());
+            base.OnClosing(e);
+        }
+
         public void load_data()
         {
             Dictionary<string, string> data = _data_set_controller.get_data_sets();
             if (data.Count == 0) { _has_data_set = false; flush_data(); return; }
             _has_data_set = true;
             bind(cbox_data_set, _data_set_controller.get_data_sets());
+        }
+
+        private string get_graph_path()
+        {
+            KeyValuePair<string, string>? pair = cbox_graph.SelectedValue as KeyValuePair<string, string>?;
+            return pair?.Value;
+
         }
 
         private void flush_data()
@@ -185,7 +199,7 @@ namespace ODWai2.Presentation
             _data_set_controller.import_graph(Path.Combine(data_set_path, "graph"), dialog.FileName);
             loading_view.Close();
 
-            load_data();
+            bind(cbox_graph, _data_set_controller.get_inference_graphs(data_set_path));
         }
     }
 }

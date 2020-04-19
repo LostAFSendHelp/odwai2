@@ -34,6 +34,7 @@ flags.DEFINE_string('root_x', '', 'X of the frame\'s top left corner')
 flags.DEFINE_string('root_y', '', 'Y of the frame\'s top left corner')
 flags.DEFINE_string('width', '', 'Width of the frame')
 flags.DEFINE_string('height', '', 'Height of the frame')
+flags.DEFINE_string('labelmap', '', 'path to the label map')
 FLAGS = flags.FLAGS
 
 # Path to frozen detection graph .pb file, which contains the model that is used
@@ -41,7 +42,7 @@ FLAGS = flags.FLAGS
 PATH_TO_GRAPH = FLAGS.graph_path
 
 # Path to label map file
-PATH_TO_LABELS = 'labelmap.pbtxt'
+PATH_TO_LABELS = FLAGS.labelmap
 
 # Number of classes the object detector can identify
 NUM_CLASSES = 4

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using ODWai2.Presentation;
 using ODWai2.ODWaiCore;
@@ -14,6 +15,7 @@ namespace ODWai2.Controllers
         private DataSetView _data_set_view;
         private ScriptExecutor _script_executor;
         private FrameSelector _frame_selector;
+        private string _graph_path;
 
         public MainController(MainView main_view)
         {
@@ -21,6 +23,7 @@ namespace ODWai2.Controllers
             _data_set_view = new DataSetView(this);
             _script_executor = new ScriptExecutor();
             _frame_selector = new FrameSelector((x, y, width, height) => { main_view.reload_frame_info(x, y, width, height); });
+            _main_view.set_graph_name(null);
         }
 
         public DataSetView present_data_set_config_view()
@@ -43,14 +46,18 @@ namespace ODWai2.Controllers
             }
         }
 
-        public void start_detection(string graph_path,
+        public int start_detection(string graph_path,
                                     string root_x,
                                     string root_y,
                                     string width,
                                     string height,
+                                    Action start,
                                     Action completion)
         {
-            ODWaiDetector.start_detection(graph_path, root_x, root_y, width, height, completion);
+            (int code, string output) = ODWaiDetector.start_detection(graph_path, root_x, root_y,
+                                                width, height, start, completion);
+            if (output != null) { Helper.log_error(output); }
+            return code;
         }
 
         public void another_dummy_func()
@@ -71,6 +78,23 @@ namespace ODWai2.Controllers
                 MessageBox.Show("Python interpreter not found, please setup Python path before ODWai Core can run", "Error", MessageBoxButtons.OK);
                 setup_python_path();
             }
+        }
+
+        public void set_graph_path(string graph_path)
+        {
+            _graph_path = graph_path;
+            _main_view.set_graph_name(get_graph_name());
+        }
+
+        public string get_graph_name()
+        {
+            if (_graph_path == null) { return null; }
+            return Path.GetFileName(_graph_path);
+        }
+
+        public string get_graph_path()
+        {
+            return _graph_path;
         }
     }
 }

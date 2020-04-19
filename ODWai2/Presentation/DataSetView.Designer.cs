@@ -91,6 +91,7 @@
             // 
             // tb_data_set_path
             // 
+            this.tb_data_set_path.Enabled = false;
             this.tb_data_set_path.Location = new System.Drawing.Point(124, 39);
             this.tb_data_set_path.Name = "tb_data_set_path";
             this.tb_data_set_path.Size = new System.Drawing.Size(336, 20);
@@ -116,6 +117,7 @@
             // 
             // tb_graph_path
             // 
+            this.tb_graph_path.Enabled = false;
             this.tb_graph_path.Location = new System.Drawing.Point(124, 100);
             this.tb_graph_path.Name = "tb_graph_path";
             this.tb_graph_path.Size = new System.Drawing.Size(336, 20);

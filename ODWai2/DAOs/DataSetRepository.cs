@@ -35,7 +35,7 @@ namespace ODWai2.DAOs
             return _root_dir;
         }
 
-        public Dictionary<string, string> get_inference_graph(string graph_directory)
+        public Dictionary<string, string> get_inference_graphs(string graph_directory)
         {
             string dir = graph_directory + "/graph";
             Directory.CreateDirectory(dir);
