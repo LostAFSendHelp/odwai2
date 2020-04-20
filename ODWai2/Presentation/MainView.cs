@@ -40,19 +40,21 @@ namespace ODWai2.Presentation
 
         private void test_btn_Click(object sender, EventArgs e)
         {
-            string graph_path = _main_controller.get_graph_path();
-            if (graph_path == null)
+            int result = _main_controller.start_detection(tb_root_x.Text,
+                                                        tb_root_y.Text, tb_width.Text,
+                                                        tb_height.Text,
+                                                        () => { WindowState = FormWindowState.Minimized; },
+                                                        () => { WindowState = FormWindowState.Normal; });
+
+            if (result == 78)
             {
                 MessageBox.Show("Please choose an inference graph in Data set configuration", "Error");
                 return;
             }
 
-            int result = _main_controller.start_detection(graph_path, tb_root_x.Text,
-                                                        tb_root_y.Text, tb_width.Text,
-                                                        tb_height.Text,
-                                                        () => { WindowState = FormWindowState.Minimized; },
-                                                        () => { WindowState = FormWindowState.Normal; });
-            if (result != 0) MessageBox.Show("Error: " + result);
+            if (result != 0) MessageBox.Show("Error executing detection, exit code: "
+                                            + result + "\nSee the latest error log for more details" ,
+                                            "Failure");
         }
 
         private void simulate_btn_Click(object sender, EventArgs e)

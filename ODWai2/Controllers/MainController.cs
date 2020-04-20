@@ -20,10 +20,10 @@ namespace ODWai2.Controllers
         public MainController(MainView main_view)
         {
             _main_view = main_view;
-            _data_set_view = new DataSetView(this);
             _script_executor = new ScriptExecutor();
             _frame_selector = new FrameSelector((x, y, width, height) => { main_view.reload_frame_info(x, y, width, height); });
             _main_view.set_graph_name(null);
+            _data_set_view = new DataSetView((graph_path) => { set_graph_path(graph_path); });
         }
 
         public DataSetView present_data_set_config_view()
@@ -46,15 +46,15 @@ namespace ODWai2.Controllers
             }
         }
 
-        public int start_detection(string graph_path,
-                                    string root_x,
+        public int start_detection(string root_x,
                                     string root_y,
                                     string width,
                                     string height,
                                     Action start,
                                     Action completion)
         {
-            (int code, string output) = ODWaiDetector.start_detection(graph_path, root_x, root_y,
+            if (_graph_path == null) { return 71; }
+            (int code, string output) = ODWaiDetector.start_detection(_graph_path, root_x, root_y,
                                                 width, height, start, completion);
             if (output != null) { Helper.log_error(output); }
             return code;
@@ -90,11 +90,6 @@ namespace ODWai2.Controllers
         {
             if (_graph_path == null) { return null; }
             return Path.GetFileName(_graph_path);
-        }
-
-        public string get_graph_path()
-        {
-            return _graph_path;
         }
     }
 }

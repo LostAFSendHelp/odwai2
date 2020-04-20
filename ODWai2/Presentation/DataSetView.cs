@@ -14,15 +14,18 @@ namespace ODWai2.Presentation
     public partial class DataSetView : SubView, DataLoadingView
     {
         private DataSetController _data_set_controller;
-        private MainController _main_controller;
+        private Action<string> _on_closing;
         private bool _has_data_set = false;
 
-        public DataSetView(MainController main_controller)
+        public DataSetView(Action<string> on_closing)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             _data_set_controller = new DataSetController(this);
-            _main_controller = main_controller;
+            _on_closing = on_closing;
+
+            tb_data_set_path.ReadOnly = true;
+            tb_graph_path.ReadOnly = true;
         }
 
         protected override void OnShown(EventArgs e)
@@ -31,10 +34,12 @@ namespace ODWai2.Presentation
             base.OnShown(e);
         }
 
-        protected override void OnClosing(CancelEventArgs e)
+        // reload graph info on MainView and MainController
+        protected override void OnDeactivate(EventArgs e)
         {
-            _main_controller.set_graph_path(get_graph_path());
-            base.OnClosing(e);
+            string graph = get_graph_path();
+            _on_closing(get_graph_path());
+            base.OnDeactivate(e);
         }
 
         public void load_data()
@@ -49,7 +54,6 @@ namespace ODWai2.Presentation
         {
             KeyValuePair<string, string>? pair = cbox_graph.SelectedValue as KeyValuePair<string, string>?;
             return pair?.Value;
-
         }
 
         private void flush_data()

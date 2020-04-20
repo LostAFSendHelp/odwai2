@@ -210,4 +210,4 @@ class Detect_img():
 
 if __name__ == "__main__":
     detector = Detect_img()
-    detector.capture_n_detect(int(FLAGS.root_x), int(FLAGS.root_y), int(FLAGS.width), int(FLAGS.height), False)
+    detector.capture_n_detect(int(FLAGS.root_y), int(FLAGS.root_x), int(FLAGS.width), int(FLAGS.height), False) # root_y first because it equals top

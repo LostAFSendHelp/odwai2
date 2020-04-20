@@ -44,17 +44,18 @@ namespace ODWai2.ODWaiCore
         {
             string python_path = Configuration.get_python_path();
             if (python_path == null) { return (-1, null); }
-
             string command = CommandBuilder.command(exe_type, script_name, arguments);
+
             ProcessStartInfo info = new ProcessStartInfo(python_path, command);
-            Process process = new Process();
             info.CreateNoWindow = !show_console;
             info.WindowStyle = show_console ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden;
-            info.RedirectStandardOutput = true;
             info.RedirectStandardError = true;
             info.UseShellExecute = false;
+
+            Process process = new Process();
             process.StartInfo = info;
             process.Start();
+
             string output = process.StandardError.ReadToEnd();
 
             if (process.WaitForExit(max_wait_time * 1000))

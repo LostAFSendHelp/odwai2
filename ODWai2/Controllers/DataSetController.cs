@@ -65,7 +65,6 @@ namespace ODWai2.Controllers
         public int generate_csv_tfrecords(string data_set_path, Action<string> update = null)
         {
             (int result, string output) = ODWaiTrainer.generate_training_resources(data_set_path, update);
-            List<int> non_logged = new List<int>() { 99, 98, 100, 0 };
             if (output != null) { Helper.log_error(output); }
             return result;
         }
