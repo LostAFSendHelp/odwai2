@@ -12,7 +12,7 @@ using ODWai2.DAOs;
 
 namespace ODWai2.Controllers
 {
-    class InputSetController
+    public class InputSetController
     {
         private InputSetView input_set_view;
         private InputSetRepository input_set_repo;
@@ -115,6 +115,20 @@ namespace ODWai2.Controllers
                 MessageBox.Show("File is Saved");
             }
 
+        }
+        public void load_inputset_gridview(ComboBox combobox, DataGridView gridview)
+        {
+            input_set_repo.get_json_data_set(combobox, gridview);
+        }
+
+        public void delete_json_file(ComboBox comboBox)
+        {
+            input_set_repo.delete_json_data_set(comboBox);
+        }
+
+        public void load_combobox_input_set(ComboBox comboBox)
+        {
+            input_set_repo.load_data_input_set_cbox(comboBox);
         }
     }
 }

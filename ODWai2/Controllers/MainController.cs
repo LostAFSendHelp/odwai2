@@ -17,7 +17,7 @@ namespace ODWai2.Controllers
 {
     public class MainController
     {
-        
+        //private InputSetController _input_set_controller;
         private DataSetView _data_set_view;
         private DataSetRepository _data_set_repo;
         private InputSetRepository _input_set_repo;
@@ -28,7 +28,7 @@ namespace ODWai2.Controllers
 
         public MainController(MainView main_view)
         {
-            
+           
             _data_set_view = new DataSetView(this);
             _new_input_set_view = new NewInputSetView();
             _data_set_repo = new DataSetRepository();
@@ -85,6 +85,7 @@ namespace ODWai2.Controllers
         public void load_inputset_gridview(ComboBox combobox, DataGridView gridview)
         {
             _input_set_repo.get_json_data_set(combobox, gridview);
+            //_input_set_controller.load_inputset_gridview(combobox, gridview);
         }
 
         public void delete_json_file(ComboBox comboBox)
@@ -96,7 +97,10 @@ namespace ODWai2.Controllers
         {
             _input_set_repo.load_data_input_set_cbox(comboBox);
         }
-
+        public string get_path_json(ComboBox comboBox)
+        {
+            return _input_set_repo.get_path_json(comboBox);
+        }
        
     }
 }

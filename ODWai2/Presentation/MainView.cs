@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 using ODWai2.Controllers;
 using ODWai2.Interfaces;
 
@@ -15,11 +17,13 @@ namespace ODWai2.Presentation
     public partial class MainView : Form, DataLoadingView
     {
         private MainController _main_controller;
+        //private InputSetController _input_set_controller;
 
         public MainView()
         {
             InitializeComponent();
             _main_controller = new MainController(this);
+            //_input_set_controller = new InputSetController(this);
             load_data();
         }
 
@@ -132,6 +136,11 @@ namespace ODWai2.Presentation
             load_data();
         }
 
-       
+        private void input_set_dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           /* Misc.Views.LoadJson loadJson = new Misc.Views.LoadJson();
+            loadJson.Show();*/
+
+        }
     }
 }

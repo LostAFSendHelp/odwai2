@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ODWai2.Controllers;
 using ODWai2.Presentation;
-using ODWai2.Controllers;
 
 namespace ODWai2.Misc.Views
 {
@@ -37,9 +36,6 @@ namespace ODWai2.Misc.Views
             InitializeComponent();
             ClassCreatePanel = new Controllers.ClassCreatePanel(this);
             InputSetController = new Controllers.InputSetController(this);
-            
-            
-
             arr_[0] = pnl_0;
             crr_[0] = chbox_0;
             field_[0] = txt_field_0;

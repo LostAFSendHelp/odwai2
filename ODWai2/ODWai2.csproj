@@ -79,6 +79,12 @@
     <Compile Include="Misc\Views\LoadingProgressView.Designer.cs">
       <DependentUpon>LoadingProgressView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Misc\Views\LoadJson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Views\LoadJson.Designer.cs">
+      <DependentUpon>LoadJson.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Views\NewDataSetView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\Views\LoadingProgressView.resx">
       <DependentUpon>LoadingProgressView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\Views\LoadJson.resx">
+      <DependentUpon>LoadJson.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\Views\NewDataSetView.resx">
       <DependentUpon>NewDataSetView.cs</DependentUpon>

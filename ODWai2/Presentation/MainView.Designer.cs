@@ -384,11 +384,7 @@
             // 
             // btn_input_set_dir
             // 
-<<<<<<< HEAD
             this.btn_input_set_dir.Location = new System.Drawing.Point(323, 15);
-=======
-            this.btn_input_set_dir.Location = new System.Drawing.Point(322, 14);
->>>>>>> delete json da hoan thanh, them nut refresh moi lan luu json thi nhan vao de load file moi vao combobox
             this.btn_input_set_dir.Name = "btn_input_set_dir";
             this.btn_input_set_dir.Size = new System.Drawing.Size(96, 23);
             this.btn_input_set_dir.TabIndex = 4;
@@ -434,6 +430,7 @@
             this.input_set_dgv.ReadOnly = true;
             this.input_set_dgv.Size = new System.Drawing.Size(410, 208);
             this.input_set_dgv.TabIndex = 2;
+            this.input_set_dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.input_set_dgv_CellContentClick);
             // 
             // label2
             // 

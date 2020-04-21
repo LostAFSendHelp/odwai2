@@ -12,20 +12,28 @@ namespace ODWai2.DAOs
 {
     class InputSetRepository
     {
-        
+        string path = Path.GetFullPath(@"../../InputSet/");
 
-        
-
-        public void get_json_data_set(ComboBox combobox, DataGridView gridview)
+        public string get_name_json(ComboBox combobox)
         {
             //string path = @"C:\tensorflow2\models\research\object_detection\odwai-core\odwai2\ODWai2\Json\";
-
-            string path = Path.GetFullPath(@"../../InputSet/");
-
+            
             DataRow selectedDataRow = ((DataRowView)combobox.SelectedItem).Row; // doc file name : a1.json
             string select = selectedDataRow["File Name"].ToString();// doc file name : a1.json
 
-            string destPath = System.IO.Path.Combine(path, select);
+            //string destPath = System.IO.Path.Combine(path, select);
+
+            return select;
+        }
+        public string get_path_json(ComboBox comboBox)
+        {
+            string destPath = System.IO.Path.Combine(path, get_name_json(comboBox));
+            return destPath;
+        }
+
+        public void get_json_data_set(ComboBox combobox, DataGridView gridview)
+        {
+            string destPath = get_path_json(combobox);
 
             string Json = File.ReadAllText(destPath);
             var Jarray = JArray.Parse(Json);
@@ -33,10 +41,13 @@ namespace ODWai2.DAOs
         }
         public void delete_json_data_set(ComboBox combobox)
         {
-            string path = Path.GetFullPath(@"../../InputSet/");
-            DataRow selectedDataRow = ((DataRowView)combobox.SelectedItem).Row; // doc file name : a1.json
-            string select = selectedDataRow["File Name"].ToString();// doc file name : a1.json
-            string destPath = System.IO.Path.Combine(path, select);
+            /* string path = Path.GetFullPath(@"../../InputSet/");
+             DataRow selectedDataRow = ((DataRowView)combobox.SelectedItem).Row; // doc file name : a1.json
+             string select = selectedDataRow["File Name"].ToString();// doc file name : a1.json
+             string destPath = System.IO.Path.Combine(path, select);*/
+
+            string select = get_name_json(combobox);
+            string destPath = get_path_json(combobox);
 
             DialogResult result = MessageBox.Show("Are you sure you want to delete " + select + "?", "Confirm Delete", MessageBoxButtons.YesNo);
             if (result != DialogResult.Yes) { return; }
