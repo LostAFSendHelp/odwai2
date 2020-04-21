@@ -27,6 +27,9 @@ import pytesseract as pt
 from utils import label_map_util
 from utils import visualization_utils as vis_util
 
+from PIL import Image
+from pathlib import Path
+
 # Arguments
 flags = tf.app.flags
 flags.DEFINE_string('graph_path', '', 'Path to the inference graph')
@@ -46,6 +49,8 @@ PATH_TO_LABELS = FLAGS.labelmap
 
 # Number of classes the object detector can identify
 NUM_CLASSES = 4
+
+TEMP_PATH = "../../temp result"
 
 # Load the label map.
 # Label maps map indices to category names, so that when our convolution
@@ -125,8 +130,14 @@ class Detect_img():
 
         sct = mss.mss()
         scrn = {"top": top, "left": left, "width": width, "height": height}
+		
+        sct_img = sct.grab(scrn)
+        img = Image.frombytes("RGB", sct_img.size, sct_img.bgra, "raw", "BGRX")
+        save_path = os.path.abspath(TEMP_PATH)
+        Path(save_path).mkdir(parents=True, exist_ok=True)
+        img.save(save_path + "/temp.png")
 
-        frame = cv2.cvtColor(np.array(sct.grab(scrn)), cv2.COLOR_BGRA2BGR)
+        frame = cv2.cvtColor(np.array(sct_img), cv2.COLOR_BGRA2BGR)
         frame_expanded = np.expand_dims(frame, axis=0)
 
         # Perform the actual detection by running the model with the image as input
@@ -197,16 +208,6 @@ class Detect_img():
 
                 percent = round(scores[0][idx] * 100, 2)
                 print(mystr.format(box, class_name, percent));
-
-        if not skip_check:
-        # All the results have been drawn on image. Now display the image.
-            cv2.imshow('Object detector', frame)
-
-            # Press any key to close the image
-            cv2.waitKey(0)
-
-            # Clean up
-            cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     detector = Detect_img()

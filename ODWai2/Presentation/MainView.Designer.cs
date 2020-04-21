@@ -34,7 +34,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_region_capture = new System.Windows.Forms.Button();
             this.tb_root_x = new System.Windows.Forms.TextBox();
@@ -71,18 +70,19 @@
             this.skip_result_checkbox = new System.Windows.Forms.CheckBox();
             this.btn_data_set_config = new System.Windows.Forms.Button();
             this.btn_python_path = new System.Windows.Forms.Button();
+            this.pb_image_result = new System.Windows.Forms.PictureBox();
             this.tab_control.SuspendLayout();
             this.testing_tab.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.config_tab.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_set_dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_image_result)).BeginInit();
             this.SuspendLayout();
             // 
             // tab_control
@@ -138,20 +138,12 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pb_image_result);
             this.panel1.Location = new System.Drawing.Point(6, 19);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(337, 264);
             this.panel1.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(331, 258);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
@@ -513,6 +505,15 @@
             this.btn_python_path.UseVisualStyleBackColor = true;
             this.btn_python_path.Click += new System.EventHandler(this.btn_python_path_Click);
             // 
+            // pb_image_result
+            // 
+            this.pb_image_result.Location = new System.Drawing.Point(3, 3);
+            this.pb_image_result.Name = "pb_image_result";
+            this.pb_image_result.Size = new System.Drawing.Size(268, 221);
+            this.pb_image_result.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pb_image_result.TabIndex = 0;
+            this.pb_image_result.TabStop = false;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -535,7 +536,6 @@
             this.groupBox3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.config_tab.ResumeLayout(false);
@@ -544,6 +544,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.input_set_dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_image_result)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -578,7 +579,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_root_y;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -594,6 +594,7 @@
         private System.Windows.Forms.Button btn_python_path;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tb_graph_name;
+        private System.Windows.Forms.PictureBox pb_image_result;
     }
 }
 

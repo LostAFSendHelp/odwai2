@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
 using ODWai2.Controllers;
 using ODWai2.Interfaces;
 
@@ -40,11 +42,17 @@ namespace ODWai2.Presentation
 
         private void test_btn_Click(object sender, EventArgs e)
         {
+            Action on_start = () => { WindowState = FormWindowState.Minimized; };
+            Action on_complete = () => {
+                WindowState = FormWindowState.Normal;
+                update_detection_result();
+            };
             int result = _main_controller.start_detection(tb_root_x.Text,
-                                                        tb_root_y.Text, tb_width.Text,
+                                                        tb_root_y.Text,
+                                                        tb_width.Text,
                                                         tb_height.Text,
-                                                        () => { WindowState = FormWindowState.Minimized; },
-                                                        () => { WindowState = FormWindowState.Normal; });
+                                                        on_start,
+                                                        on_complete);
 
             if (result == 78)
             {
@@ -60,6 +68,18 @@ namespace ODWai2.Presentation
         private void simulate_btn_Click(object sender, EventArgs e)
         {
             _main_controller.another_dummy_func();
+        }
+
+        private void update_detection_result()
+        {
+            try
+            {
+                pb_image_result.Image = Image.FromFile(Path.GetFullPath("../../temp result/temp.png"));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         public void reload_frame_info(int x, int y, int width, int height)
