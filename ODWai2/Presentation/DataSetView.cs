@@ -7,7 +7,6 @@ using ODWai2.Controllers;
 using ODWai2.Interfaces;
 using ODWai2.Misc.Classes;
 using ODWai2.Misc.Views;
-using System.ComponentModel;
 
 namespace ODWai2.Presentation
 {
@@ -111,12 +110,12 @@ namespace ODWai2.Presentation
 
         private void btn_data_set_dir_Click(object sender, EventArgs e)
         {
-            _data_set_controller.open_explorer_at_path(tb_data_set_path.Text);
+            ODWaiCore.Controllers.Helper.open_explorer_at_path(tb_data_set_path.Text);
         }
 
         private void btn_graph_dir_Click(object sender, EventArgs e)
         {
-            _data_set_controller.open_explorer_at_path(tb_graph_path.Text);
+            ODWaiCore.Controllers.Helper.open_explorer_at_path(tb_data_set_path.Text);
         }
 
         private void btn_new_data_set_Click(object sender, EventArgs e)

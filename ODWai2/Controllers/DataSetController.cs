@@ -56,12 +56,6 @@ namespace ODWai2.Controllers
             return new ImageItemView(path);
         }
 
-        public void open_explorer_at_path(string path)
-        {
-            if (path.Trim().Length == 0 || !Directory.Exists(path)) { return; }
-            Process.Start("explorer", path);
-        }
-
         public int generate_csv_tfrecords(string data_set_path, Action<string> update = null)
         {
             (int result, string output) = ODWaiTrainer.generate_training_resources(data_set_path, update);

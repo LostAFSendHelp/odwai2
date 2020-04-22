@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Diagnostics;
 
 namespace ODWai2.ODWaiCore.Controllers
 {
@@ -16,6 +17,12 @@ namespace ODWai2.ODWaiCore.Controllers
         {
             Directory.CreateDirectory(LOG_PATH);
             File.WriteAllText(Path.GetFullPath(LOG_PATH) + "/" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt", error);
+        }
+
+        public static void open_explorer_at_path(string path)
+        {
+            string full_path = (Path.GetFullPath(path));
+            Process.Start("explorer", full_path);
         }
     }
 }

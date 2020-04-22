@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using ODWai2.Controllers;
-using ODWai2.Interfaces;
 
 namespace ODWai2.Presentation
 {
@@ -74,7 +73,11 @@ namespace ODWai2.Presentation
         {
             try
             {
-                pb_image_result.Image = Image.FromFile(Path.GetFullPath("../../temp result/temp.png"));
+                MemoryStream stream = new MemoryStream();
+                Image.FromFile(Path.GetFullPath("../../temp result/temp.png")).Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                stream.Position = 0;
+                Image temp = Image.FromStream(stream);
+                pb_image_result.Image = temp.Clone() as Image;
             }
             catch (Exception e)
             {
@@ -125,6 +128,11 @@ namespace ODWai2.Presentation
         private void btn_region_capture_Click(object sender, EventArgs e)
         {
             _main_controller.select_frame().ShowDialog();
+        }
+
+        private void btn_error_log_Click(object sender, EventArgs e)
+        {
+            ODWaiCore.Controllers.Helper.open_explorer_at_path(ODWaiCore.Controllers.Helper.LOG_PATH);
         }
     }
 }

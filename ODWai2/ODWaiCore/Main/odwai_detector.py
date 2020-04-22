@@ -22,6 +22,7 @@ import tensorflow as tf
 import sys
 import mss
 import pytesseract as pt
+import json
 
 # Import utilites
 from utils import label_map_util
@@ -52,6 +53,9 @@ NUM_CLASSES = 4
 
 TEMP_PATH = "../../temp result"
 
+OUTER_THRESHOLD = .80
+INNTER_THRESHOLD = .90
+
 # Load the label map.
 # Label maps map indices to category names, so that when our convolution
 # network predicts `5`, we know that this corresponds to `king`.
@@ -64,20 +68,16 @@ category_index = label_map_util.create_category_index(categories)
 class Detect_img():
 
     def __init__(self):
-        self.objects = {
-            "tb": [],
-            "btn": []
-        }
+        self.objects = []
 
         self.root = {"x": 0, "y": 0}
 
     def __check_overlap(self, info):
-        boxes = self.objects["tb"] + self.objects["btn"]
         overlapped = False
         
-        for box in boxes:
-            if (info["x"] > box["xmin"] and info["x"] < box["xmax"]
-            and info["y"] > box["ymin"] and info["y"] < box["ymax"]):
+        for object in self.objects:
+            if (info["root_x"] > object["root_x"] and info["root_x"] < object["root_x"] + object["width"]
+            and info["root_y"] > object["root_y"] and info["root_y"] < object["root_y"] + object["height"]):
                 overlapped = True
                 break
         
@@ -87,14 +87,7 @@ class Detect_img():
         os.system('cls')
         
         # reset object collection
-        self.objects = {
-            "tb": [],
-            "btn": []
-        }
-
-        self.root["x"] = left
-        self.root["y"] = top
-
+        self.objects = []
 
         # Load the Tensorflow model into memory.
         detection_graph = tf.Graph()
@@ -157,29 +150,26 @@ class Detect_img():
             min_score_thresh=0.80)
 
         for idx, box in enumerate(boxes[0]):
-            ymin = box[0] * height
-            xmin = box[1] * width
-            ymax = box[2] * height
-            xmax = box[3] * width
 
-            mystr = ""
-
-            if scores[0][idx] >= .50:
-                class_name = category_index[classes[0][idx]]['name']
+            if scores[0][idx] >= OUTER_THRESHOLD:
+                ymin = box[0] * height
+                xmin = box[1] * width
+                ymax = box[2] * height
+                xmax = box[3] * width
+                class_name = "Unknown"
+                bias = "NA"
+                inner_text = "NA"
                 
-                if scores[0][idx] < .80:              
-                    mystr = "{} - unknown - bias: {}({})"
+                if scores[0][idx] < INNTER_THRESHOLD:
+                    bias = category_index[classes[0][idx]]["name"]
                 else:
-                    mystr = "{} - {}({})"
-                    
-                    if class_name in ("tb", "btn"):
-                        print(class_name)
-                        
+                    class_name = category_index[classes[0][idx]]["name"]
+                    local_height = int(ymax - ymin)
+                    local_width = int(xmax - xmin)
+                    if class_name in ("tb", "btn"):                        
                         # corner coordinates and sizes of textboxes/buttons on the screen
                         local_top = int(top + ymin)
                         local_left = int(left + xmin)
-                        local_height = int(ymax - ymin)
-                        local_width = int(xmax - xmin)
 
                         # grab screen within textboxes/buttons
                         local_scrn = {"top": local_top, "left": local_left, "width": local_width, "height": local_height}
@@ -188,26 +178,26 @@ class Detect_img():
                         
                         # identify texts and append to output
                         inner_text = pt.image_to_string(local_frame)
-                        mystr += inner_text
 
-                        # center coordinates for simulation
-                        center_x = int(left + (xmin + xmax)/2)
-                        center_y = int(top + (ymin + ymax)/2)
-                        info = { 
-                            "x": center_x, 
-                            "y": center_y,
-                            "xmin": local_left,
-                            "ymin": local_top,
-                            "xmax": int(xmax + left),
-                            "ymax": int(ymax + top),
-                            "text": inner_text.lower(),
-                        }
+                    # center coordinates for simulation
+                    center_x = int(left + (xmin + xmax)/2)
+                    center_y = int(top + (ymin + ymax)/2)
+                    info = {
+                        "class_name": class_name,
+                        "bias": bias,
+                        "center_x": center_x, 
+                        "center_y": center_y,
+                        "root_x": xmin,
+                        "root_y": ymin,
+                        "width": local_width,
+                        "height": local_height,
+                        "text": inner_text.lower(),
+                    }
 
-                        if (self.__check_overlap(info) == False):
-                            self.objects[class_name].append(info)
-
-                percent = round(scores[0][idx] * 100, 2)
-                print(mystr.format(box, class_name, percent));
+                    if (self.__check_overlap(info) == False):
+                        self.objects.append(info)
+        with open(TEMP_PATH + "/temp.json", "w", encoding="utf-8") as output_file:
+            json.dump(self.objects, output_file, ensure_ascii=True, indent=4)
 
 if __name__ == "__main__":
     detector = Detect_img()
