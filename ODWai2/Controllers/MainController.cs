@@ -1,11 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Data;
 using ODWai2.Presentation;
 using ODWai2.ODWaiCore;
 using ODWai2.Misc.Classes;
 using ODWai2.Misc.Views;
 using ODWai2.ODWaiCore.Controllers;
+using ODWai2.ODWaiCore.Models;
 
 namespace ODWai2.Controllers
 {
@@ -70,6 +74,45 @@ namespace ODWai2.Controllers
             return _frame_selector;
         }
 
+        public MemoryStream get_result_image_data()
+        {
+            MemoryStream stream = new MemoryStream();
+            Image.FromFile(Path.GetFullPath("../../temp result/temp.png")).Save(stream, ImageFormat.Png);
+            stream.Position = 0;
+
+            return stream;
+        }
+
+        public DataTable get_detection_result()
+        {
+            DataTable result_table = new DataTable();
+            string[] fields = new[] { "id", "class_name", "bias", "root_x",
+                                    "root_y", "width", "height", "inner_text"};
+
+            foreach (string field in fields)
+            {
+                DataColumn column = new DataColumn(field);
+                result_table.Columns.Add(column);
+            }
+
+            int count = 0;
+            foreach (DetectionResult result in DetectionResult.from_json(@"../../temp result/temp.json"))
+            {
+                DataRow result_row = result_table.NewRow();
+                result_row["id"] = ++count;
+                result_row["class_name"] = result.class_name;
+                result_row["bias"] = result.bias;
+                result_row["width"] = result.width;
+                result_row["height"] = result.height;
+                result_row["root_x"] = result.root_x;
+                result_row["root_y"] = result.root_y;
+                result_row["inner_text"] = result.text;
+
+                result_table.Rows.Add(result_row);
+            }
+            return result_table;
+        }
+
         public void configs_setup()
         {
             Configuration.initialize();
@@ -90,6 +133,11 @@ namespace ODWai2.Controllers
         {
             if (_graph_path == null) { return null; }
             return Path.GetFileName(_graph_path);
+        }
+
+        public void update_bounding_box(Image image, int root_x, int root_y, int width, int height)
+        {
+            Helper.draw_bounding_box(image, root_x, root_y, width, height);
         }
     }
 }

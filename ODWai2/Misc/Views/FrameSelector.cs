@@ -34,8 +34,7 @@ namespace ODWai2.Misc.Views
             }
             else
             {
-                if (_on_exit != null) { _on_exit(_frame.X, _frame.Y, _frame.Width, _frame.Height); }
-                Close();
+                _on_exit?.Invoke(_frame.X, _frame.Y, _frame.Width, _frame.Height); Close();
             }
         }
 

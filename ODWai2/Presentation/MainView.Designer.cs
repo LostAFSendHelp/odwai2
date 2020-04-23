@@ -31,7 +31,7 @@
             this.tab_control = new System.Windows.Forms.TabControl();
             this.testing_tab = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv_detection_result = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pb_image_result = new System.Windows.Forms.PictureBox();
@@ -39,6 +39,7 @@
             this.btn_region_capture = new System.Windows.Forms.Button();
             this.tb_root_x = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.btn_data_set_config = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.tb_graph_name = new System.Windows.Forms.TextBox();
             this.tb_height = new System.Windows.Forms.TextBox();
@@ -69,13 +70,12 @@
             this.btn_simulate = new System.Windows.Forms.Button();
             this.btn_quit = new System.Windows.Forms.Button();
             this.skip_result_checkbox = new System.Windows.Forms.CheckBox();
-            this.btn_data_set_config = new System.Windows.Forms.Button();
             this.btn_python_path = new System.Windows.Forms.Button();
             this.btn_error_log = new System.Windows.Forms.Button();
             this.tab_control.SuspendLayout();
             this.testing_tab.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_detection_result)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_image_result)).BeginInit();
@@ -111,7 +111,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.dataGridView1);
+            this.groupBox4.Controls.Add(this.dgv_detection_result);
             this.groupBox4.Location = new System.Drawing.Point(579, 6);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(215, 289);
@@ -119,13 +119,14 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Detection result";
             // 
-            // dataGridView1
+            // dgv_detection_result
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(203, 264);
-            this.dataGridView1.TabIndex = 0;
+            this.dgv_detection_result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_detection_result.Location = new System.Drawing.Point(6, 19);
+            this.dgv_detection_result.Name = "dgv_detection_result";
+            this.dgv_detection_result.Size = new System.Drawing.Size(203, 264);
+            this.dgv_detection_result.TabIndex = 0;
+            this.dgv_detection_result.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_detection_result_CellClick);
             // 
             // groupBox3
             // 
@@ -202,6 +203,16 @@
             this.label7.Size = new System.Drawing.Size(36, 13);
             this.label7.TabIndex = 0;
             this.label7.Text = "Graph";
+            // 
+            // btn_data_set_config
+            // 
+            this.btn_data_set_config.Location = new System.Drawing.Point(6, 231);
+            this.btn_data_set_config.Name = "btn_data_set_config";
+            this.btn_data_set_config.Size = new System.Drawing.Size(200, 23);
+            this.btn_data_set_config.TabIndex = 1;
+            this.btn_data_set_config.Text = "Configure Data sets";
+            this.btn_data_set_config.UseVisualStyleBackColor = true;
+            this.btn_data_set_config.Click += new System.EventHandler(this.btn_data_set_config_Click);
             // 
             // label6
             // 
@@ -496,16 +507,6 @@
             this.skip_result_checkbox.Text = "Simulate without detection result preview";
             this.skip_result_checkbox.UseVisualStyleBackColor = true;
             // 
-            // btn_data_set_config
-            // 
-            this.btn_data_set_config.Location = new System.Drawing.Point(6, 231);
-            this.btn_data_set_config.Name = "btn_data_set_config";
-            this.btn_data_set_config.Size = new System.Drawing.Size(200, 23);
-            this.btn_data_set_config.TabIndex = 1;
-            this.btn_data_set_config.Text = "Configure Data sets";
-            this.btn_data_set_config.UseVisualStyleBackColor = true;
-            this.btn_data_set_config.Click += new System.EventHandler(this.btn_data_set_config_Click);
-            // 
             // btn_python_path
             // 
             this.btn_python_path.Location = new System.Drawing.Point(557, 367);
@@ -544,7 +545,7 @@
             this.tab_control.ResumeLayout(false);
             this.testing_tab.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_detection_result)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -592,7 +593,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_root_y;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv_detection_result;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label1;

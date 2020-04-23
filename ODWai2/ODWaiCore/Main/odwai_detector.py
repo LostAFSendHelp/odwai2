@@ -158,7 +158,7 @@ class Detect_img():
                 xmax = box[3] * width
                 class_name = "Unknown"
                 bias = "NA"
-                inner_text = "NA"
+                inner_text = "no text"
                 
                 if scores[0][idx] < INNTER_THRESHOLD:
                     bias = category_index[classes[0][idx]]["name"]
@@ -187,8 +187,8 @@ class Detect_img():
                         "bias": bias,
                         "center_x": center_x, 
                         "center_y": center_y,
-                        "root_x": xmin,
-                        "root_y": ymin,
+                        "root_x": int(xmin),
+                        "root_y": int(ymin),
                         "width": local_width,
                         "height": local_height,
                         "text": inner_text.lower(),

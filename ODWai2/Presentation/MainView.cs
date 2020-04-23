@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
-using System.Drawing;
 using System.IO;
+using System.Drawing;
 using ODWai2.Controllers;
 
 namespace ODWai2.Presentation
@@ -12,6 +12,7 @@ namespace ODWai2.Presentation
     public partial class MainView : Form
     {
         private MainController _main_controller;
+        private MemoryStream _image_stream;
 
         public MainView()
         {
@@ -73,15 +74,13 @@ namespace ODWai2.Presentation
         {
             try
             {
-                MemoryStream stream = new MemoryStream();
-                Image.FromFile(Path.GetFullPath("../../temp result/temp.png")).Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                stream.Position = 0;
-                Image temp = Image.FromStream(stream);
-                pb_image_result.Image = temp.Clone() as Image;
+                _image_stream = _main_controller.get_result_image_data();
+                pb_image_result.Image = Image.FromStream(_image_stream);
+                bind(dgv_detection_result, _main_controller.get_detection_result());
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -133,6 +132,25 @@ namespace ODWai2.Presentation
         private void btn_error_log_Click(object sender, EventArgs e)
         {
             ODWaiCore.Controllers.Helper.open_explorer_at_path(ODWaiCore.Controllers.Helper.LOG_PATH);
+        }
+
+        private void dgv_detection_result_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                pb_image_result.Image = Image.FromStream(_image_stream);
+                var cells = dgv_detection_result.CurrentRow.Cells;
+                int root_x = int.Parse(cells["root_x"].Value.ToString());
+                int root_y = int.Parse(cells["root_y"].Value.ToString());
+                int width = int.Parse(cells["width"].Value.ToString());
+                int height = int.Parse(cells["height"].Value.ToString());
+                _main_controller.update_bounding_box(pb_image_result.Image, root_x, root_y, width, height);
+                pb_image_result.Invalidate();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
