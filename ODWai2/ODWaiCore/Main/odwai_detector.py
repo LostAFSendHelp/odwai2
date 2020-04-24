@@ -26,7 +26,6 @@ import json
 
 # Import utilites
 from utils import label_map_util
-from utils import visualization_utils as vis_util
 
 from PIL import Image
 from pathlib import Path
@@ -83,7 +82,7 @@ class Detect_img():
         
         return overlapped
 
-    def capture_n_detect( self, top, left, width, height, skip_check ):
+    def capture_n_detect( self, top, left, width, height, summary ):
         os.system('cls')
         
         # reset object collection
@@ -137,17 +136,6 @@ class Detect_img():
         (boxes, scores, classes, num) = sess.run(
             [detection_boxes, detection_scores, detection_classes, num_detections],
             feed_dict={image_tensor: frame_expanded})
-
-        # Draw the results of the detection (aka 'visulaize the results')
-        vis_util.visualize_boxes_and_labels_on_image_array(
-            frame,
-            np.squeeze(boxes),
-            np.squeeze(classes).astype(np.int32),
-            np.squeeze(scores),
-            category_index,
-            use_normalized_coordinates=True,
-            line_thickness=8,
-            min_score_thresh=0.80)
 
         for idx, box in enumerate(boxes[0]):
 

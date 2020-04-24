@@ -28,10 +28,12 @@ namespace ODWai2.ODWaiCore.Controllers
 
         public static void draw_bounding_box(Image image, int root_x, int root_y, int width, int height)
         {
-            Pen pen = new Pen(Color.Blue, 3);
+            Pen pen = new Pen(Color.Blue);
+            SolidBrush brush = new SolidBrush(Color.FromArgb(56, Color.Aquamarine));
             Rectangle bounding_box = new Rectangle { X = root_x, Y = root_y, Width = width, Height = height };
             Graphics graphics = Graphics.FromImage(image);
             graphics.DrawRectangle(pen, bounding_box);
+            graphics.FillRectangle(brush, bounding_box);
         }
     }
 }
