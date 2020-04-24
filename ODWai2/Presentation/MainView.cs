@@ -42,11 +42,12 @@ namespace ODWai2.Presentation
 
         private void test_btn_Click(object sender, EventArgs e)
         {
-            Action on_start = () => { WindowState = FormWindowState.Minimized; };
+            Action on_start = () => { toggle_window_state(false); };
             Action on_complete = () => {
-                WindowState = FormWindowState.Normal;
+                toggle_window_state(true);
                 update_detection_result();
             };
+
             int result = _main_controller.start_detection(tb_root_x.Text,
                                                         tb_root_y.Text,
                                                         tb_width.Text,
@@ -126,6 +127,7 @@ namespace ODWai2.Presentation
 
         private void btn_region_capture_Click(object sender, EventArgs e)
         {
+            Hide();
             _main_controller.select_frame().ShowDialog();
         }
 
@@ -151,6 +153,11 @@ namespace ODWai2.Presentation
             {
                 MessageBox.Show(exc.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void toggle_window_state(bool shown)
+        {
+            WindowState = shown ? FormWindowState.Normal : FormWindowState.Minimized;
         }
     }
 }

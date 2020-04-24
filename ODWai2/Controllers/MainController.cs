@@ -25,7 +25,10 @@ namespace ODWai2.Controllers
         {
             _main_view = main_view;
             _script_executor = new ScriptExecutor();
-            _frame_selector = new FrameSelector((x, y, width, height) => { main_view.reload_frame_info(x, y, width, height); });
+            _frame_selector = new FrameSelector((x, y, width, height) => {
+                    main_view.reload_frame_info(x, y, width, height);
+                    main_view.Show();
+            });
             _main_view.set_graph_name(null);
             _data_set_view = new DataSetView((graph_path) => { set_graph_path(graph_path); });
         }
