@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using ODWai2.ODWaiCore.Models;
 
 namespace ODWai2.DAOs
 {
@@ -69,6 +72,24 @@ namespace ODWai2.DAOs
             {
                 string full_path = Path.GetFullPath(path);
                 File.Delete(path);
+                return null;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        public string add_input_set(string name, List<Field> input_set)
+        {
+            try
+            {
+                string full_name = _input_set_path + name + ".json";
+                if (Directory.Exists(full_name)) { return "Input set name already taken"; }
+
+                StreamWriter writer = new StreamWriter(full_name);
+                writer.Write(JsonConvert.SerializeObject(input_set, Formatting.Indented));
+                writer.Close();
                 return null;
             }
             catch (Exception e)

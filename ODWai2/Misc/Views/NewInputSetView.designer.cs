@@ -45,17 +45,14 @@
             this.txt_fileName = new System.Windows.Forms.TextBox();
             this.pnl_down = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_Path = new System.Windows.Forms.TextBox();
             this.btn_save = new System.Windows.Forms.Button();
-            this.btn_browse = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_delete_field = new System.Windows.Forms.Button();
             this.btn_new_field = new System.Windows.Forms.Button();
             this.txt_numberField = new System.Windows.Forms.TextBox();
             this.pnl_right = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_close = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pnl_0.SuspendLayout();
             this.pnl_down.SuspendLayout();
             this.pnl_right.SuspendLayout();
@@ -211,7 +208,7 @@
             this.txt_fileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_fileName.Location = new System.Drawing.Point(153, 12);
             this.txt_fileName.Name = "txt_fileName";
-            this.txt_fileName.Size = new System.Drawing.Size(203, 26);
+            this.txt_fileName.Size = new System.Drawing.Size(417, 26);
             this.txt_fileName.TabIndex = 108;
             // 
             // pnl_down
@@ -219,10 +216,7 @@
             this.pnl_down.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnl_down.Controls.Add(this.txt_fileName);
             this.pnl_down.Controls.Add(this.label3);
-            this.pnl_down.Controls.Add(this.label1);
-            this.pnl_down.Controls.Add(this.txt_Path);
             this.pnl_down.Controls.Add(this.btn_save);
-            this.pnl_down.Controls.Add(this.btn_browse);
             this.pnl_down.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnl_down.Location = new System.Drawing.Point(0, 495);
             this.pnl_down.Name = "pnl_down";
@@ -239,43 +233,15 @@
             this.label3.TabIndex = 107;
             this.label3.Text = "File Name :";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(97, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 20);
-            this.label1.TabIndex = 106;
-            this.label1.Text = "Path :";
-            // 
-            // txt_Path
-            // 
-            this.txt_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Path.Location = new System.Drawing.Point(153, 53);
-            this.txt_Path.Name = "txt_Path";
-            this.txt_Path.Size = new System.Drawing.Size(370, 26);
-            this.txt_Path.TabIndex = 105;
-            // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(670, 47);
+            this.btn_save.Location = new System.Drawing.Point(576, 12);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(91, 34);
+            this.btn_save.Size = new System.Drawing.Size(91, 26);
             this.btn_save.TabIndex = 104;
             this.btn_save.Text = "SAVE";
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
-            // 
-            // btn_browse
-            // 
-            this.btn_browse.Location = new System.Drawing.Point(550, 47);
-            this.btn_browse.Name = "btn_browse";
-            this.btn_browse.Size = new System.Drawing.Size(91, 34);
-            this.btn_browse.TabIndex = 103;
-            this.btn_browse.Text = "BROWSE";
-            this.btn_browse.UseVisualStyleBackColor = true;
-            this.btn_browse.Click += new System.EventHandler(this.btn_browse_Click);
             // 
             // label2
             // 
@@ -334,6 +300,17 @@
             this.pnl_right.Size = new System.Drawing.Size(99, 495);
             this.pnl_right.TabIndex = 5;
             // 
+            // btn_close
+            // 
+            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_close.Location = new System.Drawing.Point(14, 398);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(71, 29);
+            this.btn_close.TabIndex = 4;
+            this.btn_close.Text = "Close";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
@@ -348,17 +325,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(800, 495);
             this.flowLayoutPanel1.TabIndex = 7;
             this.flowLayoutPanel1.WrapContents = false;
-            // 
-            // btn_close
-            // 
-            this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_close.Location = new System.Drawing.Point(14, 398);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(71, 29);
-            this.btn_close.TabIndex = 4;
-            this.btn_close.Text = "Close";
-            this.btn_close.UseVisualStyleBackColor = true;
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // NewInputSetView
             // 
@@ -400,10 +366,7 @@
         public System.Windows.Forms.TextBox txt_fileName;
         public System.Windows.Forms.Panel pnl_down;
         private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.TextBox txt_Path;
         public System.Windows.Forms.Button btn_save;
-        public System.Windows.Forms.Button btn_browse;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Button btn_delete_field;
         public System.Windows.Forms.Button btn_new_field;

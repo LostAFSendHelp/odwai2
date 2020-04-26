@@ -58,20 +58,22 @@ namespace ODWai2.Misc.Views
 
         private void btn_delete_field_Click(object sender, EventArgs e)
         {
-            InputSetController.Delete();
+            InputSetController.Delete(input_groups);
         }
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            InputSetController.Save();
-        }
+            string file_name = txt_fileName.Text.Trim();
+            if (file_name.Length == 0) { return; }
 
-        private void btn_browse_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog browser = new FolderBrowserDialog();
-            if (browser.ShowDialog() == DialogResult.OK)
+            string result = InputSetController.Save(file_name, input_groups);
+            if (result == null)
             {
-                txt_Path.Text = browser.SelectedPath;
+                MessageBox.Show("Input set saved successfully", "Success");
+            }
+            else
+            {
+                MessageBox.Show("Error saving input set: " + result, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
