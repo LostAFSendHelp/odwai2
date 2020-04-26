@@ -56,7 +56,9 @@
     <Compile Include="DAOs\DataSetRepository.cs" />
     <Compile Include="DAOs\InputSetRepository.cs" />
     <Compile Include="Interfaces\DataLoadingView.cs" />
+    <Compile Include="Misc\Classes\ClassCreatePanel.cs" />
     <Compile Include="Misc\Classes\Configuration.cs" />
+    <Compile Include="Misc\Classes\InputGroup.cs" />
     <Compile Include="Misc\Classes\SubView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +85,12 @@
     </Compile>
     <Compile Include="Misc\Views\NewDataSetView.Designer.cs">
       <DependentUpon>NewDataSetView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Views\NewInputSetView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Views\NewInputSetView.designer.cs">
+      <DependentUpon>NewInputSetView.cs</DependentUpon>
     </Compile>
     <Compile Include="ODWaiCore\CommandBuilder.cs" />
     <Compile Include="ODWaiCore\Controllers\Helper.cs" />
@@ -118,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Misc\Views\NewDataSetView.resx">
       <DependentUpon>NewDataSetView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\Views\NewInputSetView.resx">
+      <DependentUpon>NewInputSetView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\DataSetView.resx">
       <DependentUpon>DataSetView.cs</DependentUpon>
@@ -164,6 +175,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Image assets\rsz_images.png" />
     <Content Include="Misc\ExitCodes.txt" />
     <Content Include="ODWaiCore\Main\odwai_detector.py" />
     <Content Include="ODWaiCore\Main\placeholder.txt" />

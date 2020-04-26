@@ -10,6 +10,7 @@ using ODWai2.Misc.Classes;
 using ODWai2.Misc.Views;
 using ODWai2.ODWaiCore.Controllers;
 using ODWai2.ODWaiCore.Models;
+using Newtonsoft.Json.Linq;
 
 namespace ODWai2.Controllers
 {
@@ -17,20 +18,30 @@ namespace ODWai2.Controllers
     {
         private MainView _main_view;
         private DataSetView _data_set_view;
+        private NewInputSetView _new_input_set_view;
         private ScriptExecutor _script_executor;
         private FrameSelector _frame_selector;
         private string _graph_path;
+
+        private Func<DataTable> _get_input_sets = () => { return new DataTable(); };
+        private Func<string, string> _delete_input_set = (z) => { return z; };
+        private Func<string, (JArray, string)> _get_input_set = (z) => { return (null, null); };
 
         public MainController(MainView main_view)
         {
             _main_view = main_view;
             _script_executor = new ScriptExecutor();
+            _main_view.set_graph_name(null);
+            _data_set_view = new DataSetView((graph_path) => { set_graph_path(graph_path); });
+
             _frame_selector = new FrameSelector((x, y, width, height) => {
                     main_view.reload_frame_info(x, y, width, height);
                     main_view.Show();
             });
-            _main_view.set_graph_name(null);
-            _data_set_view = new DataSetView((graph_path) => { set_graph_path(graph_path); });
+
+            _new_input_set_view = new NewInputSetView(ref _get_input_sets,
+                                                      ref _delete_input_set,
+                                                      ref _get_input_set);
         }
 
         public DataSetView present_data_set_config_view()
@@ -141,6 +152,26 @@ namespace ODWai2.Controllers
         public void update_bounding_box(Image image, int root_x, int root_y, int width, int height)
         {
             Helper.draw_bounding_box(image, root_x, root_y, width, height);
+        }
+
+        public NewInputSetView present_new_input_set_view()
+        {
+            return _new_input_set_view;
+        }
+
+        public (JArray, string) get_input_set(string path)
+        {
+            return _get_input_set(path);
+        }
+
+        public string delete_input_set(string path)
+        {
+            return _delete_input_set(path);
+        }
+
+        public DataTable get_input_sets()
+        {
+            return _get_input_sets();
         }
     }
 }

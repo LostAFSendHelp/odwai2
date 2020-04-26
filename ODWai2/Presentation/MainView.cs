@@ -18,6 +18,7 @@ namespace ODWai2.Presentation
         {
             InitializeComponent();
             _main_controller = new MainController(this);
+            load_inputset_combobox();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -131,6 +132,13 @@ namespace ODWai2.Presentation
             _main_controller.select_frame().ShowDialog();
         }
 
+        private void load_inputset_combobox()
+        {
+            cbox_input_set.DataSource = _main_controller.get_input_sets();
+            cbox_input_set.DisplayMember = "File name";
+            cbox_input_set.ValueMember = "File path";
+        }
+
         private void btn_error_log_Click(object sender, EventArgs e)
         {
             ODWaiCore.Controllers.Helper.open_explorer_at_path(ODWaiCore.Controllers.Helper.LOG_PATH);
@@ -158,6 +166,42 @@ namespace ODWai2.Presentation
         public void toggle_window_state(bool shown)
         {
             WindowState = shown ? FormWindowState.Normal : FormWindowState.Minimized;
+        }
+
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            load_inputset_combobox();
+        }
+
+        private void cbox_input_set_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var pair = cbox_input_set.SelectedValue as KeyValuePair<string, string>?;
+            string path = cbox_input_set.SelectedValue.ToString();
+            if (path == null) { return; }
+
+            input_set_dgv.DataSource = _main_controller.get_input_set(path).Item1;
+        }
+
+        private void new_input_set_btn_Click(object sender, EventArgs e)
+        {
+            _main_controller.present_new_input_set_view().ShowDialog();
+        }
+
+        private void delete_input_set_btn_Click(object sender, EventArgs e)
+        {
+            var path = cbox_input_set.SelectedValue.ToString();
+            if (path == null) { return; }
+            string result = _main_controller.delete_input_set(path);
+
+            if (result == null)
+            {
+                MessageBox.Show("Input set successfully deleted", "Success");
+                load_inputset_combobox();
+            }
+            else
+            {
+                MessageBox.Show("Error deleting input set: " + result, "Failure");
+            }
         }
     }
 }

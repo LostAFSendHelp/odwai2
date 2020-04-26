@@ -331,6 +331,7 @@ __pycache__/
 **/Datasets/**
 **/Error log/**
 **/temp result/**
+**/inputset/**
 
 # OpenCover UI analysis results
 OpenCover/

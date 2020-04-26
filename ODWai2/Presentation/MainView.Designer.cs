@@ -60,18 +60,18 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_input_set_dir = new System.Windows.Forms.Button();
-            this.edit_input_set_btn = new System.Windows.Forms.Button();
             this.delete_input_set_btn = new System.Windows.Forms.Button();
             this.new_input_set_btn = new System.Windows.Forms.Button();
             this.input_set_dgv = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.input_set_cbox = new System.Windows.Forms.ComboBox();
+            this.cbox_input_set = new System.Windows.Forms.ComboBox();
             this.btn_detect = new System.Windows.Forms.Button();
             this.btn_simulate = new System.Windows.Forms.Button();
             this.btn_quit = new System.Windows.Forms.Button();
             this.skip_result_checkbox = new System.Windows.Forms.CheckBox();
             this.btn_python_path = new System.Windows.Forms.Button();
             this.btn_error_log = new System.Windows.Forms.Button();
+            this.btn_refresh = new System.Windows.Forms.Button();
             this.tab_control.SuspendLayout();
             this.testing_tab.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -389,13 +389,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn_refresh);
             this.groupBox2.Controls.Add(this.btn_input_set_dir);
-            this.groupBox2.Controls.Add(this.edit_input_set_btn);
             this.groupBox2.Controls.Add(this.delete_input_set_btn);
             this.groupBox2.Controls.Add(this.new_input_set_btn);
             this.groupBox2.Controls.Add(this.input_set_dgv);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.input_set_cbox);
+            this.groupBox2.Controls.Add(this.cbox_input_set);
             this.groupBox2.Location = new System.Drawing.Point(6, 9);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(425, 286);
@@ -412,15 +412,6 @@
             this.btn_input_set_dir.Text = "Open in Explorer";
             this.btn_input_set_dir.UseVisualStyleBackColor = true;
             // 
-            // edit_input_set_btn
-            // 
-            this.edit_input_set_btn.Location = new System.Drawing.Point(121, 257);
-            this.edit_input_set_btn.Name = "edit_input_set_btn";
-            this.edit_input_set_btn.Size = new System.Drawing.Size(50, 23);
-            this.edit_input_set_btn.TabIndex = 3;
-            this.edit_input_set_btn.Text = "Edit";
-            this.edit_input_set_btn.UseVisualStyleBackColor = true;
-            // 
             // delete_input_set_btn
             // 
             this.delete_input_set_btn.Location = new System.Drawing.Point(65, 257);
@@ -429,6 +420,7 @@
             this.delete_input_set_btn.TabIndex = 3;
             this.delete_input_set_btn.Text = "Delete";
             this.delete_input_set_btn.UseVisualStyleBackColor = true;
+            this.delete_input_set_btn.Click += new System.EventHandler(this.delete_input_set_btn_Click);
             // 
             // new_input_set_btn
             // 
@@ -438,6 +430,7 @@
             this.new_input_set_btn.TabIndex = 3;
             this.new_input_set_btn.Text = "New";
             this.new_input_set_btn.UseVisualStyleBackColor = true;
+            this.new_input_set_btn.Click += new System.EventHandler(this.new_input_set_btn_Click);
             // 
             // input_set_dgv
             // 
@@ -459,13 +452,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Input set";
             // 
-            // input_set_cbox
+            // cbox_input_set
             // 
-            this.input_set_cbox.FormattingEnabled = true;
-            this.input_set_cbox.Location = new System.Drawing.Point(60, 16);
-            this.input_set_cbox.Name = "input_set_cbox";
-            this.input_set_cbox.Size = new System.Drawing.Size(255, 21);
-            this.input_set_cbox.TabIndex = 0;
+            this.cbox_input_set.FormattingEnabled = true;
+            this.cbox_input_set.Location = new System.Drawing.Point(60, 16);
+            this.cbox_input_set.Name = "cbox_input_set";
+            this.cbox_input_set.Size = new System.Drawing.Size(220, 21);
+            this.cbox_input_set.TabIndex = 0;
+            this.cbox_input_set.SelectedValueChanged += new System.EventHandler(this.cbox_input_set_SelectedValueChanged);
             // 
             // btn_detect
             // 
@@ -527,6 +521,17 @@
             this.btn_error_log.UseVisualStyleBackColor = true;
             this.btn_error_log.Click += new System.EventHandler(this.btn_error_log_Click);
             // 
+            // btn_refresh
+            // 
+            this.btn_refresh.BackColor = System.Drawing.Color.White;
+            this.btn_refresh.Image = global::ODWai2.Properties.Resources.rsz_images;
+            this.btn_refresh.Location = new System.Drawing.Point(287, 15);
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(30, 23);
+            this.btn_refresh.TabIndex = 5;
+            this.btn_refresh.UseVisualStyleBackColor = false;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -574,8 +579,7 @@
         private System.Windows.Forms.CheckBox skip_result_checkbox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox input_set_cbox;
-        private System.Windows.Forms.Button edit_input_set_btn;
+        private System.Windows.Forms.ComboBox cbox_input_set;
         private System.Windows.Forms.Button delete_input_set_btn;
         private System.Windows.Forms.Button new_input_set_btn;
         private System.Windows.Forms.DataGridView input_set_dgv;
@@ -609,6 +613,7 @@
         private System.Windows.Forms.TextBox tb_graph_name;
         private System.Windows.Forms.PictureBox pb_image_result;
         private System.Windows.Forms.Button btn_error_log;
+        private System.Windows.Forms.Button btn_refresh;
     }
 }
 
