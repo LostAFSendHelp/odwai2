@@ -95,6 +95,7 @@
     <Compile Include="ODWaiCore\CommandBuilder.cs" />
     <Compile Include="ODWaiCore\Controllers\Helper.cs" />
     <Compile Include="ODWaiCore\Controllers\ODWaiDetector.cs" />
+    <Compile Include="ODWaiCore\Controllers\ODWaiSimulator.cs" />
     <Compile Include="ODWaiCore\Controllers\ODWaiTrainer.cs" />
     <Compile Include="ODWaiCore\Models\DetectionResult.cs" />
     <Compile Include="ODWaiCore\Models\InputSet.cs" />
@@ -179,6 +180,7 @@
     <Content Include="Image assets\rsz_images.png" />
     <Content Include="Misc\ExitCodes.txt" />
     <Content Include="ODWaiCore\Main\odwai_detector.py" />
+    <Content Include="ODWaiCore\Main\odwai_simulator.py" />
     <Content Include="ODWaiCore\Main\placeholder.txt" />
     <Content Include="ODWaiCore\Main\train.py" />
     <Content Include="ODWaiCore\Main\utils\autoaugment_utils.py" />

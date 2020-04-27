@@ -23,9 +23,9 @@ namespace ODWai2.Controllers
         private FrameSelector _frame_selector;
         private string _graph_path;
 
-        private Func<DataTable> _get_input_sets = () => { return new DataTable(); };
-        private Func<string, string> _delete_input_set = (z) => { return z; };
-        private Func<string, (JArray, string)> _get_input_set = (z) => { return (null, null); };
+        private Func<DataTable> _get_input_sets = null;
+        private Func<string, string> _delete_input_set = null;
+        private Func<string, (JArray, string)> _get_input_set = null;
 
         public MainController(MainView main_view)
         {
@@ -74,6 +74,13 @@ namespace ODWai2.Controllers
             if (_graph_path == null) { return 71; }
             (int code, string output) = ODWaiDetector.start_detection(_graph_path, root_x, root_y,
                                                 width, height, start, completion);
+            if (output != null) { Helper.log_error(output); }
+            return code;
+        }
+
+        public int start_simulation(Action start, Action completion)
+        {
+            (int code, string output) = ODWaiSimulator.start_simulation(start, completion);
             if (output != null) { Helper.log_error(output); }
             return code;
         }

@@ -38,8 +38,9 @@ namespace ODWai2.ODWaiCore
         public static (int, string) python_execute(CommandBuilder.ExecutionType exe_type,
                                         string script_name,
                                         bool show_console,
-                                        Action completion = null,
-                                        int max_wait_time = 10,
+                                        Action completion,
+                                        int max_wait_time,
+                                        bool redirect_error,
                                         params (string, string)[] arguments)
         {
             string python_path = Configuration.get_python_path();
@@ -49,21 +50,21 @@ namespace ODWai2.ODWaiCore
             ProcessStartInfo info = new ProcessStartInfo(python_path, command);
             info.CreateNoWindow = !show_console;
             info.WindowStyle = show_console ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden;
-            info.RedirectStandardError = true;
-            info.UseShellExecute = false;
+            info.RedirectStandardError = redirect_error;
+            info.UseShellExecute = !redirect_error;
 
             Process process = new Process();
             process.StartInfo = info;
+            process.StartInfo.Verb = "runas";
             process.Start();
 
-            string output = process.StandardError.ReadToEnd();
+            string output = redirect_error ? process.StandardError.ReadToEnd() : null;
 
             if (process.WaitForExit(max_wait_time * 1000))
             {
                 return (process.ExitCode, output);
             }
-
-            completion?.Invoke();
+            
             return (100, null);
         }
     }

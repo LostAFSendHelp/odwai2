@@ -59,17 +59,28 @@ namespace ODWai2.Presentation
             if (result == 78)
             {
                 MessageBox.Show("Please choose an inference graph in Data set configuration", "Error");
-                return;
             }
-
-            if (result != 0) MessageBox.Show("Error executing detection, exit code: "
-                                            + result + "\nSee the latest error log for more details" ,
-                                            "Failure");
+            else if (result != 0)
+            {
+                error_message("Error executing detection, exit code: " + result);
+            }
         }
 
         private void simulate_btn_Click(object sender, EventArgs e)
         {
-            _main_controller.another_dummy_func();
+            Action on_start = () => { toggle_window_state(false); };
+            Action on_complete = () => { toggle_window_state(true); };
+
+            int result = _main_controller.start_simulation(on_start, on_complete);
+
+            if (result != 0)
+            {
+                error_message("Error executing simulation, exit code: " + result);
+            }
+            else
+            {
+                MessageBox.Show("Simulation successfully executed", "Success");
+            }
         }
 
         private void update_detection_result()
@@ -82,7 +93,7 @@ namespace ODWai2.Presentation
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                error_message(e.Message);
             }
         }
 
@@ -159,7 +170,7 @@ namespace ODWai2.Presentation
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                error_message(exc.Message);
             }
         }
 
@@ -202,6 +213,11 @@ namespace ODWai2.Presentation
             {
                 MessageBox.Show("Error deleting input set: " + result, "Failure");
             }
+        }
+
+        private void error_message(string message)
+        {
+            MessageBox.Show(message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

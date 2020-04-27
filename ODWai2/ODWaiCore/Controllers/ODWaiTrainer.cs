@@ -7,7 +7,7 @@ namespace ODWai2.ODWaiCore.Controllers
         public static (int, string) generate_training_resources(string data_set_path, Action<string> update = null)
         {
             if (update != null) { update.Invoke("Generating CVs"); }
-            (int xml_to_csv, string output_csv) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.util, "xml_to_csv.py", false, null, 5, ("path", Helper.get_path_argument(data_set_path)));
+            (int xml_to_csv, string output_csv) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.util, "xml_to_csv.py", false, null, 5, true, ("path", Helper.get_path_argument(data_set_path)));
             switch (xml_to_csv)
             {
                 case 98:
@@ -24,7 +24,7 @@ namespace ODWai2.ODWaiCore.Controllers
             (int, string) generate_tf_records()
             {
                 if (update != null) { update.Invoke("Generating Tensorflow Records from CVs"); }
-                (int generate_records, string output_records) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.util, "generate_tf_records.py", false, null, 60, ("path", Helper.get_path_argument(data_set_path)));
+                (int generate_records, string output_records) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.util, "generate_tf_records.py", false, null, 60, true, ("path", Helper.get_path_argument(data_set_path)));
                 switch (generate_records)
                 {
                     case 0:

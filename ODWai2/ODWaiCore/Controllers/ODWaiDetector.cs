@@ -16,22 +16,21 @@ namespace ODWai2.ODWaiCore.Controllers
         {
             if (!File.Exists(graph_path)) { return (79, null); }
             start?.Invoke();
-            (int result, string output) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.main,
-                                         "odwai_detector.py", false, completion, 60,
+            (int code, string output) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.main,
+                                         "odwai_detector.py", false, completion, 60, true,
                                          ("graph_path", Helper.get_path_argument(graph_path)),
                                          ("root_x", root_x), ("root_y", root_y),
                                          ("width", width),
                                          ("height", height),
                                          ("labelmap", LABEL_MAP));
             completion?.Invoke();
-            switch (result)
+            switch (code)
             {
                 case 1:
                     return (71, output);
                 case 0:
-                    return (0, null);
                 case 100:
-                    return (100, null);
+                    return (code, null);
                 default:
                     return (1, output);
             }
