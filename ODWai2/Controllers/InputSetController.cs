@@ -30,16 +30,19 @@ namespace ODWai2.Controllers
                 if (group.crr_.Checked == true)
                 {
                     group.arr_.Dispose();
+                    input_groups.Remove(group);
                 }
             }
         }
 
         public string Save(string name, List<InputGroup> input_groups)
         {
-            List<Field> fields = new List<Field>();
+            List<FieldRule> fields = new List<FieldRule>();
             foreach (var group in input_groups)
             {
-                fields.Add(Field.new_field(group.field_.Text, group.associated_.Text, group.sample_.Text, group.error_.Text));
+                FieldRule rule = FieldRule.new_field(group.field_.Text, group.associated_.Text, group.length_.Text, group.must_have_.Text, group.must_not_have_.Text);
+                if (rule == null) return "Input set entries invalid";
+                fields.Add(rule);
             }
             return _input_set_repo.add_input_set(name, fields);
         }

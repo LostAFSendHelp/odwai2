@@ -33,15 +33,18 @@
             this.lb_2cham_2 = new System.Windows.Forms.Label();
             this.chbox_0 = new System.Windows.Forms.CheckBox();
             this.lb_2cham_1 = new System.Windows.Forms.Label();
-            this.txt_errorInput_0 = new System.Windows.Forms.TextBox();
-            this.txt_sampleInput_0 = new System.Windows.Forms.TextBox();
-            this.lb_error_0 = new System.Windows.Forms.Label();
+            this.txt_must_have_0 = new System.Windows.Forms.TextBox();
+            this.txt_length_0 = new System.Windows.Forms.TextBox();
+            this.lb_must_have_0 = new System.Windows.Forms.Label();
             this.txt_associated_0 = new System.Windows.Forms.TextBox();
             this.txt_field_0 = new System.Windows.Forms.TextBox();
             this.lb_field_0 = new System.Windows.Forms.Label();
             this.lb_sample_0 = new System.Windows.Forms.Label();
             this.lb_associal_0 = new System.Windows.Forms.Label();
             this.pnl_0 = new System.Windows.Forms.Panel();
+            this.lb_2cham_5 = new System.Windows.Forms.Label();
+            this.txt_must_not_have_0 = new System.Windows.Forms.TextBox();
+            this.lb_must_not_have_0 = new System.Windows.Forms.Label();
             this.txt_fileName = new System.Windows.Forms.TextBox();
             this.pnl_down = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -63,7 +66,7 @@
             // 
             this.lb_2cham_4.AutoSize = true;
             this.lb_2cham_4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_2cham_4.Location = new System.Drawing.Point(121, 125);
+            this.lb_2cham_4.Location = new System.Drawing.Point(154, 125);
             this.lb_2cham_4.Name = "lb_2cham_4";
             this.lb_2cham_4.Size = new System.Drawing.Size(14, 19);
             this.lb_2cham_4.TabIndex = 94;
@@ -73,7 +76,7 @@
             // 
             this.lb_2cham_3.AutoSize = true;
             this.lb_2cham_3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_2cham_3.Location = new System.Drawing.Point(130, 86);
+            this.lb_2cham_3.Location = new System.Drawing.Point(154, 82);
             this.lb_2cham_3.Name = "lb_2cham_3";
             this.lb_2cham_3.Size = new System.Drawing.Size(14, 19);
             this.lb_2cham_3.TabIndex = 93;
@@ -108,31 +111,31 @@
             this.lb_2cham_1.TabIndex = 1;
             this.lb_2cham_1.Text = ":";
             // 
-            // txt_errorInput_0
+            // txt_must_have_0
             // 
-            this.txt_errorInput_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_errorInput_0.Location = new System.Drawing.Point(177, 121);
-            this.txt_errorInput_0.Name = "txt_errorInput_0";
-            this.txt_errorInput_0.Size = new System.Drawing.Size(497, 26);
-            this.txt_errorInput_0.TabIndex = 91;
+            this.txt_must_have_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_must_have_0.Location = new System.Drawing.Point(177, 121);
+            this.txt_must_have_0.Name = "txt_must_have_0";
+            this.txt_must_have_0.Size = new System.Drawing.Size(167, 26);
+            this.txt_must_have_0.TabIndex = 91;
             // 
-            // txt_sampleInput_0
+            // txt_length_0
             // 
-            this.txt_sampleInput_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_sampleInput_0.Location = new System.Drawing.Point(177, 82);
-            this.txt_sampleInput_0.Name = "txt_sampleInput_0";
-            this.txt_sampleInput_0.Size = new System.Drawing.Size(497, 26);
-            this.txt_sampleInput_0.TabIndex = 90;
+            this.txt_length_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_length_0.Location = new System.Drawing.Point(177, 82);
+            this.txt_length_0.Name = "txt_length_0";
+            this.txt_length_0.Size = new System.Drawing.Size(497, 26);
+            this.txt_length_0.TabIndex = 90;
             // 
-            // lb_error_0
+            // lb_must_have_0
             // 
-            this.lb_error_0.AutoSize = true;
-            this.lb_error_0.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_error_0.Location = new System.Drawing.Point(40, 125);
-            this.lb_error_0.Name = "lb_error_0";
-            this.lb_error_0.Size = new System.Drawing.Size(82, 19);
-            this.lb_error_0.TabIndex = 89;
-            this.lb_error_0.Text = "Error input";
+            this.lb_must_have_0.AutoSize = true;
+            this.lb_must_have_0.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_must_have_0.Location = new System.Drawing.Point(40, 125);
+            this.lb_must_have_0.Name = "lb_must_have_0";
+            this.lb_must_have_0.Size = new System.Drawing.Size(81, 19);
+            this.lb_must_have_0.TabIndex = 89;
+            this.lb_must_have_0.Text = "Must have";
             // 
             // txt_associated_0
             // 
@@ -167,9 +170,9 @@
             this.lb_sample_0.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_sample_0.Location = new System.Drawing.Point(40, 86);
             this.lb_sample_0.Name = "lb_sample_0";
-            this.lb_sample_0.Size = new System.Drawing.Size(95, 19);
+            this.lb_sample_0.Size = new System.Drawing.Size(56, 19);
             this.lb_sample_0.TabIndex = 80;
-            this.lb_sample_0.Text = "Sample input";
+            this.lb_sample_0.Text = "Length";
             // 
             // lb_associal_0
             // 
@@ -185,14 +188,17 @@
             // 
             this.pnl_0.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnl_0.BackColor = System.Drawing.Color.Azure;
+            this.pnl_0.Controls.Add(this.lb_2cham_5);
             this.pnl_0.Controls.Add(this.lb_2cham_4);
             this.pnl_0.Controls.Add(this.lb_2cham_3);
             this.pnl_0.Controls.Add(this.lb_2cham_2);
             this.pnl_0.Controls.Add(this.chbox_0);
             this.pnl_0.Controls.Add(this.lb_2cham_1);
-            this.pnl_0.Controls.Add(this.txt_errorInput_0);
-            this.pnl_0.Controls.Add(this.txt_sampleInput_0);
-            this.pnl_0.Controls.Add(this.lb_error_0);
+            this.pnl_0.Controls.Add(this.txt_must_not_have_0);
+            this.pnl_0.Controls.Add(this.txt_must_have_0);
+            this.pnl_0.Controls.Add(this.lb_must_not_have_0);
+            this.pnl_0.Controls.Add(this.txt_length_0);
+            this.pnl_0.Controls.Add(this.lb_must_have_0);
             this.pnl_0.Controls.Add(this.txt_associated_0);
             this.pnl_0.Controls.Add(this.txt_field_0);
             this.pnl_0.Controls.Add(this.lb_field_0);
@@ -202,6 +208,34 @@
             this.pnl_0.Name = "pnl_0";
             this.pnl_0.Size = new System.Drawing.Size(698, 160);
             this.pnl_0.TabIndex = 0;
+            // 
+            // lb_2cham_5
+            // 
+            this.lb_2cham_5.AutoSize = true;
+            this.lb_2cham_5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_2cham_5.Location = new System.Drawing.Point(484, 125);
+            this.lb_2cham_5.Name = "lb_2cham_5";
+            this.lb_2cham_5.Size = new System.Drawing.Size(14, 19);
+            this.lb_2cham_5.TabIndex = 94;
+            this.lb_2cham_5.Text = ":";
+            // 
+            // txt_must_not_have_0
+            // 
+            this.txt_must_not_have_0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_must_not_have_0.Location = new System.Drawing.Point(507, 121);
+            this.txt_must_not_have_0.Name = "txt_must_not_have_0";
+            this.txt_must_not_have_0.Size = new System.Drawing.Size(167, 26);
+            this.txt_must_not_have_0.TabIndex = 91;
+            // 
+            // lb_must_not_have_0
+            // 
+            this.lb_must_not_have_0.AutoSize = true;
+            this.lb_must_not_have_0.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_must_not_have_0.Location = new System.Drawing.Point(370, 125);
+            this.lb_must_not_have_0.Name = "lb_must_not_have_0";
+            this.lb_must_not_have_0.Size = new System.Drawing.Size(106, 19);
+            this.lb_must_not_have_0.TabIndex = 89;
+            this.lb_must_not_have_0.Text = "Must not have";
             // 
             // txt_fileName
             // 
@@ -354,9 +388,9 @@
         public System.Windows.Forms.Label lb_2cham_2;
         public System.Windows.Forms.CheckBox chbox_0;
         public System.Windows.Forms.Label lb_2cham_1;
-        public System.Windows.Forms.TextBox txt_errorInput_0;
-        public System.Windows.Forms.TextBox txt_sampleInput_0;
-        public System.Windows.Forms.Label lb_error_0;
+        public System.Windows.Forms.TextBox txt_must_have_0;
+        public System.Windows.Forms.TextBox txt_length_0;
+        public System.Windows.Forms.Label lb_must_have_0;
         public System.Windows.Forms.TextBox txt_associated_0;
         public System.Windows.Forms.TextBox txt_field_0;
         public System.Windows.Forms.Label lb_field_0;
@@ -374,5 +408,8 @@
         public System.Windows.Forms.Panel pnl_right;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btn_close;
+        public System.Windows.Forms.Label lb_2cham_5;
+        public System.Windows.Forms.TextBox txt_must_not_have_0;
+        public System.Windows.Forms.Label lb_must_not_have_0;
     }
 }

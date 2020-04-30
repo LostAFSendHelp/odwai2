@@ -80,7 +80,7 @@ namespace ODWai2.DAOs
             }
         }
 
-        public string add_input_set(string name, List<Field> input_set)
+        public string add_input_set(string name, List<FieldRule> input_set)
         {
             try
             {

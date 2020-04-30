@@ -28,11 +28,20 @@ namespace ODWai2.Misc.Views
                                                         ref delegated_delete_input_set,
                                                         ref delegated_get_input_set);
             InputGroup group_0 = new InputGroup() {
-                arr_ = pnl_0, crr_ = chbox_0, field_ = txt_field_0,
-                associated_ = txt_associated_0, sample_ = txt_sampleInput_0,
-                error_ = txt_errorInput_0, lbfield_ = lb_field_0, lbassociated_ = lb_associal_0,
-                lbsample_ = lb_sample_0, lberror_ = lb_error_0
+                arr_ = pnl_0,
+                crr_ = chbox_0,
+                field_ = txt_field_0,
+                associated_ = txt_associated_0,
+                length_ = txt_length_0,
+                must_not_have_ = txt_must_not_have_0,
+                must_have_ = txt_must_have_0,
+                lb_field_ = lb_field_0,
+                lb_associated_ = lb_associal_0,
+                lb_length_ = lb_sample_0,
+                lb_must_not_have_ = lb_must_not_have_0,
+                lb_must_have_ = lb_must_have_0
             };
+
             input_groups = new List<InputGroup> { group_0 };
         }
 
