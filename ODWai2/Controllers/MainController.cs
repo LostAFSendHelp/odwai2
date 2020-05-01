@@ -23,9 +23,10 @@ namespace ODWai2.Controllers
         private FrameSelector _frame_selector;
         private string _graph_path;
 
-        private Func<DataTable> _get_input_sets = null;
-        private Func<string, string> _delete_input_set = null;
-        private Func<string, (JArray, string)> _get_input_set = null;
+        private Func<DataTable> _get_input_sets;
+        private Func<string, string> _delete_input_set;
+        private Func<string, (JArray, string)> _get_input_set;
+        private Func<string, string> _generate_test_cases;
 
         public MainController(MainView main_view)
         {
@@ -41,7 +42,8 @@ namespace ODWai2.Controllers
 
             _new_input_set_view = new NewInputSetView(ref _get_input_sets,
                                                       ref _delete_input_set,
-                                                      ref _get_input_set);
+                                                      ref _get_input_set,
+                                                      ref _generate_test_cases);
         }
 
         public DataSetView present_data_set_config_view()
@@ -80,9 +82,11 @@ namespace ODWai2.Controllers
 
         public int start_simulation(Action start, Action completion)
         {
-            (int code, string output) = ODWaiSimulator.start_simulation(start, completion);
-            if (output != null) { Helper.log_error(output); }
-            return code;
+
+            return 0;
+            //(int code, string output) = ODWaiSimulator.start_simulation(start, completion);
+            //if (output != null) { Helper.log_error(output); }
+            //return code;
         }
 
         public void another_dummy_func()
@@ -179,6 +183,12 @@ namespace ODWai2.Controllers
         public DataTable get_input_sets()
         {
             return _get_input_sets();
+        }
+
+        // TODO: change to private when applied as part of simulation action chain
+        public string generate_test_cases(string from_path)
+        {
+            return _generate_test_cases(from_path);
         }
     }
 }

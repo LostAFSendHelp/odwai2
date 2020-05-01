@@ -1,12 +1,12 @@
-﻿using System;
-/*
+﻿/*
     Class for parsing text input to Fields, which are then used to generate Rules, and subsequently Testcases
 */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace ODWai2.ODWaiCore.Models
 {
@@ -59,9 +59,10 @@ namespace ODWai2.ODWaiCore.Models
                 if (Char.IsNumber(character)) { __forces_numbers = true; }
             }
 
-            // check for rule conflict
+            // check for rule conflicts
             if (__forces_numbers && __rejects_numbers) { return null; }
             if ((__forces_lowercase || __forces_uppercase) && __rejects_alphabets) { return null; }
+            if (__rejects_numbers && __rejects_alphabets) { return null; }
 
             // check for length conflict
             int required = 0;
@@ -83,5 +84,23 @@ namespace ODWai2.ODWaiCore.Models
                 rejects_numbers = __rejects_numbers
             };
         }
+
+        public static (List<FieldRule>, string) from_path(string path)
+        {
+            if (!File.Exists(path)) { return (null, "Input set not found"); }
+            string raw_json = File.ReadAllText(path);
+            List<FieldRule> rules = JsonConvert.DeserializeObject<List<FieldRule>>(raw_json);
+            rules = rules.Where(rule => rule.check_conflicts()).ToList();
+            if (rules.Count <= 0) { return (null, "Error parsing inputset"); }
+            return (rules, null);
+        }
+
+        private bool check_conflicts()
+        {
+            if (forces_numbers && rejects_numbers) { return false; }
+            if ((forces_lowercase || forces_uppercase) && rejects_alphabets) { return false; }
+            if (rejects_numbers && rejects_alphabets) { return false; }
+            return true;
+        } 
     }
 }

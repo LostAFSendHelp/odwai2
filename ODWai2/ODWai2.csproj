@@ -98,7 +98,8 @@
     <Compile Include="ODWaiCore\Controllers\ODWaiSimulator.cs" />
     <Compile Include="ODWaiCore\Controllers\ODWaiTrainer.cs" />
     <Compile Include="ODWaiCore\Models\DetectionResult.cs" />
-    <Compile Include="ODWaiCore\Models\InputSet.cs" />
+    <Compile Include="ODWaiCore\Models\FieldTest.cs" />
+    <Compile Include="ODWaiCore\Models\FieldRule.cs" />
     <Compile Include="ODWaiCore\ScriptExecutor.cs" />
     <Compile Include="Presentation\DataSetView.cs">
       <SubType>Form</SubType>

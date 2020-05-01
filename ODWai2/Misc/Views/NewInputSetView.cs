@@ -11,22 +11,24 @@ namespace ODWai2.Misc.Views
     
     public partial class NewInputSetView : Form
     {
-        ClassCreatePanel ClassCreatePanel;
-        InputSetController InputSetController;
+        private ClassCreatePanel _class_create_panel;
+        private InputSetController _input_set_controller;
 
         public List<InputGroup> input_groups;
         public int s = 0;
 
         public NewInputSetView(ref Func<DataTable> delegated_get_input_sets,
                                ref Func<string, string> delegated_delete_input_set,
-                               ref Func<string, (JArray, string)> delegated_get_input_set)
+                               ref Func<string, (JArray, string)> delegated_get_input_set,
+                               ref Func<string, string> delegated_generate_test_cases)
         {
             InitializeComponent();
-            ClassCreatePanel = new ClassCreatePanel(this);
-            InputSetController = new InputSetController(this,
+            _class_create_panel = new ClassCreatePanel(this);
+            _input_set_controller = new InputSetController(this,
                                                         ref delegated_get_input_sets,
                                                         ref delegated_delete_input_set,
-                                                        ref delegated_get_input_set);
+                                                        ref delegated_get_input_set,
+                                                        ref delegated_generate_test_cases);
             InputGroup group_0 = new InputGroup() {
                 arr_ = pnl_0,
                 crr_ = chbox_0,
@@ -47,7 +49,7 @@ namespace ODWai2.Misc.Views
 
         private void btn_new_field_Click(object sender, EventArgs e)
         {
-            input_groups.Add(ClassCreatePanel.Create(input_groups.Count));
+            input_groups.Add(_class_create_panel.Create(input_groups.Count));
             flowLayoutPanel1.Controls.Add(input_groups[input_groups.Count - 1].arr_);
         }
 
@@ -58,7 +60,7 @@ namespace ODWai2.Misc.Views
 
                 for (int i = input_groups.Count; i < Convert.ToInt32(txt_numberField.Text); ++i)
                 {
-                    input_groups.Add(ClassCreatePanel.Create(i));
+                    input_groups.Add(_class_create_panel.Create(i));
                     flowLayoutPanel1.Controls.Add(input_groups[input_groups.Count - 1].arr_);
                 }
                 MessageBox.Show("This Form have " + Convert.ToInt32(txt_numberField.Text) + " field");
@@ -67,7 +69,7 @@ namespace ODWai2.Misc.Views
 
         private void btn_delete_field_Click(object sender, EventArgs e)
         {
-            InputSetController.Delete(input_groups);
+            _input_set_controller.delete_field_rules(input_groups);
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -75,7 +77,7 @@ namespace ODWai2.Misc.Views
             string file_name = txt_fileName.Text.Trim();
             if (file_name.Length == 0) { return; }
 
-            string result = InputSetController.Save(file_name, input_groups);
+            string result = _input_set_controller.save_field_rules(file_name, input_groups);
             if (result == null)
             {
                 MessageBox.Show("Input set saved successfully", "Success");
