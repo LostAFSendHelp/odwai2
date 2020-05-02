@@ -40,10 +40,18 @@ namespace ODWai2.Controllers
             }
 
             return new InputGroup() {
-                arr_ = p, crr_ = crr, lb_field_ = _lbfield, must_have_ = _txt_must_have,
-                associated_ = _txt_associated, length_ = _txt_length,
-                field_ = _txt_field, lb_associated_ = _lb_associated,
-                lb_must_not_have_ = _lb_must_have, lb_length_ = _lb_length
+                arr_ = p,
+                crr_ = crr,
+                associated_ = _txt_associated,
+                length_ = _txt_length,
+                field_ = _txt_field,
+                lb_field_ = _lbfield,
+                lb_associated_ = _lb_associated,
+                lb_must_not_have_ = _lb_must_not_have,
+                lb_length_ = _lb_length,
+                lb_must_have_ = _lb_must_have,
+                must_have_ = _txt_must_have,
+                must_not_have_ = _txt_must_not_have,
             };
         }
     }
