@@ -82,11 +82,9 @@ namespace ODWai2.Controllers
 
         public int start_simulation(Action start, Action completion)
         {
-
-            return 0;
-            //(int code, string output) = ODWaiSimulator.start_simulation(start, completion);
-            //if (output != null) { Helper.log_error(output); }
-            //return code;
+            (int code, string output) = ODWaiSimulator.start_simulation(start, completion);
+            if (output != null) { Helper.log_error(output); }
+            return code;
         }
 
         public void another_dummy_func()

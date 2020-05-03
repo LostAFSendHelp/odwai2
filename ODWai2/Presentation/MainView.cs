@@ -68,12 +68,12 @@ namespace ODWai2.Presentation
 
         private void simulate_btn_Click(object sender, EventArgs e)
         {
-            string path = cbox_input_set.SelectedValue.ToString();
-            if (path == null) { error_message("Path to input set not found"); return; }
-            string _result = _main_controller.generate_test_cases(path);
-            if (_result == null) { MessageBox.Show("Test case generation successfully executed", "Success"); }
-            else { error_message("Error generating test cases: " + _result); }
-            return;
+            //string path = cbox_input_set.SelectedValue.ToString();
+            //if (path == null) { error_message("Path to input set not found"); return; }
+            //string _result = _main_controller.generate_test_cases(path);
+            //if (_result == null) { MessageBox.Show("Test case generation successfully executed", "Success"); }
+            //else { error_message("Error generating test cases: " + _result); }
+            //return;
             Action on_start = () => { toggle_window_state(false); };
             Action on_complete = () => { toggle_window_state(true); };
 
@@ -192,6 +192,7 @@ namespace ODWai2.Presentation
 
         private void cbox_input_set_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (cbox_input_set.SelectedValue == null) { return; }
             string path = cbox_input_set.SelectedValue.ToString();
             if (path == null) { return; }
 
