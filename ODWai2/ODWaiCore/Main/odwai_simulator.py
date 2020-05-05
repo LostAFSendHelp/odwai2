@@ -38,6 +38,7 @@ def get_results():
             if result["class_name"] == "tb":
                 boxes.append(result)
         result_file.close()
+    print(boxes)
     return boxes
 
 def get_test_cases():
@@ -45,20 +46,27 @@ def get_test_cases():
     with open(TEST_CASE_PATH) as testcases_file:
         fields = json.load(testcases_file)
         for field in fields:
+            __lower(field["associated"])
             test = {
                 "field_name": field["field_name"],
-                "associated": map(lambda x: x.lower(), field["associated"]),
+                "associated": field["associated"],
                 "error": field["error_forces"] + field["error_rejects"],
                 "valid": field["valid"]
             }
             tests.append(test)
         testcases_file.close()
+    print(tests)
     return tests
+
+def __lower(list):
+    for item in list:
+        item = item.lower()
 
 def classify_boxes(boxes, fields):
     unrecognized = []
     recognized = []
     for box in boxes:
+        added = False
         for field in fields:
             if box["text"] != "" and box["text"] in field["associated"]:
                 rec = {
@@ -69,29 +77,42 @@ def classify_boxes(boxes, fields):
                     "valid": field["valid"]
                 }
                 recognized.append(rec)
+                added = True
                 break
-        unrecognized.append(box)
+        if added == False:
+            unrecognized.append(box)
+    print(len(boxes))
+    print(len(recognized))
+    print(len(unrecognized))
     return(recognized, unrecognized)
 
-def simulate_recognized(boxes):
-    "Simulate inputs on recognized field"
+def simulate_user_input(error, valid, randomize):
+    "Simulate inputs"
     # TODO: check for simulation option (error/valid/etc)
-    
+    boxes = get_results()
+    tests = get_test_cases()
+    (rec, unrec) = classify_boxes(boxes, tests)
+
     # simulate errors
-    for box in boxes:
-        for error in box["error"]:
-            simulate_error(box, error, boxes)
-            time.sleep(2.5)
+    if error:
+        for rec_item in rec:
+            for error in rec_item["error"]:
+                simulate_error(rec_item, error, rec)
+                if randomize:
+                    simulate_unrecognized(unrec)
 
     # simulate lower valids
-    for box in boxes:
-        input_text_at(box["valid"]["Item1"], box)
-    
-    time.sleep(2.5)
+    if valid:
+        for rec_item in rec:
+            input_text_at(rec_item["valid"]["Item1"], rec_item)
+        if randomize:
+            simulate_unrecognized(unrec)
 
-    # simulate upper valids
-    for box in boxes:
-        input_text_at(box["valid"]["Item2"], box)
+        # simulate upper valids
+        for rec_item in rec:
+            input_text_at(rec_item["valid"]["Item2"], rec_item)
+        if randomize:
+            simulate_unrecognized(unrec)
 
 def simulate_error(error_box, error, boxes):
     "Simulate error inputs: error for specified field, valid for the rest"
@@ -103,16 +124,15 @@ def simulate_error(error_box, error, boxes):
             input_text_at(box["valid"]["Item2"], box)
 
 def input_text_at(text, box):
-    pg.moveTo(box["center_x"], box["center_y"], duration = .1)
-    pg.click(button = "left", clicks = 1)
-    pg.click(button = "left", clicks = 2)
+    pg.moveTo(box["center_x"], box["center_y"], duration = .2)
+    pg.click(button = "left", clicks = 3)
     pg.typewrite(text)
+    print(text)
 
 def simulate_unrecognized(boxes):
     for idx, tb in enumerate(boxes):
-        pg.moveTo(tb["center_x"], tb["center_y"], duration = .25)
-        pg.click(button = "left", clicks = 1)
-        pg.click(button = "left", clicks = 2)
+        pg.moveTo(tb["center_x"], tb["center_y"], duration = .2)
+        pg.click(button = "left", clicks = 3)
         match_input(tb["text"])
 
 def btn_simulator(buttons):
@@ -144,8 +164,31 @@ def match(text):
 
 def match_input(text):
     pg.typewrite(match(text))
+    print(match(text))
+
+def get_options(argv):
+    try:
+        opts, args = options.getopt(argv,"evr",["error","valid", "randomize"])
+    except options.GetoptError:
+        sys.exit(1)
+        
+    simulate_error = False
+    simulate_valid = False
+    randomize = False
+    
+    for opt, arg in opts:
+        if opt in ("-e", "--error"):
+            simulate_error = True
+        elif opt in ("-v", "--valid"):
+            simulate_valid = True
+        elif opt in ("-r", "--randomize"):
+            randomize = True
+    if simulate_error or simulate_valid or randomize:
+        return (simulate_error, simulate_valid, randomize)
+    return (False, True, False)
+
 
 if __name__ == "__main__":
-    boxes = get_results()
-    simulate_unrecognized(boxes)
+    (error, valid, randomize) = get_options(sys.argv[1:])
+    simulate_user_input(error, valid, randomize)
     sys.exit(0)

@@ -8,7 +8,7 @@ namespace ODWai2.ODWaiCore.Controllers
         private static string RESULT_PATH = @"../../temp result/temp.json";
 
         // TODO: add input set path
-        public static (int, string) start_simulation(Action start, Action completion)
+        public static (int, string) start_simulation(Action start, Action completion, bool error, bool valid, bool randomize)
         {
             if (!File.Exists(RESULT_PATH)) { return (69, null); }
             start?.Invoke();
@@ -16,7 +16,9 @@ namespace ODWai2.ODWaiCore.Controllers
             (int code, string output) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.main,
                                                                       "odwai_simulator.py", false,
                                                                       completion, 60, false,
-                                                                      ("result-path", result_path));
+                                                                      (error ? "error" : "", ""),
+                                                                      (valid ? "valid" : "", ""),
+                                                                      (randomize ? "randomize" : "", ""));
             completion?.Invoke();
             switch (code)
             {

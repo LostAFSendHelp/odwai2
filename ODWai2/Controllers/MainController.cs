@@ -80,9 +80,9 @@ namespace ODWai2.Controllers
             return code;
         }
 
-        public int start_simulation(Action start, Action completion)
+        public int start_simulation(Action start, Action completion, bool error, bool valid, bool randomize)
         {
-            (int code, string output) = ODWaiSimulator.start_simulation(start, completion);
+            (int code, string output) = ODWaiSimulator.start_simulation(start, completion, error, valid, randomize);
             if (output != null) { Helper.log_error(output); }
             return code;
         }

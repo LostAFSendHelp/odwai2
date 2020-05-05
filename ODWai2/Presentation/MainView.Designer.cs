@@ -352,9 +352,9 @@
             this.chbox_randomize.AutoSize = true;
             this.chbox_randomize.Location = new System.Drawing.Point(21, 165);
             this.chbox_randomize.Name = "chbox_randomize";
-            this.chbox_randomize.Size = new System.Drawing.Size(146, 17);
+            this.chbox_randomize.Size = new System.Drawing.Size(144, 17);
             this.chbox_randomize.TabIndex = 0;
-            this.chbox_randomize.Text = "Randomized inputs (WIP)";
+            this.chbox_randomize.Text = "Auto-fill unidentified fields";
             this.chbox_randomize.UseVisualStyleBackColor = true;
             // 
             // chbox_edge
@@ -362,9 +362,9 @@
             this.chbox_edge.AutoSize = true;
             this.chbox_edge.Location = new System.Drawing.Point(21, 66);
             this.chbox_edge.Name = "chbox_edge";
-            this.chbox_edge.Size = new System.Drawing.Size(82, 17);
+            this.chbox_edge.Size = new System.Drawing.Size(112, 17);
             this.chbox_edge.TabIndex = 0;
-            this.chbox_edge.Text = "Edge inputs";
+            this.chbox_edge.Text = "Edge inputs (WIP)";
             this.chbox_edge.UseVisualStyleBackColor = true;
             // 
             // chbox_custom
