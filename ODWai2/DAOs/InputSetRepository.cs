@@ -5,21 +5,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using ODWai2.ODWaiCore.Controllers;
 using ODWai2.ODWaiCore.Models;
 
 namespace ODWai2.DAOs
 {
     class InputSetRepository
     {
-        private static string INPUT_SET_PATH = @"../../InputSet/";
-        private static string TEST_CASE_PATH = @"../../temp result/testcases/";
-
         public InputSetRepository(ref Func<DataTable> delegated_get_input_sets,
                                   ref Func<string, string> delegated_delete_input_set,
                                   ref Func<string, (JArray, string)> delegated_get_input_set)
         {
-            Directory.CreateDirectory(INPUT_SET_PATH);
-            Directory.CreateDirectory(TEST_CASE_PATH);
+            Directory.CreateDirectory(Helper.INPUT_SET_PATH);
+            Directory.CreateDirectory(Helper.TEST_CASE_PATH);
             delegated_get_input_sets = () => { return get_input_sets(); };
             delegated_delete_input_set = (path) => { return delete_input_set(path); };
             delegated_get_input_set = (path) => { return get_input_set(path); };
@@ -35,7 +33,7 @@ namespace ODWai2.DAOs
         }
         public string get_path_json(ComboBox comboBox)
         {
-            string destPath = Path.Combine(INPUT_SET_PATH, get_name_json(comboBox));
+            string destPath = Path.Combine(Helper.INPUT_SET_PATH, get_name_json(comboBox));
             return destPath;
         }
 
@@ -55,7 +53,7 @@ namespace ODWai2.DAOs
 
         private DataTable get_input_sets()
         {
-            string[] files = Directory.GetFiles(INPUT_SET_PATH, "*.json", SearchOption.TopDirectoryOnly);
+            string[] files = Directory.GetFiles(Helper.INPUT_SET_PATH, "*.json", SearchOption.TopDirectoryOnly);
             DataTable data_table = new DataTable();
             data_table.Columns.Add("File name");
             data_table.Columns.Add("File path");
@@ -86,7 +84,7 @@ namespace ODWai2.DAOs
         {
             try
             {
-                string full_name = INPUT_SET_PATH + name + ".json";
+                string full_name = Helper.INPUT_SET_PATH + name + ".json";
                 if (Directory.Exists(full_name)) { return "Input set name already taken"; }
 
                 StreamWriter writer = new StreamWriter(full_name);
@@ -113,7 +111,7 @@ namespace ODWai2.DAOs
 
             try
             {
-                string full_name = TEST_CASE_PATH + "testcases.json";
+                string full_name = Helper.TEST_CASE_PATH + "testcases.json";
                 if (Directory.Exists(full_name)) { return "Input set name already taken"; }
 
                 StreamWriter writer = new StreamWriter(full_name);

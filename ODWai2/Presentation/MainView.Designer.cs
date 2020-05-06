@@ -422,6 +422,7 @@
             this.btn_input_set_dir.TabIndex = 4;
             this.btn_input_set_dir.Text = "Open in Explorer";
             this.btn_input_set_dir.UseVisualStyleBackColor = true;
+            this.btn_input_set_dir.Click += new System.EventHandler(this.btn_input_set_dir_Click);
             // 
             // delete_input_set_btn
             // 

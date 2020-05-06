@@ -8,6 +8,9 @@ namespace ODWai2.ODWaiCore.Controllers
     public class Helper
     {
         public static string LOG_PATH = @"../../Error log/";
+        public static string INPUT_SET_PATH = @"../../InputSet/";
+        public static string TEST_CASE_PATH = @"../../temp result/testcases/";
+        public static string DATA_SET_PATH = @"../../DataSets/";
 
         public static string get_path_argument(string raw_string)
         {

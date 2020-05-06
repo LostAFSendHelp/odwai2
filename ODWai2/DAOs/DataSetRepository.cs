@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Data;
+using ODWai2.ODWaiCore.Controllers;
 
 namespace ODWai2.DAOs
 {
@@ -12,9 +13,8 @@ namespace ODWai2.DAOs
 
         public DataSetRepository()
         {
-            string relative_dir = @"../../DataSets/";
-            Directory.CreateDirectory(relative_dir);
-            _root_dir = Path.GetFullPath(relative_dir);
+            Directory.CreateDirectory(Helper.DATA_SET_PATH);
+            _root_dir = Path.GetFullPath(Helper.DATA_SET_PATH);
         }
 
         public Dictionary<string, string> get_all_data_sets()

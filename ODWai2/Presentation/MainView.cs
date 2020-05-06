@@ -236,5 +236,10 @@ namespace ODWai2.Presentation
         {
             MessageBox.Show(message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void btn_input_set_dir_Click(object sender, EventArgs e)
+        {
+            ODWaiCore.Controllers.Helper.open_explorer_at_path(ODWaiCore.Controllers.Helper.INPUT_SET_PATH);
+        }
     }
 }
