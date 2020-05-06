@@ -192,7 +192,7 @@ namespace ODWai2.ODWaiCore.Models
             string buffer = "";
             string long_buffer = "";
 
-            if (rule.rejects_numbers)
+            if (rule.rejects_alphabets)
             {
                 while (buffer.Length < rule.min) { buffer += numbers[random.Next(numbers.Length)]; }
 
@@ -203,7 +203,7 @@ namespace ODWai2.ODWaiCore.Models
                 return (buffer, long_buffer);
             }
 
-            if (rule.rejects_alphabets)
+            if (rule.rejects_numbers)
             {
                 while (buffer.Length < rule.min) { buffer += letters[random.Next(letters.Length)]; }
 

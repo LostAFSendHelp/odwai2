@@ -52,13 +52,14 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chbox_all = new System.Windows.Forms.CheckBox();
+            this.chbox_valid = new System.Windows.Forms.CheckBox();
+            this.chbox_randomize = new System.Windows.Forms.CheckBox();
+            this.chbox_edge = new System.Windows.Forms.CheckBox();
+            this.chbox_custom = new System.Windows.Forms.CheckBox();
+            this.chbox_error = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_refresh = new System.Windows.Forms.Button();
             this.btn_input_set_dir = new System.Windows.Forms.Button();
             this.delete_input_set_btn = new System.Windows.Forms.Button();
             this.new_input_set_btn = new System.Windows.Forms.Button();
@@ -71,7 +72,6 @@
             this.skip_result_checkbox = new System.Windows.Forms.CheckBox();
             this.btn_python_path = new System.Windows.Forms.Button();
             this.btn_error_log = new System.Windows.Forms.Button();
-            this.btn_refresh = new System.Windows.Forms.Button();
             this.tab_control.SuspendLayout();
             this.testing_tab.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -298,12 +298,12 @@
             // 
             this.groupBox5.Controls.Add(this.textBox5);
             this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Controls.Add(this.checkBox6);
-            this.groupBox5.Controls.Add(this.checkBox5);
-            this.groupBox5.Controls.Add(this.checkBox4);
-            this.groupBox5.Controls.Add(this.checkBox3);
-            this.groupBox5.Controls.Add(this.checkBox2);
-            this.groupBox5.Controls.Add(this.checkBox1);
+            this.groupBox5.Controls.Add(this.chbox_all);
+            this.groupBox5.Controls.Add(this.chbox_valid);
+            this.groupBox5.Controls.Add(this.chbox_randomize);
+            this.groupBox5.Controls.Add(this.chbox_edge);
+            this.groupBox5.Controls.Add(this.chbox_custom);
+            this.groupBox5.Controls.Add(this.chbox_error);
             this.groupBox5.Location = new System.Drawing.Point(437, 9);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(357, 286);
@@ -327,65 +327,65 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Input rate (per second)";
             // 
-            // checkBox6
+            // chbox_all
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(21, 197);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(68, 17);
-            this.checkBox6.TabIndex = 0;
-            this.checkBox6.Text = "All inputs";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.chbox_all.AutoSize = true;
+            this.chbox_all.Location = new System.Drawing.Point(21, 197);
+            this.chbox_all.Name = "chbox_all";
+            this.chbox_all.Size = new System.Drawing.Size(68, 17);
+            this.chbox_all.TabIndex = 0;
+            this.chbox_all.Text = "All inputs";
+            this.chbox_all.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // chbox_valid
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(21, 100);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(80, 17);
-            this.checkBox5.TabIndex = 0;
-            this.checkBox5.Text = "Valid inputs";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.chbox_valid.AutoSize = true;
+            this.chbox_valid.Location = new System.Drawing.Point(21, 100);
+            this.chbox_valid.Name = "chbox_valid";
+            this.chbox_valid.Size = new System.Drawing.Size(80, 17);
+            this.chbox_valid.TabIndex = 0;
+            this.chbox_valid.Text = "Valid inputs";
+            this.chbox_valid.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // chbox_randomize
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(21, 165);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(116, 17);
-            this.checkBox4.TabIndex = 0;
-            this.checkBox4.Text = "Randomized inputs";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.chbox_randomize.AutoSize = true;
+            this.chbox_randomize.Location = new System.Drawing.Point(21, 165);
+            this.chbox_randomize.Name = "chbox_randomize";
+            this.chbox_randomize.Size = new System.Drawing.Size(144, 17);
+            this.chbox_randomize.TabIndex = 0;
+            this.chbox_randomize.Text = "Auto-fill unidentified fields";
+            this.chbox_randomize.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // chbox_edge
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(21, 66);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(82, 17);
-            this.checkBox3.TabIndex = 0;
-            this.checkBox3.Text = "Edge inputs";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.chbox_edge.AutoSize = true;
+            this.chbox_edge.Location = new System.Drawing.Point(21, 66);
+            this.chbox_edge.Name = "chbox_edge";
+            this.chbox_edge.Size = new System.Drawing.Size(112, 17);
+            this.chbox_edge.TabIndex = 0;
+            this.chbox_edge.Text = "Edge inputs (WIP)";
+            this.chbox_edge.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chbox_custom
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(21, 133);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(92, 17);
-            this.checkBox2.TabIndex = 0;
-            this.checkBox2.Text = "Custom inputs";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chbox_custom.AutoSize = true;
+            this.chbox_custom.Location = new System.Drawing.Point(21, 133);
+            this.chbox_custom.Name = "chbox_custom";
+            this.chbox_custom.Size = new System.Drawing.Size(122, 17);
+            this.chbox_custom.TabIndex = 0;
+            this.chbox_custom.Text = "Custom inputs (WIP)";
+            this.chbox_custom.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // chbox_error
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(21, 33);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(74, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Error input";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chbox_error.AutoSize = true;
+            this.chbox_error.Location = new System.Drawing.Point(21, 33);
+            this.chbox_error.Name = "chbox_error";
+            this.chbox_error.Size = new System.Drawing.Size(74, 17);
+            this.chbox_error.TabIndex = 0;
+            this.chbox_error.Text = "Error input";
+            this.chbox_error.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -402,6 +402,17 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input set";
+            // 
+            // btn_refresh
+            // 
+            this.btn_refresh.BackColor = System.Drawing.Color.White;
+            this.btn_refresh.Image = global::ODWai2.Properties.Resources.rsz_images;
+            this.btn_refresh.Location = new System.Drawing.Point(287, 15);
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(30, 23);
+            this.btn_refresh.TabIndex = 5;
+            this.btn_refresh.UseVisualStyleBackColor = false;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // btn_input_set_dir
             // 
@@ -521,17 +532,6 @@
             this.btn_error_log.UseVisualStyleBackColor = true;
             this.btn_error_log.Click += new System.EventHandler(this.btn_error_log_Click);
             // 
-            // btn_refresh
-            // 
-            this.btn_refresh.BackColor = System.Drawing.Color.White;
-            this.btn_refresh.Image = global::ODWai2.Properties.Resources.rsz_images;
-            this.btn_refresh.Location = new System.Drawing.Point(287, 15);
-            this.btn_refresh.Name = "btn_refresh";
-            this.btn_refresh.Size = new System.Drawing.Size(30, 23);
-            this.btn_refresh.TabIndex = 5;
-            this.btn_refresh.UseVisualStyleBackColor = false;
-            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
-            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -601,12 +601,12 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chbox_all;
+        private System.Windows.Forms.CheckBox chbox_valid;
+        private System.Windows.Forms.CheckBox chbox_randomize;
+        private System.Windows.Forms.CheckBox chbox_edge;
+        private System.Windows.Forms.CheckBox chbox_custom;
+        private System.Windows.Forms.CheckBox chbox_error;
         private System.Windows.Forms.Button btn_input_set_dir;
         private System.Windows.Forms.Button btn_python_path;
         private System.Windows.Forms.Label label7;
