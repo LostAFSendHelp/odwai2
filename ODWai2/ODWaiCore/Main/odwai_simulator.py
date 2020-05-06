@@ -20,6 +20,9 @@ RESULT_PATH = "../../temp result/temp.json"
 TEST_CASE_PATH = "../../temp result/testcases/testcases.json"
 
 pg.FAILSAFE = False
+pg.PAUSE = .05
+TEXT_INTERVAL = .075
+
 text_input = {
     "name": "default Team 17 Duy Tan",
     "email": "default team17@team17.duytan.edu",
@@ -114,6 +117,8 @@ def simulate_user_input(error, valid, randomize):
         if randomize:
             simulate_unrecognized(unrec)
 
+    sys.exit(0)
+
 def simulate_error(error_box, error, boxes):
     "Simulate error inputs: error for specified field, valid for the rest"
     
@@ -124,15 +129,13 @@ def simulate_error(error_box, error, boxes):
             input_text_at(box["valid"]["Item2"], box)
 
 def input_text_at(text, box):
-    pg.moveTo(box["center_x"], box["center_y"], duration = .2)
-    pg.click(button = "left", clicks = 3)
-    pg.typewrite(text)
+    pg.click(x = box["center_x"], y = box["center_y"], interval = .1, button = "left", clicks = 3)
+    pg.typewrite(text, interval = TEXT_INTERVAL)
     print(text)
 
 def simulate_unrecognized(boxes):
     for idx, tb in enumerate(boxes):
-        pg.moveTo(tb["center_x"], tb["center_y"], duration = .2)
-        pg.click(button = "left", clicks = 3)
+        pg.click(x = tb["center_x"], y = tb["center_y"], interval = .1, button = "left", clicks = 3)
         match_input(tb["text"])
 
 def btn_simulator(buttons):
@@ -163,7 +166,7 @@ def match(text):
     return "defaultinput"
 
 def match_input(text):
-    pg.typewrite(match(text))
+    pg.typewrite(match(text), interval = TEXT_INTERVAL)
     print(match(text))
 
 def get_options(argv):
@@ -191,4 +194,3 @@ def get_options(argv):
 if __name__ == "__main__":
     (error, valid, randomize) = get_options(sys.argv[1:])
     simulate_user_input(error, valid, randomize)
-    sys.exit(0)

@@ -60,8 +60,16 @@ namespace ODWai2.ODWaiCore
 
             string output = redirect_error ? process.StandardError.ReadToEnd() : null;
 
-            if (process.WaitForExit(max_wait_time * 1000))
+            if (max_wait_time != 0)
             {
+                if (process.WaitForExit(max_wait_time * 1000))
+                {
+                    return (process.ExitCode, output);
+                }
+            }
+            else
+            {
+                process.WaitForExit();
                 return (process.ExitCode, output);
             }
             

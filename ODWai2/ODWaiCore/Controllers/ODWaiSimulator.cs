@@ -15,7 +15,7 @@ namespace ODWai2.ODWaiCore.Controllers
             string result_path = Helper.get_path_argument(Path.GetFullPath(RESULT_PATH));
             (int code, string output) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.main,
                                                                       "odwai_simulator.py", false,
-                                                                      completion, 60, false,
+                                                                      completion, 0, false,
                                                                       (error ? "error" : "", ""),
                                                                       (valid ? "valid" : "", ""),
                                                                       (randomize ? "randomize" : "", ""));

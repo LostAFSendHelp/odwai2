@@ -20,7 +20,10 @@ namespace ODWai2.ODWaiCore
             string command = script_path;
             foreach ((string key, string value) pair in arguments)
             {
-                command += (" --" + pair.key + " " + pair.value);
+                if (pair.key.Length > 0)
+                {
+                    command += (" --" + pair.key + " " + pair.value);
+                }
             }
 
             return command;
