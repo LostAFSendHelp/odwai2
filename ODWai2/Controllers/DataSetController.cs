@@ -68,6 +68,11 @@ namespace ODWai2.Controllers
             return _data_set_repo.delete_data_set(data_set_path);
         }
 
+        public (int, string) start_training(string data_set_path)
+        {
+            return ODWaiTrainer.start_training(data_set_path);
+        }
+
         public void import_graph(string to_path, string from_path)
         {
             _data_set_repo.import_graph(to_path, from_path);

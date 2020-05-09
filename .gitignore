@@ -332,6 +332,7 @@ __pycache__/
 **/Error log/**
 **/temp result/**
 **/inputset/**
+**/training resources/faster_rcnn_inception_v2_coco_2018_01_28/**
 
 # OpenCover UI analysis results
 OpenCover/

@@ -204,5 +204,13 @@ namespace ODWai2.Presentation
 
             bind(cbox_graph, _data_set_controller.get_inference_graphs(data_set_path));
         }
+
+        private void btn_start_training_Click(object sender, EventArgs e)
+        {
+            string data_set_path = get_current_data_set();
+            if (data_set_path == null) { return; }
+
+            _data_set_controller.start_training(data_set_path);
+        }
     }
 }
