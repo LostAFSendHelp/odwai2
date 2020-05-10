@@ -66,12 +66,14 @@ namespace ODWai2.ODWaiCore.Controllers
             }
 
             string train_path = @"../../ODWaiCore/temp";
+            string slim_path = @"../../ODWaiCore/Main/slim";
             Directory.CreateDirectory(train_path);
             ScriptExecutor.python_execute(CommandBuilder.ExecutionType.main, "odwai_trainer.py", true,
                                           null, 0, false,
                                           ("logtostderr", ""),
                                           ("train_dir", Helper.get_path_argument(Path.GetFullPath(train_path))),
-                                          ("pipeline_config_path", Helper.get_path_argument(Path.GetFullPath(pipeline_path))));
+                                          ("pipeline_config_path", Helper.get_path_argument(Path.GetFullPath(pipeline_path))),
+                                          ("slim_path", Path.GetFullPath(slim_path)));
             return (0, null);
         }
     }
