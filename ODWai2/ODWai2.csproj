@@ -191,7 +191,7 @@
     <Content Include="ODWaiCore\Main\odwai_detector.py" />
     <Content Include="ODWaiCore\Main\odwai_simulator.py" />
     <Content Include="ODWaiCore\Main\placeholder.txt" />
-    <Content Include="ODWaiCore\Main\train.py" />
+    <Content Include="ODWaiCore\Main\odwai_trainer.py" />
     <Content Include="ODWaiCore\Main\utils\autoaugment_utils.py" />
     <Content Include="ODWaiCore\Main\utils\category_util.py" />
     <Content Include="ODWaiCore\Main\utils\category_util_test.py" />

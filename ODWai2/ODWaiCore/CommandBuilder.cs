@@ -22,7 +22,8 @@ namespace ODWai2.ODWaiCore
             {
                 if (pair.key.Length > 0)
                 {
-                    command += (" --" + pair.key + " " + pair.value);
+                    command += (" --" + pair.key);
+                    if (pair.value.Length > 0) { command += (" " + pair.value); };
                 }
             }
 
