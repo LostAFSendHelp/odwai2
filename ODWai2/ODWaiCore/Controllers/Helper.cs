@@ -2,6 +2,7 @@
 using System.IO;
 using System.Diagnostics;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace ODWai2.ODWaiCore.Controllers
 {
@@ -37,6 +38,16 @@ namespace ODWai2.ODWaiCore.Controllers
             Graphics graphics = Graphics.FromImage(image);
             graphics.DrawRectangle(pen, bounding_box);
             graphics.FillRectangle(brush, bounding_box);
+        }
+
+        public static void error_message(string error)
+        {
+            MessageBox.Show(error, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static void dialog_message(string message)
+        {
+            MessageBox.Show(message, "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

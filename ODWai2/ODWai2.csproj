@@ -188,6 +188,7 @@
   <ItemGroup>
     <Content Include="Image assets\rsz_images.png" />
     <Content Include="Misc\ExitCodes.txt" />
+    <Content Include="ODWaiCore\Main\export_inference_graph.py" />
     <Content Include="ODWaiCore\Main\odwai_detector.py" />
     <Content Include="ODWaiCore\Main\odwai_simulator.py" />
     <Content Include="ODWaiCore\Main\placeholder.txt" />

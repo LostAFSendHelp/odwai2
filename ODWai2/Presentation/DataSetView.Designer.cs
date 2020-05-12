@@ -39,6 +39,7 @@
             this.btn_data_set_dir = new System.Windows.Forms.Button();
             this.btn_graph_dir = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_start_training = new System.Windows.Forms.Button();
             this.btn_generate_training_resources = new System.Windows.Forms.Button();
             this.btn_delete_data_set = new System.Windows.Forms.Button();
             this.btn_new_data_set = new System.Windows.Forms.Button();
@@ -48,7 +49,7 @@
             this.dgv_data_set_training = new System.Windows.Forms.DataGridView();
             this.btn_close = new System.Windows.Forms.Button();
             this.btn_import_graph = new System.Windows.Forms.Button();
-            this.btn_start_training = new System.Windows.Forms.Button();
+            this.btn_generate_graph = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data_set_testing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_data_set_training)).BeginInit();
@@ -159,6 +160,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data items";
             // 
+            // btn_start_training
+            // 
+            this.btn_start_training.Location = new System.Drawing.Point(368, 270);
+            this.btn_start_training.Name = "btn_start_training";
+            this.btn_start_training.Size = new System.Drawing.Size(175, 23);
+            this.btn_start_training.TabIndex = 2;
+            this.btn_start_training.Text = "Start training";
+            this.btn_start_training.UseVisualStyleBackColor = true;
+            this.btn_start_training.Click += new System.EventHandler(this.btn_start_training_Click);
+            // 
             // btn_generate_training_resources
             // 
             this.btn_generate_training_resources.Location = new System.Drawing.Point(549, 270);
@@ -251,15 +262,15 @@
             this.btn_import_graph.UseVisualStyleBackColor = true;
             this.btn_import_graph.Click += new System.EventHandler(this.btn_import_graph_Click);
             // 
-            // btn_start_training
+            // btn_generate_graph
             // 
-            this.btn_start_training.Location = new System.Drawing.Point(368, 270);
-            this.btn_start_training.Name = "btn_start_training";
-            this.btn_start_training.Size = new System.Drawing.Size(175, 23);
-            this.btn_start_training.TabIndex = 2;
-            this.btn_start_training.Text = "Start training";
-            this.btn_start_training.UseVisualStyleBackColor = true;
-            this.btn_start_training.Click += new System.EventHandler(this.btn_start_training_Click);
+            this.btn_generate_graph.Location = new System.Drawing.Point(357, 72);
+            this.btn_generate_graph.Name = "btn_generate_graph";
+            this.btn_generate_graph.Size = new System.Drawing.Size(220, 23);
+            this.btn_generate_graph.TabIndex = 5;
+            this.btn_generate_graph.Text = "Generate inference graph";
+            this.btn_generate_graph.UseVisualStyleBackColor = true;
+            this.btn_generate_graph.Click += new System.EventHandler(this.btn_generate_graph_Click);
             // 
             // DataSetView
             // 
@@ -267,6 +278,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 455);
             this.ControlBox = false;
+            this.Controls.Add(this.btn_generate_graph);
             this.Controls.Add(this.btn_import_graph);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.groupBox1);
@@ -314,5 +326,6 @@
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.Button btn_import_graph;
         private System.Windows.Forms.Button btn_start_training;
+        private System.Windows.Forms.Button btn_generate_graph;
     }
 }

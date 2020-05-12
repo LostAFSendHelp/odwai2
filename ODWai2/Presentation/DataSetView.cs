@@ -7,6 +7,7 @@ using ODWai2.Controllers;
 using ODWai2.Interfaces;
 using ODWai2.Misc.Classes;
 using ODWai2.Misc.Views;
+using ODWai2.ODWaiCore.Controllers;
 
 namespace ODWai2.Presentation
 {
@@ -110,12 +111,12 @@ namespace ODWai2.Presentation
 
         private void btn_data_set_dir_Click(object sender, EventArgs e)
         {
-            ODWaiCore.Controllers.Helper.open_explorer_at_path(tb_data_set_path.Text);
+            Helper.open_explorer_at_path(tb_data_set_path.Text);
         }
 
         private void btn_graph_dir_Click(object sender, EventArgs e)
         {
-            ODWaiCore.Controllers.Helper.open_explorer_at_path(tb_data_set_path.Text);
+            Helper.open_explorer_at_path(tb_data_set_path.Text);
         }
 
         private void btn_new_data_set_Click(object sender, EventArgs e)
@@ -208,9 +209,38 @@ namespace ODWai2.Presentation
         private void btn_start_training_Click(object sender, EventArgs e)
         {
             string data_set_path = get_current_data_set();
-            if (data_set_path == null) { return; }
+            if (data_set_path == null) {
+                Helper.error_message("Path to dataset not found");
+                return;
+            }
 
-            _data_set_controller.start_training(data_set_path);
+            (int code, string output) = _data_set_controller.start_training(data_set_path);
+            Helper.dialog_message(output);
+        }
+
+        private void btn_generate_graph_Click(object sender, EventArgs e)
+        {
+            string data_set_path = get_current_data_set();
+            if (data_set_path == null)
+            {
+                Helper.error_message("Path to dataset not found");
+                return;
+            }
+            
+            (int code, string output) = _data_set_controller.generate_graph(data_set_path);
+            if (code == 0)
+            {
+                Helper.dialog_message("Inference graph successfully generated");
+
+                string data_set_dir = get_current_data_set();
+                if (data_set_dir == null) { return; }
+
+                bind(cbox_graph, _data_set_controller.get_inference_graphs(data_set_dir));
+            }
+            else
+            {
+                Helper.error_message("Error generating inference graph, exit code: " + code);
+            }
         }
     }
 }

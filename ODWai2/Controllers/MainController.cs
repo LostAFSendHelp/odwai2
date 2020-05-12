@@ -73,7 +73,7 @@ namespace ODWai2.Controllers
                                     Action start,
                                     Action completion)
         {
-            if (_graph_path == null) { return 71; }
+            if (_graph_path == null) { return 78; }
             (int code, string output) = ODWaiDetector.start_detection(_graph_path, root_x, root_y,
                                                 width, height, start, completion);
             if (output != null) { Helper.log_error(output); }
