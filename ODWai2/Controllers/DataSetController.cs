@@ -73,9 +73,9 @@ namespace ODWai2.Controllers
             return ODWaiTrainer.start_training(data_set_path);
         }
 
-        public (int, string) generate_graph(string data_set_path, Action<string> start = null)
+        public (int, string) generate_graph(string data_set_path, Action<string> update = null)
         {
-            (int code, string output) = ODWaiTrainer.export_graph(data_set_path, start);
+            (int code, string output) = ODWaiTrainer.export_graph(data_set_path, update);
             if (code != 0 && output != null) { Helper.log_error(output); }
             return (code, output);
         }
@@ -83,6 +83,11 @@ namespace ODWai2.Controllers
         public void import_graph(string to_path, string from_path)
         {
             _data_set_repo.import_graph(to_path, from_path);
+        }
+
+        public (int, string) clear_graph_data(string data_set_path, Action failure = null)
+        {
+            return _data_set_repo.clear_graph_data(data_set_path, failure);
         }
     }
 }

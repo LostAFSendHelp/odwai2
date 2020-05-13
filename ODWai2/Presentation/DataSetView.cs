@@ -220,14 +220,34 @@ namespace ODWai2.Presentation
 
         private void btn_generate_graph_Click(object sender, EventArgs e)
         {
+            // first, get dataset path
             string data_set_path = get_current_data_set();
             if (data_set_path == null)
             {
                 Helper.error_message("Path to dataset not found");
                 return;
             }
-            
-            (int code, string output) = _data_set_controller.generate_graph(data_set_path);
+
+            // flush current graph data (as exporter requires path to be empty)
+            DialogResult result = MessageBox.Show("The following action requires the current graph data of the data set to be flushed. "
+                                                    + "Make sure you have a backup of these data if you still need them for later use.\n"
+                                                    + "Are you sure you want to proceed?",
+                                                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result == DialogResult.No) { return; }
+
+            // proceed to flush old data
+            LoadingProgressView loading_view = new LoadingProgressView("Flushing old graph data");
+            Action failure = () => { loading_view.Close(); };
+            loading_view.Show();
+            (int del_code, string del_output) = _data_set_controller.clear_graph_data(data_set_path, failure);
+
+            if (del_output != null) { Helper.error_message("Error flushing graph data: " + del_output); return; }
+
+            // generate graph using data set path
+            Action<string> update = (progress) => { loading_view.set_progress(progress); };
+            (int code, string output) = _data_set_controller.generate_graph(data_set_path, update);
+            loading_view.Close();
             if (code == 0)
             {
                 Helper.dialog_message("Inference graph successfully generated");

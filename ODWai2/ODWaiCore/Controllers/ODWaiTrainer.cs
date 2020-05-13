@@ -94,7 +94,7 @@ namespace ODWai2.ODWaiCore.Controllers
             }
         }
 
-        public static (int, string) export_graph(string data_set_path, Action<string> start = null)
+        public static (int, string) export_graph(string data_set_path, Action<string> update = null)
         {
             Directory.CreateDirectory(BASE_TEMP_PATH);
             string prefix = get_checkpoint_prefix();
@@ -103,7 +103,7 @@ namespace ODWai2.ODWaiCore.Controllers
             if (!Directory.Exists(BASE_SLIM_PATH)) { return (1, "Slim path not found"); }
             if (prefix == null) { return (1, "Training checkpoints not found"); }
 
-            start?.Invoke("Generating frozen inference graph from checkpoint: " + prefix.ToUpper());
+            update?.Invoke("Generating frozen inference graph from checkpoint: " + prefix.ToUpper());
 
             string slim_path = Helper.get_path_argument(Path.GetFullPath(BASE_SLIM_PATH));
             string pipeline_path = Helper.get_path_argument(Path.GetFullPath(BASE_PIPELINE_PATH));
