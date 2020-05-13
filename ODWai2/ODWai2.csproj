@@ -149,7 +149,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ODWaiCore\Main\labelmap.pbtxt" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2.config" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\checkpoint" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\frozen_inference_graph.pb" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\model.ckpt.data-00000-of-00001" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\model.ckpt.index" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\model.ckpt.meta" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\pipeline.config" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\saved_model\saved_model.pb" />
+    <None Include="ODWaiCore\Main\training resources\labelmap.pbtxt" />
     <None Include="ODWaiCore\Main\utils\__pycache__\autoaugment_utils.cpython-36.pyc" />
     <None Include="ODWaiCore\Main\utils\__pycache__\config_util.cpython-36.pyc" />
     <None Include="ODWaiCore\Main\utils\__pycache__\context_manager.cpython-36.pyc" />
@@ -180,10 +188,11 @@
   <ItemGroup>
     <Content Include="Image assets\rsz_images.png" />
     <Content Include="Misc\ExitCodes.txt" />
+    <Content Include="ODWaiCore\Main\export_inference_graph.py" />
     <Content Include="ODWaiCore\Main\odwai_detector.py" />
     <Content Include="ODWaiCore\Main\odwai_simulator.py" />
     <Content Include="ODWaiCore\Main\placeholder.txt" />
-    <Content Include="ODWaiCore\Main\train.py" />
+    <Content Include="ODWaiCore\Main\odwai_trainer.py" />
     <Content Include="ODWaiCore\Main\utils\autoaugment_utils.py" />
     <Content Include="ODWaiCore\Main\utils\category_util.py" />
     <Content Include="ODWaiCore\Main\utils\category_util_test.py" />
@@ -242,6 +251,9 @@
     <Content Include="ODWaiCore\Utilities\generate_tf_records.py" />
     <Content Include="ODWaiCore\Utilities\xml_to_csv.py" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\saved_model\variables\" />
+    <Folder Include="ODWaiCore\temp\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

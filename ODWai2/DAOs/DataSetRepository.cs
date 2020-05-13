@@ -99,6 +99,22 @@ namespace ODWai2.DAOs
             return (0, null);
         }
 
+        public (int, string) clear_graph_data(string data_set_path, Action failure = null)
+        {
+            try
+            {
+                var directory_info = new DirectoryInfo(Path.Combine(data_set_path, "graph"));
+                foreach (var file in directory_info.EnumerateFiles()) { file.Delete(); }
+                foreach (var directory in directory_info.EnumerateDirectories()) { directory.Delete(true); }
+                return (0, null);
+            }
+            catch (Exception e)
+            {
+                failure?.Invoke();
+                return (1, e.Message);
+            }
+        }
+
         private Dictionary<string, string> zip(List<string> keys, List<string> values)
         {
             var zip = keys.Zip(values, (k, v) => new { k, v });

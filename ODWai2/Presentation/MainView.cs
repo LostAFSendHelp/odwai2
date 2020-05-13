@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 using ODWai2.Controllers;
+using ODWai2.ODWaiCore.Controllers;
 
 namespace ODWai2.Presentation
 {
@@ -58,23 +59,23 @@ namespace ODWai2.Presentation
 
             if (result == 78)
             {
-                MessageBox.Show("Please choose an inference graph in Data set configuration", "Error");
+                Helper.error_message("Please choose an inference graph in Data set configuration");
             }
             else if (result != 0)
             {
-                error_message("Error executing detection, exit code: " + result);
+                Helper.error_message("Error executing detection, exit code: " + result);
             }
         }
 
         private void simulate_btn_Click(object sender, EventArgs e)
         {
             string path = cbox_input_set.SelectedValue.ToString();
-            if (path == null) { error_message("Path to input set not found"); return; }
+            if (path == null) { Helper.error_message("Path to input set not found"); return; }
 
             string _result = _main_controller.generate_test_cases(path);
-            if (_result != null) { error_message("Error generating test cases: " + _result); return; }
+            if (_result != null) { Helper.error_message("Error generating test cases: " + _result); return; }
 
-            if (!check_simulate_options()) { error_message("Please choose at least 1 simulation option"); return; }
+            if (!check_simulate_options()) { Helper.error_message("Please choose at least 1 simulation option"); return; }
 
             Action on_start = () => { toggle_window_state(false); };
             Action on_complete = () => { toggle_window_state(true); };
@@ -87,11 +88,11 @@ namespace ODWai2.Presentation
 
             if (result != 0)
             {
-                error_message("Error executing simulation, exit code: " + result);
+                Helper.error_message("Error executing simulation, exit code: " + result);
             }
             else
             {
-                MessageBox.Show("Simulation successfully executed", "Success");
+                Helper.dialog_message("Simulation successfully executed");
             }
         }
 
@@ -110,7 +111,7 @@ namespace ODWai2.Presentation
             }
             catch (Exception e)
             {
-                error_message(e.Message);
+                Helper.error_message(e.Message);
             }
         }
 
@@ -187,7 +188,7 @@ namespace ODWai2.Presentation
             }
             catch (Exception exc)
             {
-                error_message(exc.Message);
+                Helper.error_message(exc.Message);
             }
         }
 
@@ -223,23 +224,18 @@ namespace ODWai2.Presentation
 
             if (result == null)
             {
-                MessageBox.Show("Input set successfully deleted", "Success");
+                Helper.dialog_message("Input set successfully deleted");
                 load_inputset_combobox();
             }
             else
             {
-                MessageBox.Show("Error deleting input set: " + result, "Failure");
+                Helper.error_message("Error deleting input set: " + result);
             }
-        }
-
-        private void error_message(string message)
-        {
-            MessageBox.Show(message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btn_input_set_dir_Click(object sender, EventArgs e)
         {
-            ODWaiCore.Controllers.Helper.open_explorer_at_path(ODWaiCore.Controllers.Helper.INPUT_SET_PATH);
+            Helper.open_explorer_at_path(Helper.INPUT_SET_PATH);
         }
     }
 }

@@ -7,6 +7,7 @@ using ODWai2.Controllers;
 using ODWai2.Interfaces;
 using ODWai2.Misc.Classes;
 using ODWai2.Misc.Views;
+using ODWai2.ODWaiCore.Controllers;
 
 namespace ODWai2.Presentation
 {
@@ -110,12 +111,12 @@ namespace ODWai2.Presentation
 
         private void btn_data_set_dir_Click(object sender, EventArgs e)
         {
-            ODWaiCore.Controllers.Helper.open_explorer_at_path(tb_data_set_path.Text);
+            Helper.open_explorer_at_path(tb_data_set_path.Text);
         }
 
         private void btn_graph_dir_Click(object sender, EventArgs e)
         {
-            ODWaiCore.Controllers.Helper.open_explorer_at_path(tb_data_set_path.Text);
+            Helper.open_explorer_at_path(tb_data_set_path.Text);
         }
 
         private void btn_new_data_set_Click(object sender, EventArgs e)
@@ -203,6 +204,63 @@ namespace ODWai2.Presentation
             loading_view.Close();
 
             bind(cbox_graph, _data_set_controller.get_inference_graphs(data_set_path));
+        }
+
+        private void btn_start_training_Click(object sender, EventArgs e)
+        {
+            string data_set_path = get_current_data_set();
+            if (data_set_path == null) {
+                Helper.error_message("Path to dataset not found");
+                return;
+            }
+
+            (int code, string output) = _data_set_controller.start_training(data_set_path);
+            Helper.dialog_message(output);
+        }
+
+        private void btn_generate_graph_Click(object sender, EventArgs e)
+        {
+            // first, get dataset path
+            string data_set_path = get_current_data_set();
+            if (data_set_path == null)
+            {
+                Helper.error_message("Path to dataset not found");
+                return;
+            }
+
+            // flush current graph data (as exporter requires path to be empty)
+            DialogResult result = MessageBox.Show("The following action requires the current graph data of the data set to be flushed. "
+                                                    + "Make sure you have a backup of these data if you still need them for later use.\n"
+                                                    + "Are you sure you want to proceed?",
+                                                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result == DialogResult.No) { return; }
+
+            // proceed to flush old data
+            LoadingProgressView loading_view = new LoadingProgressView("Flushing old graph data");
+            Action failure = () => { loading_view.Close(); };
+            loading_view.Show();
+            (int del_code, string del_output) = _data_set_controller.clear_graph_data(data_set_path, failure);
+
+            if (del_output != null) { Helper.error_message("Error flushing graph data: " + del_output); return; }
+
+            // generate graph using data set path
+            Action<string> update = (progress) => { loading_view.set_progress(progress); };
+            (int code, string output) = _data_set_controller.generate_graph(data_set_path, update);
+            loading_view.Close();
+            if (code == 0)
+            {
+                Helper.dialog_message("Inference graph successfully generated");
+
+                string data_set_dir = get_current_data_set();
+                if (data_set_dir == null) { return; }
+
+                bind(cbox_graph, _data_set_controller.get_inference_graphs(data_set_dir));
+            }
+            else
+            {
+                Helper.error_message("Error generating inference graph, exit code: " + code);
+            }
         }
     }
 }

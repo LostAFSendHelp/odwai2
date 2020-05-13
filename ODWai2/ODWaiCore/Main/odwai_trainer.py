@@ -45,12 +45,7 @@ import functools
 import json
 import os
 import tensorflow as tf
-
-from object_detection.builders import dataset_builder
-from object_detection.builders import graph_rewriter_builder
-from object_detection.builders import model_builder
-from object_detection.legacy import trainer
-from object_detection.utils import config_util
+import sys
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
@@ -81,8 +76,17 @@ flags.DEFINE_string('input_config_path', '',
 flags.DEFINE_string('model_config_path', '',
                     'Path to a model_pb2.DetectionModel config file.')
 
+flags.DEFINE_string('slim_path', '', 'slim path.')
+
 FLAGS = flags.FLAGS
 
+sys.path.append(FLAGS.slim_path)
+
+from object_detection.builders import dataset_builder
+from object_detection.builders import graph_rewriter_builder
+from object_detection.builders import model_builder
+from object_detection.legacy import trainer
+from object_detection.utils import config_util
 
 @tf.contrib.framework.deprecated(None, 'Use object_detection/model_main.py.')
 def main(_):
