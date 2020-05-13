@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Xml.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using ODWai2.Misc.Classes;
 
-namespace ODWai2.Misc
+namespace ODWai2.Misc.Views
 {
-    public partial class ImageItemView : Form
+    public partial class ImageItemView : SubView
     {
         private string _path;
 

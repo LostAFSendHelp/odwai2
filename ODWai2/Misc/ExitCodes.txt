@@ -1,0 +1,15 @@
+﻿success: 0
+unexpected: 1
+python path not found: -1
+timeout: 100
+xml_to_csv:
+- error getting options: 99
+- empty path: 98
+- unexpected: 91
+generate_tf_record:
+- error getting options: 89
+- empty path: 88
+- unexpected: 81
+detection:
+- graph not found: 78
+- unexpected: 71

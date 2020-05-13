@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ODWai2</RootNamespace>
     <AssemblyName>ODWai2</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,18 +56,50 @@
     <Compile Include="DAOs\DataSetRepository.cs" />
     <Compile Include="DAOs\InputSetRepository.cs" />
     <Compile Include="Interfaces\DataLoadingView.cs" />
-    <Compile Include="Misc\ImageItemView.cs">
+    <Compile Include="Misc\Classes\ClassCreatePanel.cs" />
+    <Compile Include="Misc\Classes\Configuration.cs" />
+    <Compile Include="Misc\Classes\InputGroup.cs" />
+    <Compile Include="Misc\Classes\SubView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\ImageItemView.Designer.cs">
+    <Compile Include="Misc\Views\FrameSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Views\FrameSelector.Designer.cs">
+      <DependentUpon>FrameSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Views\ImageItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Views\ImageItemView.Designer.cs">
       <DependentUpon>ImageItemView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Misc\NewDataSetView.cs">
+    <Compile Include="Misc\Views\LoadingProgressView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Misc\NewDataSetView.Designer.cs">
+    <Compile Include="Misc\Views\LoadingProgressView.Designer.cs">
+      <DependentUpon>LoadingProgressView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Views\NewDataSetView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Views\NewDataSetView.Designer.cs">
       <DependentUpon>NewDataSetView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Misc\Views\NewInputSetView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc\Views\NewInputSetView.designer.cs">
+      <DependentUpon>NewInputSetView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ODWaiCore\CommandBuilder.cs" />
+    <Compile Include="ODWaiCore\Controllers\Helper.cs" />
+    <Compile Include="ODWaiCore\Controllers\ODWaiDetector.cs" />
+    <Compile Include="ODWaiCore\Controllers\ODWaiSimulator.cs" />
+    <Compile Include="ODWaiCore\Controllers\ODWaiTrainer.cs" />
+    <Compile Include="ODWaiCore\Models\DetectionResult.cs" />
+    <Compile Include="ODWaiCore\Models\FieldTest.cs" />
+    <Compile Include="ODWaiCore\Models\FieldRule.cs" />
     <Compile Include="ODWaiCore\ScriptExecutor.cs" />
     <Compile Include="Presentation\DataSetView.cs">
       <SubType>Form</SubType>
@@ -86,11 +121,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Misc\ImageItemView.resx">
+    <EmbeddedResource Include="Misc\Views\ImageItemView.resx">
       <DependentUpon>ImageItemView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Misc\NewDataSetView.resx">
+    <EmbeddedResource Include="Misc\Views\LoadingProgressView.resx">
+      <DependentUpon>LoadingProgressView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\Views\NewDataSetView.resx">
       <DependentUpon>NewDataSetView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc\Views\NewInputSetView.resx">
+      <DependentUpon>NewInputSetView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\DataSetView.resx">
+      <DependentUpon>DataSetView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
@@ -105,6 +149,29 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2.config" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\checkpoint" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\frozen_inference_graph.pb" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\model.ckpt.data-00000-of-00001" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\model.ckpt.index" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\model.ckpt.meta" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\pipeline.config" />
+    <None Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\saved_model\saved_model.pb" />
+    <None Include="ODWaiCore\Main\training resources\labelmap.pbtxt" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\autoaugment_utils.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\config_util.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\context_manager.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\label_map_util.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\learning_schedules.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\model_util.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\ops.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\shape_utils.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\spatial_transform_ops.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\static_shape.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\variables_helper.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\visualization_utils.cpython-36.pyc" />
+    <None Include="ODWaiCore\Main\utils\__pycache__\__init__.cpython-36.pyc" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,6 +184,76 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Image assets\rsz_images.png" />
+    <Content Include="Misc\ExitCodes.txt" />
+    <Content Include="ODWaiCore\Main\export_inference_graph.py" />
+    <Content Include="ODWaiCore\Main\odwai_detector.py" />
+    <Content Include="ODWaiCore\Main\odwai_simulator.py" />
+    <Content Include="ODWaiCore\Main\placeholder.txt" />
+    <Content Include="ODWaiCore\Main\odwai_trainer.py" />
+    <Content Include="ODWaiCore\Main\utils\autoaugment_utils.py" />
+    <Content Include="ODWaiCore\Main\utils\category_util.py" />
+    <Content Include="ODWaiCore\Main\utils\category_util_test.py" />
+    <Content Include="ODWaiCore\Main\utils\config_util.py" />
+    <Content Include="ODWaiCore\Main\utils\config_util_test.py" />
+    <Content Include="ODWaiCore\Main\utils\context_manager.py" />
+    <Content Include="ODWaiCore\Main\utils\context_manager_test.py" />
+    <Content Include="ODWaiCore\Main\utils\dataset_util.py" />
+    <Content Include="ODWaiCore\Main\utils\dataset_util_test.py" />
+    <Content Include="ODWaiCore\Main\utils\json_utils.py" />
+    <Content Include="ODWaiCore\Main\utils\json_utils_test.py" />
+    <Content Include="ODWaiCore\Main\utils\label_map_util.py" />
+    <Content Include="ODWaiCore\Main\utils\label_map_util_test.py" />
+    <Content Include="ODWaiCore\Main\utils\learning_schedules.py" />
+    <Content Include="ODWaiCore\Main\utils\learning_schedules_test.py" />
+    <Content Include="ODWaiCore\Main\utils\metrics.py" />
+    <Content Include="ODWaiCore\Main\utils\metrics_test.py" />
+    <Content Include="ODWaiCore\Main\utils\model_util.py" />
+    <Content Include="ODWaiCore\Main\utils\model_util_test.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_list.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_list_ops.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_list_ops_test.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_list_test.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_mask_list.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_mask_list_ops.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_mask_list_ops_test.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_mask_list_test.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_ops.py" />
+    <Content Include="ODWaiCore\Main\utils\np_box_ops_test.py" />
+    <Content Include="ODWaiCore\Main\utils\np_mask_ops.py" />
+    <Content Include="ODWaiCore\Main\utils\np_mask_ops_test.py" />
+    <Content Include="ODWaiCore\Main\utils\object_detection_evaluation.py" />
+    <Content Include="ODWaiCore\Main\utils\object_detection_evaluation_test.py" />
+    <Content Include="ODWaiCore\Main\utils\ops.py" />
+    <Content Include="ODWaiCore\Main\utils\ops_test.py" />
+    <Content Include="ODWaiCore\Main\utils\per_image_evaluation.py" />
+    <Content Include="ODWaiCore\Main\utils\per_image_evaluation_test.py" />
+    <Content Include="ODWaiCore\Main\utils\per_image_vrd_evaluation.py" />
+    <Content Include="ODWaiCore\Main\utils\per_image_vrd_evaluation_test.py" />
+    <Content Include="ODWaiCore\Main\utils\shape_utils.py" />
+    <Content Include="ODWaiCore\Main\utils\shape_utils_test.py" />
+    <Content Include="ODWaiCore\Main\utils\spatial_transform_ops.py" />
+    <Content Include="ODWaiCore\Main\utils\spatial_transform_ops_test.py" />
+    <Content Include="ODWaiCore\Main\utils\static_shape.py" />
+    <Content Include="ODWaiCore\Main\utils\static_shape_test.py" />
+    <Content Include="ODWaiCore\Main\utils\test_case.py" />
+    <Content Include="ODWaiCore\Main\utils\test_utils.py" />
+    <Content Include="ODWaiCore\Main\utils\test_utils_test.py" />
+    <Content Include="ODWaiCore\Main\utils\variables_helper.py" />
+    <Content Include="ODWaiCore\Main\utils\variables_helper_test.py" />
+    <Content Include="ODWaiCore\Main\utils\visualization_utils.py" />
+    <Content Include="ODWaiCore\Main\utils\visualization_utils_test.py" />
+    <Content Include="ODWaiCore\Main\utils\vrd_evaluation.py" />
+    <Content Include="ODWaiCore\Main\utils\vrd_evaluation_test.py" />
+    <Content Include="ODWaiCore\Main\utils\__init__.py" />
+    <Content Include="ODWaiCore\Utilities\generate_tf_records.py" />
+    <Content Include="ODWaiCore\Utilities\xml_to_csv.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ODWaiCore\Main\training resources\faster_rcnn_inception_v2_coco_2018_01_28\saved_model\variables\" />
+    <Folder Include="ODWaiCore\temp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

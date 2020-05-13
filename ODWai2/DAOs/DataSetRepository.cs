@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Data;
+using ODWai2.ODWaiCore.Controllers;
 
 namespace ODWai2.DAOs
 {
     public class DataSetRepository
     {
-        private const string root_dir = @"../../Datasets/";
+        private string _root_dir;
+
+        public DataSetRepository()
+        {
+            Directory.CreateDirectory(Helper.DATA_SET_PATH);
+            _root_dir = Path.GetFullPath(Helper.DATA_SET_PATH);
+        }
 
         public Dictionary<string, string> get_all_data_sets()
         {
-            IEnumerable<string> dirs = Directory.EnumerateDirectories(root_dir);
+            IEnumerable<string> dirs = Directory.EnumerateDirectories(_root_dir);
             List<string> keys = new List<string>();
             List<string> values = new List<string>();
             foreach (string dir in dirs) {
@@ -25,9 +30,15 @@ namespace ODWai2.DAOs
             return zip(keys, values);
         }
 
-        public Dictionary<string, string> get_inference_graph(string graph_directory)
+        public string root_dir()
+        {
+            return _root_dir;
+        }
+
+        public Dictionary<string, string> get_inference_graphs(string graph_directory)
         {
             string dir = graph_directory + "/graph";
+            Directory.CreateDirectory(dir);
             IEnumerable<string> graphs = Directory.EnumerateFiles(dir, "*.pb", SearchOption.TopDirectoryOnly);
             List<string> keys = new List<string>();
             foreach (string graph in graphs) { keys.Add(Path.GetFileName(graph)); }
@@ -39,6 +50,7 @@ namespace ODWai2.DAOs
         public DataTable get_data_set(string data_set_directory, string type)
         {
             string dir = data_set_directory + "/" + type;
+            Directory.CreateDirectory(dir);
             IEnumerable<string> data_set = Directory.EnumerateFiles(dir, "*.jpg", SearchOption.TopDirectoryOnly);
             DataTable data_table = new DataTable();
             data_table.Columns.Add("id");
@@ -57,14 +69,50 @@ namespace ODWai2.DAOs
             return data_table;
         }
 
-        public int create_new_data_set(string to_path, string from_train_path, string from_test_path)
+        public void import_graph(string to_path, string from_path)
         {
             Directory.CreateDirectory(to_path);
-            int copied_train = copy_data_files(to_path + "/train", from_train_path);
-            int copied_test = copy_data_files(to_path + "/test", from_test_path);
-            copy_data_files(to_path + "/graph");
+            File.Copy(from_path, Path.Combine(to_path, Path.GetFileName(from_path)), true);
+        }
+
+        public int create_new_data_set(string to_path, string from_train_path, string from_test_path, Action<string> update = null)
+        {
+            Directory.CreateDirectory(to_path);
+            int copied_train = copy_data_files(to_path + "/train", from_train_path, update);
+            int copied_test = copy_data_files(to_path + "/test", from_test_path, update);
+            copy_data_files(to_path + "/graph", null);
 
             return copied_test + copied_train;
+        }
+
+        public (int, string) delete_data_set(string at_path)
+        {
+            try
+            {
+                Directory.Delete(at_path, true);
+            }
+            catch (Exception e)
+            {
+                return (1, e.Message);
+            }
+
+            return (0, null);
+        }
+
+        public (int, string) clear_graph_data(string data_set_path, Action failure = null)
+        {
+            try
+            {
+                var directory_info = new DirectoryInfo(Path.Combine(data_set_path, "graph"));
+                foreach (var file in directory_info.EnumerateFiles()) { file.Delete(); }
+                foreach (var directory in directory_info.EnumerateDirectories()) { directory.Delete(true); }
+                return (0, null);
+            }
+            catch (Exception e)
+            {
+                failure?.Invoke();
+                return (1, e.Message);
+            }
         }
 
         private Dictionary<string, string> zip(List<string> keys, List<string> values)
@@ -75,7 +123,7 @@ namespace ODWai2.DAOs
             return dict;
         }
 
-        private int copy_data_files(string to_path, string from_path = null)
+        private int copy_data_files(string to_path, string from_path = null, Action<string> update = null)
         {
             Directory.CreateDirectory(to_path);
             if (String.IsNullOrEmpty(from_path)) { return 0; }
@@ -86,13 +134,18 @@ namespace ODWai2.DAOs
             int count = 0;
             foreach (string image_file in image_files)
             {
-                string image_file_lower = image_file.ToLower();
-                string xml_file = image_file_lower.Replace(".jpg", ".xml");
-                if (File.Exists(xml_file))
+                string image_path_lower = image_file.ToLower();
+                string xml_path_lower = image_path_lower.Replace(".jpg", ".xml");
+                if (File.Exists(xml_path_lower))
                 {
                     ++count;
-                    File.Copy(image_file, to_path + "/" + Path.GetFileName(image_file_lower));
-                    File.Copy(xml_file, to_path + "/" + Path.GetFileName(xml_file));
+                    string image_file_lower = Path.GetFileName(image_path_lower);
+                    string xml_file_lower = Path.GetFileName(xml_path_lower);
+
+                    if (update != null) { update.Invoke(image_file_lower); }
+                    File.Copy(image_file, to_path + "/" + image_file_lower);
+                    if (update != null) { update.Invoke(xml_file_lower); }
+                    File.Copy(xml_path_lower, to_path + "/" + xml_file_lower);
                 }
             }
 

@@ -1,4 +1,4 @@
-﻿namespace ODWai2.Misc
+﻿namespace ODWai2.Misc.Views
 {
     partial class NewDataSetView
     {
@@ -144,6 +144,7 @@
             this.Controls.Add(this.tb_data_set_name);
             this.Controls.Add(this.label1);
             this.Name = "NewDataSetView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NewDataSetView";
             this.ResumeLayout(false);
             this.PerformLayout();
