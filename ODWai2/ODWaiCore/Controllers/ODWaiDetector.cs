@@ -5,7 +5,7 @@ namespace ODWai2.ODWaiCore.Controllers
 {
     public class ODWaiDetector
     {
-        private static string LABEL_MAP = Path.GetFullPath(@"../../ODWaiCore/Main/labelmap.pbtxt");
+        private static string LABEL_MAP = Path.GetFullPath(@"../../ODWaiCore/Main/training resources/labelmap.pbtxt");
         public static (int, string) start_detection(string graph_path,
                                            string root_x,
                                            string root_y,
@@ -22,7 +22,7 @@ namespace ODWai2.ODWaiCore.Controllers
                                          ("root_x", root_x), ("root_y", root_y),
                                          ("width", width),
                                          ("height", height),
-                                         ("labelmap", LABEL_MAP));
+                                         ("labelmap", Helper.get_path_argument(LABEL_MAP)));
             completion?.Invoke();
             switch (code)
             {
