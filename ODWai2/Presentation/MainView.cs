@@ -27,6 +27,7 @@ namespace ODWai2.Presentation
             DialogResult confirm_quit = MessageBox.Show("Are you sure you want to exit?", "Confirm exit", MessageBoxButtons.YesNo);
             if (confirm_quit == DialogResult.Yes)
             {
+                _main_controller.flush_temp();
                 base.OnClosing(e);
             }
         }
@@ -61,6 +62,10 @@ namespace ODWai2.Presentation
             {
                 Helper.error_message("Please choose an inference graph in Data set configuration");
             }
+            else if (result == - 1)
+            {
+                Helper.error_message("Invalid Python path");
+            }
             else if (result != 0)
             {
                 Helper.error_message("Error executing detection, exit code: " + result);
@@ -69,26 +74,35 @@ namespace ODWai2.Presentation
 
         private void simulate_btn_Click(object sender, EventArgs e)
         {
-            string path = cbox_input_set.SelectedValue.ToString();
+            string path = cbox_input_set.SelectedValue?.ToString();
             if (path == null) { Helper.error_message("Path to input set not found"); return; }
 
-            string _result = _main_controller.generate_test_cases(path);
+            (string _result, bool _contains_fallback) = _main_controller.generate_test_cases(path);
             if (_result != null) { Helper.error_message("Error generating test cases: " + _result); return; }
 
             if (!check_simulate_options()) { Helper.error_message("Please choose at least 1 simulation option"); return; }
+            if (!_contains_fallback && chbox_fallback.Checked)
+            {
+                DialogResult dialog_result = MessageBox.Show("Fallback input is enabled whereas inputset contains no definition for fallback fields. "
+                                                            + "Unrecognized fields will not receive input.\nAre you sure you want to proceed?",
+                                                            "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialog_result == DialogResult.No) { return; }
+            }
 
             Action on_start = () => { toggle_window_state(false); };
             Action on_complete = () => { toggle_window_state(true); };
 
-            int result = _main_controller.start_simulation(on_start,
+            (int result, string output) = _main_controller.start_simulation(on_start,
                                                             on_complete,
                                                             chbox_error.Checked,
                                                             chbox_valid.Checked,
-                                                            chbox_randomize.Checked);
+                                                            chbox_fallback.Checked);
 
             if (result != 0)
             {
-                Helper.error_message("Error executing simulation, exit code: " + result);
+                string error_message = "Error executing simulation, exit code: " + result;
+                if (output != null) { error_message += ("\n" + output); }
+                Helper.error_message(error_message);
             }
             else
             {
@@ -98,7 +112,7 @@ namespace ODWai2.Presentation
 
         private bool check_simulate_options()
         {
-            return chbox_error.Checked || chbox_valid.Checked || chbox_randomize.Checked;
+            return chbox_error.Checked || chbox_valid.Checked || chbox_fallback.Checked;
         }
 
         private void update_detection_result()

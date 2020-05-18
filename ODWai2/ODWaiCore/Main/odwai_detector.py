@@ -146,7 +146,7 @@ class Detect_img():
                 xmax = box[3] * width
                 class_name = "Unknown"
                 bias = "NA"
-                inner_text = "no text"
+                inner_text = ""
                 
                 if scores[0][idx] < INNTER_THRESHOLD:
                     bias = category_index[classes[0][idx]]["name"]
