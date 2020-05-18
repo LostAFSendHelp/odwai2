@@ -89,7 +89,7 @@ def classify_boxes(boxes, fields):
     print(len(unrecognized))
     return(recognized, unrecognized)
 
-def simulate_user_input(error, valid, randomize):
+def simulate_user_input(error, valid, fallback):
     "Simulate inputs"
     # TODO: check for simulation option (error/valid/etc)
     boxes = get_results()
@@ -101,20 +101,20 @@ def simulate_user_input(error, valid, randomize):
         for rec_item in rec:
             for error in rec_item["error"]:
                 simulate_error(rec_item, error, rec)
-                if randomize:
+                if fallback:
                     simulate_unrecognized(unrec)
 
     # simulate lower valids
     if valid:
         for rec_item in rec:
             input_text_at(rec_item["valid"]["Item1"], rec_item)
-        if randomize:
+        if fallback:
             simulate_unrecognized(unrec)
 
         # simulate upper valids
         for rec_item in rec:
             input_text_at(rec_item["valid"]["Item2"], rec_item)
-        if randomize:
+        if fallback:
             simulate_unrecognized(unrec)
 
     sys.exit(0)
@@ -171,26 +171,26 @@ def match_input(text):
 
 def get_options(argv):
     try:
-        opts, args = options.getopt(argv,"evr",["error","valid", "randomize"])
+        opts, args = options.getopt(argv,"evr",["error","valid", "fallback"])
     except options.GetoptError:
         sys.exit(1)
         
     simulate_error = False
     simulate_valid = False
-    randomize = False
+    fallback = False
     
     for opt, arg in opts:
         if opt in ("-e", "--error"):
             simulate_error = True
         elif opt in ("-v", "--valid"):
             simulate_valid = True
-        elif opt in ("-r", "--randomize"):
-            randomize = True
-    if simulate_error or simulate_valid or randomize:
-        return (simulate_error, simulate_valid, randomize)
+        elif opt in ("-r", "--fallback"):
+            fallback = True
+    if simulate_error or simulate_valid or fallback:
+        return (simulate_error, simulate_valid, fallback)
     return (False, True, False)
 
 
 if __name__ == "__main__":
-    (error, valid, randomize) = get_options(sys.argv[1:])
-    simulate_user_input(error, valid, randomize)
+    (error, valid, fallback) = get_options(sys.argv[1:])
+    simulate_user_input(error, valid, fallback)

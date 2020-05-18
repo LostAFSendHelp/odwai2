@@ -188,5 +188,17 @@ namespace ODWai2.Controllers
         {
             return _generate_test_cases(from_path);
         }
+
+        public void flush_temp()
+        {
+            try
+            {
+                Directory.Delete(Helper.TEMP_RESULT_PATH, true);
+            }
+            catch (Exception e)
+            {
+                // handle here if needed
+            }
+        }
     }
 }

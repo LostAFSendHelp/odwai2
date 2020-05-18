@@ -27,6 +27,7 @@ namespace ODWai2.Presentation
             DialogResult confirm_quit = MessageBox.Show("Are you sure you want to exit?", "Confirm exit", MessageBoxButtons.YesNo);
             if (confirm_quit == DialogResult.Yes)
             {
+                _main_controller.flush_temp();
                 base.OnClosing(e);
             }
         }
@@ -61,6 +62,10 @@ namespace ODWai2.Presentation
             {
                 Helper.error_message("Please choose an inference graph in Data set configuration");
             }
+            else if (result == - 1)
+            {
+                Helper.error_message("Invalid Python path");
+            }
             else if (result != 0)
             {
                 Helper.error_message("Error executing detection, exit code: " + result);
@@ -84,7 +89,7 @@ namespace ODWai2.Presentation
                                                             on_complete,
                                                             chbox_error.Checked,
                                                             chbox_valid.Checked,
-                                                            chbox_randomize.Checked);
+                                                            chbox_fallback.Checked);
 
             if (result != 0)
             {
@@ -98,7 +103,7 @@ namespace ODWai2.Presentation
 
         private bool check_simulate_options()
         {
-            return chbox_error.Checked || chbox_valid.Checked || chbox_randomize.Checked;
+            return chbox_error.Checked || chbox_valid.Checked || chbox_fallback.Checked;
         }
 
         private void update_detection_result()

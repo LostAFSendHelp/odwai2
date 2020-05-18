@@ -23,12 +23,18 @@ namespace ODWai2.ODWaiCore.Models
         public bool rejects_alphabets; // must not contradict forces_uppercase || forces_lowercase
         public bool rejects_numbers;
 
-        public static FieldRule new_field(string _name, string _associated, string _length, string _must_have, string _must_not_have)
+        public static FieldRule new_field(string _name, string _associated, string _length, string _must_have, string _must_not_have, ref bool _can_fallback)
         {
             bool __rejects_alphabets = false, __rejects_numbers = false,
                 __forces_lowercase = false, __forces_uppercase = false, __forces_numbers = false;
+            string __name = _name;
             // TODO: Check for associated
             List<string> __associated = _associated.Split(',').Select(text => text.Trim()).ToList();
+            if (__associated.Count <= 0)
+            {
+                if (_can_fallback) { __name = "<fallback>"; _can_fallback = false; }
+                else { return null; }
+            }
             // TODO: Check for min max
             List<int> __length = _length.Split(',').Select(text => { return int.Parse(text.Trim()); }).ToList();
             int __min = __length[0], __max = __length[1];
