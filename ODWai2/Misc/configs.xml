@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <annotations>
   <configs>
-    <python-path>D:\coderepos\pythonrepos\tfenv\python.exe</python-path>
+    <python-path>D:\tfenv\python.exe</python-path>
   </configs>
 </annotations>

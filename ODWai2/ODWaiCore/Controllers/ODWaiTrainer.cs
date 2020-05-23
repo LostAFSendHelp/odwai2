@@ -77,7 +77,7 @@ namespace ODWai2.ODWaiCore.Controllers
                 string slim_path = Helper.get_path_argument(Path.GetFullPath(BASE_SLIM_PATH));
                 data_set_path = Helper.get_path_argument(Path.GetFullPath(data_set_path));
                 pipeline_path = Helper.get_path_argument(Path.GetFullPath(BASE_PIPELINE_PATH));
-                Directory.CreateDirectory(temp_path);
+                Directory.CreateDirectory(BASE_TEMP_PATH);
 
                 (int code, string output) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.main, "odwai_trainer.py",
                                                                           true, null, 0, false,
