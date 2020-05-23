@@ -92,7 +92,7 @@ def __classify(present_text, texts_to_match):
 # Create a box object
 def __create_box(simple_id, key, center_x, center_y, fields):
     error = [""]
-    valid = [""]
+    valid = {"Item1": "", "Item2": ""}
     for field in fields:
         if key == field["field_name"]:
             valid = field["valid"]
