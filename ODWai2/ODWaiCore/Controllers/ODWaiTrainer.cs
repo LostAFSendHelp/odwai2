@@ -120,7 +120,6 @@ namespace ODWai2.ODWaiCore.Controllers
 
         private static (int, string) create_config(string data_set_path)
         {
-            string pipeline_path = @"../../ODWaiCore/temp/pipeline.config";
             try
             {
                 string resource_path = Path.GetFullPath(@"../../ODWaiCore/Main/training resources/");
