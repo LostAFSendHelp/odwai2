@@ -44,7 +44,7 @@ namespace ODWai2.ODWaiCore
                                         params (string, string)[] arguments)
         {
             string python_path = Configuration.get_python_path();
-            if (python_path == null) { return (-1, null); }
+            if (python_path == null) { return (-1, "Invalid python path"); }
             string command = CommandBuilder.command(exe_type, script_name, arguments);
 
             ProcessStartInfo info = new ProcessStartInfo(python_path, command);

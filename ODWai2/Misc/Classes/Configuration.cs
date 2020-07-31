@@ -39,7 +39,8 @@ namespace ODWai2.Misc.Classes
             XElement element = XElement.Load(full_path);
             if (!element.Descendants("python-path").Any()) { return null; }
 
-            return element.Descendants("python-path").First().Value;
+            string path = element.Descendants("python-path").First().Value;
+            return File.Exists(path) ? path : null;
         }
     }
 }

@@ -84,8 +84,8 @@ namespace ODWai2.DAOs
         {
             try
             {
-                string full_name = Helper.INPUT_SET_PATH + name + ".json";
-                if (Directory.Exists(full_name)) { return "Input set name already taken"; }
+                string full_name = Path.Combine(Helper.INPUT_SET_PATH, name + ".json");
+                if (File.Exists(full_name)) { return "Input set name already taken"; }
 
                 StreamWriter writer = new StreamWriter(full_name);
                 writer.Write(JsonConvert.SerializeObject(input_set, Formatting.Indented));
@@ -98,30 +98,32 @@ namespace ODWai2.DAOs
             }
         }
 
-        public string generate_test_cases(string from_path)
+        public (string, bool) generate_test_cases(string from_path)
         {
             (List<FieldRule> rules, string error) = FieldRule.from_path(from_path);
-            if (rules == null) { return error; }
+            if (rules == null) { return (error, false); }
 
             List<FieldTest> tests = new List<FieldTest>();
+            bool contains_fallback = false;
             foreach(var rule in rules)
             {
                 tests.Add(FieldTest.from_rule(rule));
+                if (rule.field_name.Contains("<fallback>")) { contains_fallback = true; }
             }
 
             try
             {
                 string full_name = Helper.TEST_CASE_PATH + "testcases.json";
-                if (Directory.Exists(full_name)) { return "Input set name already taken"; }
+                if (Directory.Exists(full_name)) { return ("Input set name already taken", false); }
 
                 StreamWriter writer = new StreamWriter(full_name);
                 writer.Write(JsonConvert.SerializeObject(tests, Formatting.Indented));
                 writer.Close();
-                return null;
+                return (null, contains_fallback);
             }
             catch (Exception e)
             {
-                return e.Message;
+                return (e.Message, false);
             }
         }
     }

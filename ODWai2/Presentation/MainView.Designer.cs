@@ -54,7 +54,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chbox_all = new System.Windows.Forms.CheckBox();
             this.chbox_valid = new System.Windows.Forms.CheckBox();
-            this.chbox_randomize = new System.Windows.Forms.CheckBox();
+            this.chbox_fallback = new System.Windows.Forms.CheckBox();
             this.chbox_edge = new System.Windows.Forms.CheckBox();
             this.chbox_custom = new System.Windows.Forms.CheckBox();
             this.chbox_error = new System.Windows.Forms.CheckBox();
@@ -300,7 +300,7 @@
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.chbox_all);
             this.groupBox5.Controls.Add(this.chbox_valid);
-            this.groupBox5.Controls.Add(this.chbox_randomize);
+            this.groupBox5.Controls.Add(this.chbox_fallback);
             this.groupBox5.Controls.Add(this.chbox_edge);
             this.groupBox5.Controls.Add(this.chbox_custom);
             this.groupBox5.Controls.Add(this.chbox_error);
@@ -347,15 +347,15 @@
             this.chbox_valid.Text = "Valid inputs";
             this.chbox_valid.UseVisualStyleBackColor = true;
             // 
-            // chbox_randomize
+            // chbox_fallback
             // 
-            this.chbox_randomize.AutoSize = true;
-            this.chbox_randomize.Location = new System.Drawing.Point(21, 165);
-            this.chbox_randomize.Name = "chbox_randomize";
-            this.chbox_randomize.Size = new System.Drawing.Size(144, 17);
-            this.chbox_randomize.TabIndex = 0;
-            this.chbox_randomize.Text = "Auto-fill unidentified fields";
-            this.chbox_randomize.UseVisualStyleBackColor = true;
+            this.chbox_fallback.AutoSize = true;
+            this.chbox_fallback.Location = new System.Drawing.Point(21, 165);
+            this.chbox_fallback.Name = "chbox_fallback";
+            this.chbox_fallback.Size = new System.Drawing.Size(215, 17);
+            this.chbox_fallback.TabIndex = 0;
+            this.chbox_fallback.Text = "Use fallback inputs on unidentified fields";
+            this.chbox_fallback.UseVisualStyleBackColor = true;
             // 
             // chbox_edge
             // 
@@ -604,7 +604,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox chbox_all;
         private System.Windows.Forms.CheckBox chbox_valid;
-        private System.Windows.Forms.CheckBox chbox_randomize;
+        private System.Windows.Forms.CheckBox chbox_fallback;
         private System.Windows.Forms.CheckBox chbox_edge;
         private System.Windows.Forms.CheckBox chbox_custom;
         private System.Windows.Forms.CheckBox chbox_error;

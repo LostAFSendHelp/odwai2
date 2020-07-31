@@ -26,7 +26,7 @@ namespace ODWai2.Controllers
         private Func<DataTable> _get_input_sets;
         private Func<string, string> _delete_input_set;
         private Func<string, (JArray, string)> _get_input_set;
-        private Func<string, string> _generate_test_cases;
+        private Func<string, (string, bool)> _generate_test_cases;
 
         public MainController(MainView main_view)
         {
@@ -80,11 +80,11 @@ namespace ODWai2.Controllers
             return code;
         }
 
-        public int start_simulation(Action start, Action completion, bool error, bool valid, bool randomize)
+        public (int, string) start_simulation(Action start, Action completion, bool error, bool valid, bool randomize)
         {
             (int code, string output) = ODWaiSimulator.start_simulation(start, completion, error, valid, randomize);
             if (output != null) { Helper.log_error(output); }
-            return code;
+            return (code, output);
         }
 
         public void another_dummy_func()
@@ -184,9 +184,21 @@ namespace ODWai2.Controllers
         }
 
         // TODO: change to private when applied as part of simulation action chain
-        public string generate_test_cases(string from_path)
+        public (string, bool) generate_test_cases(string from_path)
         {
             return _generate_test_cases(from_path);
+        }
+
+        public void flush_temp()
+        {
+            try
+            {
+                Directory.Delete(Helper.TEMP_RESULT_PATH, true);
+            }
+            catch (Exception e)
+            {
+                // handle here if needed
+            }
         }
     }
 }

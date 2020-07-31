@@ -53,31 +53,16 @@ namespace ODWai2.ODWaiCore.Controllers
 
         public static (int, string) start_training(string data_set_path)
         {
-            string pipeline_path = @"../../ODWaiCore/temp/pipeline.config";
-            try
-            {
-                string resource_path = Path.GetFullPath(@"../../ODWaiCore/Main/training resources/");
-                string config_template = File.ReadAllText(Path.Combine(resource_path, "faster_rcnn_inception_v2.config"));
-                int count = Directory.GetFiles(Path.Combine(data_set_path, "test"), "*", SearchOption.TopDirectoryOnly).Length / 2;
-                string config = config_template.Replace("<train_record_path>", Helper.get_path_argument(Path.Combine(data_set_path, "training resources", "train.record")))
-                                               .Replace("<test_record_path>", Helper.get_path_argument(Path.Combine(data_set_path, "training resources", "test.record")))
-                                               .Replace("<label_map_path>", Helper.get_path_argument(Path.Combine(resource_path, "labelmap.pbtxt")))
-                                               .Replace("<finetune_checkpoint_path>", Helper.get_path_argument(Path.Combine(resource_path, "faster_rcnn_inception_v2_coco_2018_01_28", "model.ckpt")))
-                                               .Replace("<test_count>", count.ToString());
-                File.WriteAllText(BASE_PIPELINE_PATH, config);
-            }
-            catch (Exception e)
-            {
-                return (1, e.Message);
-            }
+            (int _result, string _output) = create_config(data_set_path);
+            if (_result != 0) { return (_result, _output); }
 
             try
             {
                 string temp_path = Helper.get_path_argument(Path.GetFullPath(BASE_TEMP_PATH));
                 string slim_path = Helper.get_path_argument(Path.GetFullPath(BASE_SLIM_PATH));
                 data_set_path = Helper.get_path_argument(Path.GetFullPath(data_set_path));
-                pipeline_path = Helper.get_path_argument(Path.GetFullPath(BASE_PIPELINE_PATH));
-                Directory.CreateDirectory(temp_path);
+                string pipeline_path = Helper.get_path_argument(Path.GetFullPath(BASE_PIPELINE_PATH));
+                Directory.CreateDirectory(BASE_TEMP_PATH);
 
                 (int code, string output) = ScriptExecutor.python_execute(CommandBuilder.ExecutionType.main, "odwai_trainer.py",
                                                                           true, null, 0, false,
@@ -96,6 +81,9 @@ namespace ODWai2.ODWaiCore.Controllers
 
         public static (int, string) export_graph(string data_set_path, Action<string> update = null)
         {
+            (int _result, string _output) = create_config(data_set_path);
+            if (_result != 0) { return (_result, _output); }
+
             Directory.CreateDirectory(BASE_TEMP_PATH);
             string prefix = get_checkpoint_prefix();
             if (!Directory.Exists(Path.Combine(data_set_path, "graph"))) { return (1, "Data set path not found"); }
@@ -128,6 +116,27 @@ namespace ODWai2.ODWaiCore.Controllers
             int[] step_info = files.Select(name => int.Parse(Path.GetFileName(name).Remove(0, 11).Replace(".meta", ""))).ToArray();
             if (step_info.Length <= 0) { return null; }
             return "model.ckpt-" + step_info.Max().ToString();
+        }
+
+        private static (int, string) create_config(string data_set_path)
+        {
+            try
+            {
+                string resource_path = Path.GetFullPath(@"../../ODWaiCore/Main/training resources/");
+                string config_template = File.ReadAllText(Path.Combine(resource_path, "faster_rcnn_inception_v2.config"));
+                int count = Directory.GetFiles(Path.Combine(data_set_path, "test"), "*", SearchOption.TopDirectoryOnly).Length / 2;
+                string config = config_template.Replace("<train_record_path>", Helper.get_path_argument(Path.Combine(data_set_path, "training resources", "train.record")))
+                                               .Replace("<test_record_path>", Helper.get_path_argument(Path.Combine(data_set_path, "training resources", "test.record")))
+                                               .Replace("<label_map_path>", Helper.get_path_argument(Path.Combine(resource_path, "labelmap.pbtxt")))
+                                               .Replace("<finetune_checkpoint_path>", Helper.get_path_argument(Path.Combine(resource_path, "faster_rcnn_inception_v2_coco_2018_01_28", "model.ckpt")))
+                                               .Replace("<test_count>", count.ToString());
+                File.WriteAllText(BASE_PIPELINE_PATH, config);
+                return (0, null);
+            }
+            catch (Exception e)
+            {
+                return (1, e.Message);
+            }
         }
     }
 }

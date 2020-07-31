@@ -214,7 +214,7 @@ namespace ODWai2.ODWaiCore.Models
                 if (rule.forces_lowercase)
                 {
                     buffer = buffer.Replace(buffer[0], 'a');
-                    long_buffer = buffer.Replace(long_buffer[0], 'a');
+                    long_buffer = long_buffer.Replace(long_buffer[0], 'a');
                 }
 
                 return (buffer, long_buffer);

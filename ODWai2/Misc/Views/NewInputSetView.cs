@@ -20,7 +20,7 @@ namespace ODWai2.Misc.Views
         public NewInputSetView(ref Func<DataTable> delegated_get_input_sets,
                                ref Func<string, string> delegated_delete_input_set,
                                ref Func<string, (JArray, string)> delegated_get_input_set,
-                               ref Func<string, string> delegated_generate_test_cases)
+                               ref Func<string, (string, bool)> delegated_generate_test_cases)
         {
             InitializeComponent();
             _class_create_panel = new ClassCreatePanel(this);

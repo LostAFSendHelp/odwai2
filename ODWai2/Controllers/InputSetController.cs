@@ -21,7 +21,7 @@ namespace ODWai2.Controllers
                                   ref Func<DataTable> delegated_get_input_sets,
                                   ref Func<string, string> delegated_delete_input_set,
                                   ref Func<string, (JArray, string)> delegated_get_input_set,
-                                  ref Func<string, string> delegated_generate_test_cases)
+                                  ref Func<string, (string, bool)> delegated_generate_test_cases)
         {
             _input_set_repo = new InputSetRepository(ref delegated_get_input_sets,
                                                      ref delegated_delete_input_set,
@@ -44,10 +44,13 @@ namespace ODWai2.Controllers
         public string save_field_rules(string name, List<InputGroup> input_groups)
         {
             List<FieldRule> fields = new List<FieldRule>();
+            bool can_fallback = true;
             foreach (var group in input_groups)
             {
-                FieldRule rule = FieldRule.new_field(group.field_.Text, group.associated_.Text, group.length_.Text, group.must_have_.Text, group.must_not_have_.Text);
-                if (rule == null) return "Input set entries invalid";
+                FieldRule rule = FieldRule.new_field(group.field_.Text, group.associated_.Text, group.length_.Text, group.must_have_.Text, group.must_not_have_.Text, ref can_fallback);
+                if (rule == null) return "Input set entries invalid. Please check your rules.\n"
+                                           + "The error can be due to a logical conflict or there being "
+                                           + "more than 1 fallback field (field with no associated texts)";
                 fields.Add(rule);
             }
             return _input_set_repo.add_input_set(name, fields);
